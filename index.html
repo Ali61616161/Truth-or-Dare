@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#0d0618">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Doğruluk Cesaret">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.png">
+<title>Doğruluk mu Cesaret mi</title>
+<style>
+:root{--bg:#0d0618;--glass:rgba(255,255,255,.07);--glass2:rgba(255,255,255,.12);--line:rgba(255,255,255,.14);--txt:#fff;--mut:#b8a6d4;--pink:#ff3d81;--org:#ff8a3d;--blue:#4da3ff;--vio:#8a5cff}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;overscroll-behavior:none}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(60% 40% at 15% 0%,rgba(138,92,255,.35),transparent),radial-gradient(60% 40% at 100% 100%,rgba(255,61,129,.3),transparent);pointer-events:none}
+#app{position:relative;min-height:100%;max-width:520px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 14px) 18px calc(env(safe-area-inset-bottom) + 18px);display:flex;flex-direction:column;animation:in .25s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.92);opacity:0}100%{transform:scale(1);opacity:1}}
+h1{font-size:34px;line-height:1.1;margin:10px 0 6px;text-align:center;font-weight:800;letter-spacing:-.5px}
+h1 span{background:linear-gradient(135deg,var(--pink),var(--org));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:24px;margin:8px 0 6px;text-align:center;font-weight:800}
+.sub{color:var(--mut);text-align:center;margin:0 0 18px;font-size:15px;line-height:1.4}
+.btn{border:0;border-radius:20px;padding:17px 18px;font-size:18px;font-weight:700;color:#fff;background:var(--glass2);border:1px solid var(--line);width:100%;font-family:inherit;transition:transform .1s,opacity .2s;display:block;text-align:center}
+.btn:active{transform:scale(.97)}
+.btn.pink{background:linear-gradient(135deg,var(--pink),var(--org));border:0;box-shadow:0 10px 30px rgba(255,61,129,.35)}
+.btn.blue{background:linear-gradient(135deg,#3d8bff,#7b5cff);border:0;box-shadow:0 10px 30px rgba(77,163,255,.3)}
+.btn.red{background:linear-gradient(135deg,#ff2d55,#b0003a);border:0}
+.btn.ghost{background:transparent;color:var(--mut);font-size:15px;padding:13px}
+.btn[disabled]{opacity:.35;pointer-events:none}
+.stack{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.mode{background:var(--glass);border:1px solid var(--line);border-radius:26px;padding:22px;color:#fff;width:100%;text-align:left;font:inherit;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:transform .12s}
+.mode:active{transform:scale(.98)}
+.mode .ico{font-size:34px}
+.mode b{font-size:22px;display:block;margin:8px 0 4px}
+.mode span{color:var(--mut);font-size:15px;line-height:1.4}
+.mode.c{border-color:rgba(255,61,129,.5);background:linear-gradient(160deg,rgba(255,61,129,.18),var(--glass))}
+.mode.f{border-color:rgba(77,163,255,.4);background:linear-gradient(160deg,rgba(77,163,255,.15),var(--glass))}
+input[type=text]{width:100%;padding:16px;border-radius:18px;border:1px solid var(--line);background:var(--glass);color:#fff;font-size:18px;font-family:inherit;-webkit-user-select:text;user-select:text;outline:none}
+input[type=text]:focus{border-color:var(--pink)}
+.seg{display:flex;gap:10px;margin:12px 0 14px}
+.seg button{flex:1;padding:15px;border-radius:18px;border:2px solid var(--line);background:var(--glass);color:var(--mut);font-size:17px;font-weight:700;font-family:inherit}
+.seg button.on.e{border-color:var(--blue);background:rgba(77,163,255,.22);color:#fff}
+.seg button.on.k{border-color:var(--pink);background:rgba(255,61,129,.22);color:#fff}
+.plist{display:flex;flex-direction:column;gap:8px;margin:6px 0 14px}
+.player{display:flex;align-items:center;justify-content:space-between;background:var(--glass);border:1px solid var(--line);padding:12px 16px;border-radius:16px;font-size:17px;animation:pop .2s}
+.player button{background:none;border:0;color:var(--mut);font-size:22px;padding:4px 8px}
+.top{display:flex;justify-content:space-between;align-items:center;min-height:36px}
+.top button{background:none;border:0;color:var(--mut);font-size:15px;padding:8px 4px;font-family:inherit}
+.chip{display:inline-flex;gap:6px;align-items:center;background:var(--glass);border:1px solid var(--line);border-radius:99px;padding:6px 12px;font-size:13px;color:var(--mut)}
+.turn{text-align:center;margin:6px 0 4px}
+.turn .tag{color:var(--mut);font-size:13px;letter-spacing:2px;text-transform:uppercase}
+.turn .who{font-size:38px;font-weight:800;letter-spacing:-.5px}
+.passes{display:flex;gap:6px;justify-content:center;align-items:center;color:var(--mut);font-size:13px;margin:4px 0 10px}
+.passes i{width:12px;height:12px;border-radius:50%;background:var(--pink);display:inline-block}
+.passes i.off{background:transparent;border:2px solid var(--line)}
+.card{flex:0 0 auto;background:var(--glass);border:1px solid var(--line);border-radius:30px;padding:28px 22px;margin:8px 0 14px;min-height:230px;display:flex;flex-direction:column;justify-content:center;text-align:center;font-size:23px;line-height:1.4;font-weight:600;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);animation:pop .25s}
+.card.truth{border-color:rgba(77,163,255,.6);box-shadow:0 0 50px rgba(77,163,255,.15)}
+.card.dare{border-color:rgba(255,61,129,.6);box-shadow:0 0 50px rgba(255,61,129,.18)}
+.card .kind{font-size:13px;letter-spacing:3px;color:var(--mut);margin-bottom:14px;font-weight:700}
+.card.truth .kind{color:var(--blue)}.card.dare .kind{color:var(--pink)}
+.lvl{display:flex;gap:8px;margin:4px 0 6px}
+.lvl button{flex:1;padding:10px 2px;border-radius:14px;border:1px solid var(--line);background:var(--glass);color:var(--mut);font-weight:700;font-size:13px;font-family:inherit}
+.lvl button.on{color:#fff;border-color:var(--pink);background:rgba(255,61,129,.25)}
+.spacer{flex:1}
+.timer{margin:0 0 10px;text-align:center}
+.timer button{background:var(--glass2);border:1px solid var(--line);color:#fff;border-radius:99px;padding:10px 22px;font-size:17px;font-weight:700;font-family:inherit}
+.timer .big{font-size:40px;font-weight:800;font-variant-numeric:tabular-nums}
+.warn{background:rgba(255,45,85,.12);border:1px solid rgba(255,45,85,.45);border-radius:20px;padding:18px;font-size:15px;color:#ffd0dc;margin:14px 0;line-height:1.55}
+.tip{font-size:13px;color:var(--mut);text-align:center;margin-top:12px;line-height:1.5}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;justify-content:center;z-index:9;animation:in .2s}
+.modal>div{background:#1a0d2e;border-radius:28px 28px 0 0;padding:24px 20px calc(env(safe-area-inset-bottom) + 22px);width:100%;max-width:520px;border:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="tasks.js"></script>
+<script src="tasks2.js"></script>
+<script>
+"use strict";
+const MAX_PASS=3;
+const KEY='tod_v2';
+const S={mode:null,players:[],turn:0,level:1,auto:true,task:null,tmpG:null,hist:{},passes:[],timer:null,tleft:0};
+const app=document.getElementById('app');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const vib=n=>{try{navigator.vibrate&&navigator.vibrate(n)}catch(e){}};
+function persist(){try{localStorage.setItem(KEY,JSON.stringify({hist:S.hist,saved:S.players}))}catch(e){}}
+function restore(){try{const d=JSON.parse(localStorage.getItem(KEY)||'{}');S.hist=d.hist||{};S.saved=d.saved||[]}catch(e){S.hist={};S.saved=[]}}
+function render(html){clearTimer();app.style.animation='none';void app.offsetWidth;app.style.animation='';app.innerHTML=html;window.scrollTo(0,0)}
+
+/* ---------- Ekranlar ---------- */
+function home(){
+ S.task=null;
+ const standalone=window.navigator.standalone||matchMedia('(display-mode: standalone)').matches;
+ const ios=/iPhone|iPad|iPod/.test(navigator.userAgent);
+ render(`<div class="spacer"></div>
+ <div style="text-align:center;font-size:56px">🔥</div>
+ <h1>Doğruluk mu<br><span>Cesaret mi?</span></h1>
+ <p class="sub">Reklamsız • Ücretsiz • Türkçe</p>
+ <div class="stack">
+  <button class="mode f" onclick="pickMode('friend')"><div class="ico">👯</div><b>Arkadaş Modu</b><span>Komik, samimi, eğlenceli görevler. 2 veya daha fazla oyuncu.</span></button>
+  <button class="mode c" onclick="pickMode('couple')"><div class="ico">❤️‍🔥</div><b>Sevgili Modu</b><span>Çiftler için ateşli, fiziksel ve giderek kızışan görevler. 18+</span></button>
+ </div>
+ <div class="spacer"></div>
+ ${!standalone&&ios?'<p class="tip">📲 Uygulama gibi kullanmak için Safari’de <b>Paylaş</b> → <b>Ana Ekrana Ekle</b></p>':''}
+ <button class="btn ghost" onclick="resetHist()">Görev geçmişini sıfırla</button>`);
+}
+function resetHist(){if(confirm('Tüm görev geçmişi sıfırlansın mı? Görevler baştan gelmeye başlar.')){S.hist={};persist();alert('Sıfırlandı ✅')}}
+function pickMode(m){
+ if(m==='couple'){
+  render(`<div class="spacer"></div><div style="text-align:center;font-size:48px">🔞</div><h2>18+ Uyarısı</h2>
+  <div class="warn">Sevgili modu yetişkin çiftler içindir. Tüm görevler <b>karşılıklı rıza</b> ile yapılmalıdır. Her oyuncunun ${MAX_PASS} pas hakkı vardır; rahatsız olduğun bir şeyi her zaman durdurabilirsin. Sınırlara saygı göster.</div>
+  <div class="stack"><button class="btn red" onclick="setMode('couple')">18 yaşından büyüğüm, devam</button>
+  <button class="btn ghost" onclick="home()">Geri</button></div><div class="spacer"></div>`);
+ } else setMode('friend');
+}
+function setMode(m){S.mode=m;S.players=[];S.tmpG=null;setup()}
+function setup(keep){
+ const c=S.mode==='couple';
+ const full=c&&S.players.length>=2;
+ const ready=S.players.length>=2;
+ const list=S.players.map((p,i)=>`<div class="player"><span>${p.g==='e'?'👨':'👩'} ${esc(p.n)}</span><button aria-label="Sil" onclick="rmPlayer(${i})">✕</button></div>`).join('');
+ render(`<div class="top"><button onclick="home()">‹ Geri</button><span class="chip">${c?'❤️‍🔥 Sevgili':'👯 Arkadaş'}</span></div>
+ <h2>${c?'Çift bilgileri':'Oyuncuları ekle'}</h2>
+ <p class="sub">${c?'İkinizin de adını ve cinsiyetini girin.':'En az 2 oyuncu ekle. Sırayla oynanır.'}</p>
+ <div class="plist">${list}</div>
+ ${full?'':`<input id="nm" type="text" maxlength="16" placeholder="İsim" autocomplete="off" autocapitalize="words" enterkeyhint="done">
+ <div class="seg"><button class="e ${S.tmpG==='e'?'on':''}" onclick="setG('e')">👨 Erkek</button><button class="k ${S.tmpG==='k'?'on':''}" onclick="setG('k')">👩 Kadın</button></div>
+ <button class="btn blue" onclick="addPlayer()">＋ Oyuncu ekle</button>`}
+ <div class="spacer"></div>
+ <button class="btn pink" style="margin-top:18px" ${ready?'':'disabled'} onclick="start()">Oyunu Başlat</button>`);
+ const i=document.getElementById('nm');if(i){if(keep)i.value=keep;i.addEventListener('keydown',e=>{if(e.key==='Enter')addPlayer()})}
+}
+function setG(g){const v=(document.getElementById('nm')||{}).value||'';S.tmpG=g;setup(v)}
+function addPlayer(){
+ const n=(document.getElementById('nm').value||'').trim();
+ if(!n){alert('Bir isim yaz');return}
+ if(!S.tmpG){alert('Cinsiyet seç');return}
+ if(S.players.some(p=>p.n.toLowerCase()===n.toLowerCase())){alert('Bu isim zaten var');return}
+ S.players.push({n,g:S.tmpG});S.tmpG=null;setup();
+}
+function rmPlayer(i){S.players.splice(i,1);setup()}
+function start(){
+ if(S.players.length<2){alert('En az 2 oyuncu gerekli');return}
+ S.turn=0;S.level=1;S.auto=true;S.task=null;S.passes=S.players.map(()=>MAX_PASS);persist();game();
+}
+
+/* ---------- Oyun ---------- */
+const cur=()=>S.players[S.turn%S.players.length];
+const curIdx=()=>S.turn%S.players.length;
+const roundNo=()=>Math.floor(S.turn/S.players.length)+1;
+function effLevel(){return S.auto?Math.min(3,1+Math.floor((roundNo()-1)/3)):S.level}
+function partnerOf(o){
+ const others=S.players.filter(p=>p!==o);
+ return others[Math.floor(Math.random()*others.length)];
+}
+function game(){
+ const o=cur(),c=S.mode==='couple',lv=effLevel();
+ const left=S.passes[curIdx()];
+ const dots=Array.from({length:MAX_PASS},(_,i)=>`<i class="${i<left?'':'off'}"></i>`).join('');
+ const lvbar=c?`<div class="lvl">${['🔥 Isınma','🔥🔥 Ateşli','🔥🔥🔥 Çılgın'].map((n,i)=>`<button class="${(S.auto?lv:S.level)===i+1?'on':''}" onclick="setLevel(${i+1})">${n}</button>`).join('')}<button class="${S.auto?'on':''}" onclick="autoLevel()">⚡ Oto</button></div>`:'';
+ const t=S.task;
+ let body;
+ if(t){
+  const secs=timeOf(t.text);
+  body=`<div class="card ${t.kind}"><div class="kind">${t.kind==='truth'?'DOĞRULUK':'CESARET'}</div>${esc(t.text)}</div>
+  ${secs?`<div class="timer" id="tm"><button onclick="startTimer(${secs})">⏱ ${fmt(secs)} Başlat</button></div>`:''}
+  <div class="stack"><button class="btn pink" onclick="done()">✅ Tamamladım</button>
+  <button class="btn" ${left?'':'disabled'} onclick="pas()">⏭ Pas geç (${left} hakkın var)</button></div>`;
+ } else {
+  body=`<div class="card"><div style="font-size:54px;margin-bottom:8px">${c?'❤️‍🔥':'🎲'}</div>Seçimini yap, ${esc(o.n)}!</div>
+  <div class="row"><button class="btn blue" onclick="pick('truth')">🗣 Doğruluk</button><button class="btn pink" onclick="pick('dare')">💪 Cesaret</button></div>`;
+ }
+ render(`<div class="top"><button onclick="menu()">‹ Menü</button><span class="chip">Tur ${roundNo()}${c?' • Seviye '+lv:''}</span></div>
+ <div class="turn"><div class="tag">Sıra</div><div class="who">${o.g==='e'?'👨':'👩'} ${esc(o.n)}</div></div>
+ <div class="passes">Pas hakkı: ${dots}</div>
+ ${lvbar}${body}<div class="spacer"></div>`);
+ if(S.timer===null&&S.tleft>0)S.tleft=0;
+}
+function menu(){
+ const m=document.createElement('div');m.className='modal';
+ m.innerHTML=`<div class="stack"><h2 style="margin:0 0 6px">Menü</h2><button class="btn" id="mm1">▶ Devam et</button><button class="btn" id="mm2">🔁 Oyuncuları değiştir</button><button class="btn" id="mm3">🏠 Ana menü</button></div>`;
+ document.body.appendChild(m);
+ const close=()=>m.remove();
+ m.addEventListener('click',e=>{if(e.target===m)close()});
+ m.querySelector('#mm1').onclick=close;
+ m.querySelector('#mm2').onclick=()=>{close();setup()};
+ m.querySelector('#mm3').onclick=()=>{close();home()};
+}
+function setLevel(l){S.auto=false;S.level=l;S.task=null;game()}
+function autoLevel(){S.auto=true;S.task=null;game()}
+function poolFor(kind,o,lv){
+ let base;
+ if(S.mode==='couple')base=((TASKS.couple||{})[kind]||{})[lv];
+ else base=(TASKS.friend||{})[kind];
+ if(!Array.isArray(base)||!base.length)return [];
+ return base.filter(s=>{const m=/^([ek])\|/.exec(s);return !m||m[1]===o.g}).map(s=>s.replace(/^[ek]\|/,''));
+}
+function pick(kind){
+ const o=cur(),lv=effLevel();
+ let base=poolFor(kind,o,lv),key=[S.mode,kind,S.mode==='couple'?lv:0].join('.');
+ if(!base.length){alert('Bu kategoride görev bulunamadı');return}
+ let used=S.hist[key]=S.hist[key]||[];
+ let avail=base.filter(t=>!used.includes(t));
+ let k=key;
+ if(!avail.length&&S.mode==='couple'){            // seviye havuzu bittiyse komşu seviyelerden al
+  for(const l of [lv+1,lv-1,lv+2,lv-2]){
+   if(l<1||l>3)continue;
+   const b2=poolFor(kind,o,l),k2=[S.mode,kind,l].join('.'),u2=S.hist[k2]=S.hist[k2]||[];
+   const a2=b2.filter(t=>!u2.includes(t));
+   if(a2.length){avail=a2;k=k2;break}
+  }
+ }
+ if(!avail.length){S.hist[key]=[];avail=base;k=key}  // hepsi bittiyse baştan karıştır
+ const txt=avail[Math.floor(Math.random()*avail.length)];
+ S.hist[k].push(txt);persist();
+ const p=S.mode==='couple'?(S.players.find(x=>x!==o)||o):partnerOf(o);
+ S.task={kind,text:txt.replace(/\{p\}/g,p.n).replace(/\{o\}/g,o.n)};
+ vib(15);game();
+}
+function advance(){S.task=null;S.turn++;game()}
+function done(){vib([10,30,10]);advance()}
+function pas(){
+ const i=curIdx();
+ if(S.passes[i]<=0){alert('Pas hakkın bitti! Görevi yapmalısın 😈');return}
+ S.passes[i]--;advance();
+}
+/* ---------- Zamanlayıcı ---------- */
+function timeOf(t){
+ const m=/(\d+)\s*(saniye|dakika|dk)/i.exec(t);if(!m)return 0;
+ const n=+m[1];return /sa/i.test(m[2])?n:n*60;
+}
+const fmt=s=>s>=60?`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`:`${s} sn`;
+function clearTimer(){if(S.timer){clearInterval(S.timer);S.timer=null}}
+function startTimer(sec){
+ clearTimer();S.tleft=sec;const box=document.getElementById('tm');
+ const show=()=>{box.innerHTML=`<div class="big">${S.tleft>=60?fmt(S.tleft):S.tleft}</div>`};show();
+ S.timer=setInterval(()=>{S.tleft--;if(S.tleft<=0){clearTimer();box.innerHTML='<div class="big">⏰ Süre doldu!</div>';vib([200,100,200])}else show()},1000);
+}
+
+/* ---------- Başlat ---------- */
+window.addEventListener('error',e=>{app.innerHTML=`<div class="warn">Bir hata oluştu: ${esc(e.message)}<br><br><button class="btn" onclick="location.reload()">Yeniden başlat</button></div>`});
+if(typeof TASKS==='undefined'){app.innerHTML='<div class="warn">Görevler yüklenemedi. Sayfayı yenile.</div>'}
+else{restore();home();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{})}
+</script>
+</body>
+</html>
