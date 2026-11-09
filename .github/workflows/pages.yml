@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - run: mkdir site && cp index.html manifest.webmanifest icon.svg sw.js site/
+      - run: mkdir site && cp index.html tasks.js manifest.webmanifest icon.svg icon.png sw.js site/
       - uses: actions/upload-pages-artifact@v3
         with: {path: site}
       - id: d

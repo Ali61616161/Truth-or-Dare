@@ -3,358 +3,248 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#14061f">
+<meta name="theme-color" content="#0d0618">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Doğruluk Cesaret">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg">
-<link rel="apple-touch-icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.png">
 <title>Doğruluk mu Cesaret mi</title>
 <style>
-:root{--bg:#14061f;--card:#22103a;--card2:#2d1750;--txt:#fff;--mut:#b9a6d6;--pink:#ff3d81;--org:#ff8a3d;--blue:#4da3ff;--red:#ff2d55}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-body{background:radial-gradient(circle at 20% 0%,#3a0f5c 0,transparent 50%),radial-gradient(circle at 100% 100%,#5c0f3a 0,transparent 50%),var(--bg);background-attachment:fixed}
-#app{min-height:100%;max-width:520px;margin:0 auto;padding:max(18px,env(safe-area-inset-top)) 18px max(18px,env(safe-area-inset-bottom));display:flex;flex-direction:column}
-h1{font-size:30px;margin:8px 0 4px;text-align:center}
-h2{font-size:22px;margin:6px 0 14px;text-align:center}
-.sub{color:var(--mut);text-align:center;margin:0 0 20px;font-size:15px}
-.btn{border:0;border-radius:18px;padding:16px 18px;font-size:18px;font-weight:700;color:#fff;background:var(--card2);width:100%;cursor:pointer;transition:transform .1s}
+:root{--bg:#0d0618;--glass:rgba(255,255,255,.07);--glass2:rgba(255,255,255,.12);--line:rgba(255,255,255,.14);--txt:#fff;--mut:#b8a6d4;--pink:#ff3d81;--org:#ff8a3d;--blue:#4da3ff;--vio:#8a5cff}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;overscroll-behavior:none}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(60% 40% at 15% 0%,rgba(138,92,255,.35),transparent),radial-gradient(60% 40% at 100% 100%,rgba(255,61,129,.3),transparent);pointer-events:none}
+#app{position:relative;min-height:100%;max-width:520px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 14px) 18px calc(env(safe-area-inset-bottom) + 18px);display:flex;flex-direction:column;animation:in .25s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.92);opacity:0}100%{transform:scale(1);opacity:1}}
+h1{font-size:34px;line-height:1.1;margin:10px 0 6px;text-align:center;font-weight:800;letter-spacing:-.5px}
+h1 span{background:linear-gradient(135deg,var(--pink),var(--org));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:24px;margin:8px 0 6px;text-align:center;font-weight:800}
+.sub{color:var(--mut);text-align:center;margin:0 0 18px;font-size:15px;line-height:1.4}
+.btn{border:0;border-radius:20px;padding:17px 18px;font-size:18px;font-weight:700;color:#fff;background:var(--glass2);border:1px solid var(--line);width:100%;font-family:inherit;transition:transform .1s,opacity .2s;display:block;text-align:center}
 .btn:active{transform:scale(.97)}
-.btn.pink{background:linear-gradient(135deg,var(--pink),var(--org))}
-.btn.blue{background:linear-gradient(135deg,#4da3ff,#7b5cff)}
-.btn.red{background:linear-gradient(135deg,#ff2d55,#b0003a)}
-.btn.ghost{background:transparent;border:1px solid #5a3a8a;color:var(--mut);font-size:15px;padding:12px}
-.btn.sm{width:auto;padding:10px 16px;font-size:15px}
+.btn.pink{background:linear-gradient(135deg,var(--pink),var(--org));border:0;box-shadow:0 10px 30px rgba(255,61,129,.35)}
+.btn.blue{background:linear-gradient(135deg,#3d8bff,#7b5cff);border:0;box-shadow:0 10px 30px rgba(77,163,255,.3)}
+.btn.red{background:linear-gradient(135deg,#ff2d55,#b0003a);border:0}
+.btn.ghost{background:transparent;color:var(--mut);font-size:15px;padding:13px}
+.btn[disabled]{opacity:.35;pointer-events:none}
 .stack{display:flex;flex-direction:column;gap:12px}
-.row{display:flex;gap:10px}
-.modecard{background:var(--card);border-radius:22px;padding:22px;text-align:left;border:2px solid transparent;cursor:pointer;color:#fff;width:100%;font:inherit}
-.modecard:active{transform:scale(.98)}
-.modecard b{font-size:22px;display:block;margin-bottom:6px}
-.modecard span{color:var(--mut);font-size:15px}
-.modecard.f{border-color:#4da3ff55}.modecard.c{border-color:#ff3d8155}
-input[type=text]{flex:1;min-width:0;padding:14px;border-radius:14px;border:1px solid #5a3a8a;background:var(--card);color:#fff;font-size:17px}
-.gbtn{flex:0 0 auto;padding:14px 16px;border-radius:14px;border:2px solid #5a3a8a;background:var(--card);color:var(--mut);font-size:17px;font-weight:700}
-.gbtn.on.e{border-color:var(--blue);color:#fff;background:#1d3b66}
-.gbtn.on.k{border-color:var(--pink);color:#fff;background:#6a1640}
-.plist{display:flex;flex-direction:column;gap:8px;margin:14px 0}
-.player{display:flex;align-items:center;justify-content:space-between;background:var(--card);padding:12px 16px;border-radius:14px;font-size:17px}
-.player button{background:none;border:0;color:var(--mut);font-size:22px}
-.turn{text-align:center;margin:10px 0}
-.turn .who{font-size:34px;font-weight:800}
-.turn .tag{color:var(--mut);font-size:14px}
-.taskcard{background:var(--card);border-radius:26px;padding:26px 22px;margin:16px 0;min-height:200px;display:flex;flex-direction:column;justify-content:center;text-align:center;font-size:22px;line-height:1.4;border:2px solid #5a3a8a}
-.taskcard.truth{border-color:var(--blue)}.taskcard.dare{border-color:var(--pink)}
-.taskcard .kind{font-size:14px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;color:var(--mut)}
-.lvl{display:flex;gap:8px;justify-content:center;margin:0 0 6px}
-.lvl button{flex:1;padding:10px 4px;border-radius:12px;border:2px solid #5a3a8a;background:var(--card);color:var(--mut);font-weight:700;font-size:14px}
-.lvl button.on{color:#fff;border-color:var(--pink);background:#6a1640}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.mode{background:var(--glass);border:1px solid var(--line);border-radius:26px;padding:22px;color:#fff;width:100%;text-align:left;font:inherit;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:transform .12s}
+.mode:active{transform:scale(.98)}
+.mode .ico{font-size:34px}
+.mode b{font-size:22px;display:block;margin:8px 0 4px}
+.mode span{color:var(--mut);font-size:15px;line-height:1.4}
+.mode.c{border-color:rgba(255,61,129,.5);background:linear-gradient(160deg,rgba(255,61,129,.18),var(--glass))}
+.mode.f{border-color:rgba(77,163,255,.4);background:linear-gradient(160deg,rgba(77,163,255,.15),var(--glass))}
+input[type=text]{width:100%;padding:16px;border-radius:18px;border:1px solid var(--line);background:var(--glass);color:#fff;font-size:18px;font-family:inherit;-webkit-user-select:text;user-select:text;outline:none}
+input[type=text]:focus{border-color:var(--pink)}
+.seg{display:flex;gap:10px;margin:12px 0 14px}
+.seg button{flex:1;padding:15px;border-radius:18px;border:2px solid var(--line);background:var(--glass);color:var(--mut);font-size:17px;font-weight:700;font-family:inherit}
+.seg button.on.e{border-color:var(--blue);background:rgba(77,163,255,.22);color:#fff}
+.seg button.on.k{border-color:var(--pink);background:rgba(255,61,129,.22);color:#fff}
+.plist{display:flex;flex-direction:column;gap:8px;margin:6px 0 14px}
+.player{display:flex;align-items:center;justify-content:space-between;background:var(--glass);border:1px solid var(--line);padding:12px 16px;border-radius:16px;font-size:17px;animation:pop .2s}
+.player button{background:none;border:0;color:var(--mut);font-size:22px;padding:4px 8px}
+.top{display:flex;justify-content:space-between;align-items:center;min-height:36px}
+.top button{background:none;border:0;color:var(--mut);font-size:15px;padding:8px 4px;font-family:inherit}
+.chip{display:inline-flex;gap:6px;align-items:center;background:var(--glass);border:1px solid var(--line);border-radius:99px;padding:6px 12px;font-size:13px;color:var(--mut)}
+.turn{text-align:center;margin:6px 0 4px}
+.turn .tag{color:var(--mut);font-size:13px;letter-spacing:2px;text-transform:uppercase}
+.turn .who{font-size:38px;font-weight:800;letter-spacing:-.5px}
+.passes{display:flex;gap:6px;justify-content:center;align-items:center;color:var(--mut);font-size:13px;margin:4px 0 10px}
+.passes i{width:12px;height:12px;border-radius:50%;background:var(--pink);display:inline-block}
+.passes i.off{background:transparent;border:2px solid var(--line)}
+.card{flex:0 0 auto;background:var(--glass);border:1px solid var(--line);border-radius:30px;padding:28px 22px;margin:8px 0 14px;min-height:230px;display:flex;flex-direction:column;justify-content:center;text-align:center;font-size:23px;line-height:1.4;font-weight:600;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);animation:pop .25s}
+.card.truth{border-color:rgba(77,163,255,.6);box-shadow:0 0 50px rgba(77,163,255,.15)}
+.card.dare{border-color:rgba(255,61,129,.6);box-shadow:0 0 50px rgba(255,61,129,.18)}
+.card .kind{font-size:13px;letter-spacing:3px;color:var(--mut);margin-bottom:14px;font-weight:700}
+.card.truth .kind{color:var(--blue)}.card.dare .kind{color:var(--pink)}
+.lvl{display:flex;gap:8px;margin:4px 0 6px}
+.lvl button{flex:1;padding:10px 2px;border-radius:14px;border:1px solid var(--line);background:var(--glass);color:var(--mut);font-weight:700;font-size:13px;font-family:inherit}
+.lvl button.on{color:#fff;border-color:var(--pink);background:rgba(255,61,129,.25)}
 .spacer{flex:1}
-.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.top button{background:none;border:0;color:var(--mut);font-size:15px;padding:8px}
-.timer{font-size:15px;color:var(--mut);text-align:center;min-height:20px}
-.warn{background:#3b0d2a;border:1px solid #ff2d5588;border-radius:16px;padding:16px;font-size:15px;color:#ffd0dc;margin:16px 0;line-height:1.5}
+.timer{margin:0 0 10px;text-align:center}
+.timer button{background:var(--glass2);border:1px solid var(--line);color:#fff;border-radius:99px;padding:10px 22px;font-size:17px;font-weight:700;font-family:inherit}
+.timer .big{font-size:40px;font-weight:800;font-variant-numeric:tabular-nums}
+.warn{background:rgba(255,45,85,.12);border:1px solid rgba(255,45,85,.45);border-radius:20px;padding:18px;font-size:15px;color:#ffd0dc;margin:14px 0;line-height:1.55}
+.tip{font-size:13px;color:var(--mut);text-align:center;margin-top:12px;line-height:1.5}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;justify-content:center;z-index:9;animation:in .2s}
+.modal>div{background:#1a0d2e;border-radius:28px 28px 0 0;padding:24px 20px calc(env(safe-area-inset-bottom) + 22px);width:100%;max-width:520px;border:1px solid var(--line)}
 </style>
 </head>
 <body>
 <div id="app"></div>
+<script src="tasks.js"></script>
 <script>
-/* ============ GÖREV HAVUZU ============
- Etiketler: g = [cinsiyet filtresi] 'e' erkek, 'k' kadın, yoksa herkes.
- {o} = sıradaki oyuncu, {p} = partner / rastgele diğer oyuncu */
-const T=(t,g)=>g?{t,g}:{t};
-
-// ---- ARKADAŞ MODU ----
-const FRIEND={
-truth:[
-T("Bu odadaki kişilerden hangisine en çok güveniyorsun, neden?"),
-T("Hayatında yaptığın en utanç verici şey neydi?"),
-T("Hiç kimsenin bilmediği bir sırrını söyle."),
-T("Telefonundaki en utanç verici uygulama hangisi?"),
-T("Bir arkadaşının arkasından söylediğin en kötü şey neydi?"),
-T("Şu an burada olanlardan birine kıskançlık duydun mu? Kime?"),
-T("En son ne zaman yalan söyledin ve ne hakkındaydı?"),
-T("Hayatındaki en büyük pişmanlığın nedir?"),
-T("Bu gruptan biriyle çıkmak zorunda olsan kimi seçerdin?"),
-T("Hiç ağlayarak uyuduğun bir gece oldu mu? Neden?"),
-T("Sosyal medyada gizlice stalkladığın biri var mı? Kim?"),
-T("Şimdiye kadar aldığın en saçma hediye neydi?"),
-T("Hiç kopya çektin mi? En büyük kopyan neydi?"),
-T("İlk öpücüğün nasıldı? Anlat."),
-T("Birine 'seni seviyorum' deyip içinden yalan söylediğin oldu mu?"),
-T("Bu gruptaki herkesten bir şeyi değiştirebilseydin kimin neyini değiştirirdin?"),
-T("Telefonunun galerisindeki en saçma fotoğraf hangisi?"),
-T("En son ne zaman 'ben kötü biriyim' diye hissettin?"),
-T("Hiç yakalanmadığın bir suç/haylazlık var mı?"),
-T("Bu gruptaki kim sence en çok yalan söylüyor?"),
-T("Hayatında seni en çok kıran şey neydi?"),
-T("Eski sevgilini hâlâ düşündüğün oluyor mu?"),
-T("Hiç aynı anda iki kişiden hoşlandın mı?"),
-T("Şu an kimden hoşlanıyorsun? (Burada değilse baş harfi yeter.)"),
-T("{p} hakkında ilk izlenimin neydi? Dürüst ol."),
-T("{p} için en çok neye hayransın, en çok neye sinir oluyorsun?"),
-T("Hiç bir arkadaşının sevgilisine ilgi duydun mu?"),
-T("Banyoda yaptığın en tuhaf şey nedir?"),
-T("Kaç kişiyle öpüştün? Dürüst sayıyı söyle."),
-T("En çılgın flört hikâyeni anlat."),
-T("Bir gün boyunca karşı cinsin bedeninde olsan ilk ne yapardın?","e"),
-T("Bir erkekte seni en çok etkileyen şey nedir?","k"),
-T("Bir kadında seni en çok etkileyen şey nedir?","e"),
-T("Hiç bir erkeğin sana yazdığı mesaja bilerek cevap vermediğin oldu mu? Neden?","k"),
-T("Hiç bir kadına açılıp reddedildin mi? Anlat.","e"),
-],
-dare:[
-T("1 dakika boyunca robot gibi konuş."),
-T("En sevdiğin şarkıyı en abartılı şekilde söyle."),
-T("{p} için 30 saniyelik bir şiir uydur ve oku."),
-T("Telefonundan son arama yaptığın kişiye 'seni özledim' mesajı at."),
-T("10 şınav çek (çekemezsen 10 squat)."),
-T("{p} sana bir hareket verecek, o hareketi 30 saniye yap."),
-T("Bir sonraki turuna kadar her cümlenin sonuna 'efendim' ekle."),
-T("En komik yüz ifadeni yap ve 20 saniye boyunca tut."),
-T("Bardağını/ellerini kullanmadan bir şeyler içmeye çalış."),
-T("Dans et! 30 saniye, müziksiz."),
-T("Taklit yap: {p}'yi 30 saniye taklit et, kim olduğu anlaşılsın."),
-T("Bir hayvan sesi çıkar, grup hangi hayvan olduğunu bilsin."),
-T("Sosyal medya hikâyene gruptan biri seçsin, o yazsın, sen paylaş."),
-T("Gözlerin kapalı {p}'nin yüzünü eline alıp tarif et."),
-T("Ayakkabı çorabını çıkar, 1 tur öyle otur."),
-T("Telefonunu {p}'ye ver, 1 dakika istediği mesajı galerinden/ayarlardan göstersin."),
-T("Bir arkadaşını ara ve 20 saniye boyunca çok ciddi şekilde saçma konuş."),
-T("Grupta en iyi arkadaşına/kardeşine sesli mesaj at: 'Seni çok seviyorum'."),
-T("Yüzüne bir bardak su dök (yeter ki gülsün herkes)."),
-T("{p}'ye bir iltifat et ve 30 saniye boyunca sürekli devam et."),
-T("Bir sonraki 3 tur boyunca bir aksanla konuş."),
-T("Odadaki en yakışıklı/güzel kişiyi seç ve nedenini söyle.", ),
-T("Komik bir pozda selfie çek ve grup profil resmi yap (1 saat)."),
-T("Kendini 1 dakikada bir reklam filmi gibi tanıt."),
-T("{p} ile 20 saniye boyunca göz teması kur, kim önce gülerse kaybeder."),
-T("{p}'ye 20 saniye omuz masajı yap."),
-T("Bir tur boyunca sadece fısıltıyla konuş."),
-T("Yerde sırtüstü yat, {p} başına bir bardak koysun, 1 dakika kıpırdama.", ),
-T("En iyi flört cümleni {p}'ye söyle (şaka olarak)."),
-T("Mum gibi davran: 30 saniye dümdüz dur, erirmiş gibi yere çök."),
-T("Saçını en komik haline getir ve fotoğraf çek.", ),
-T("Gruptaki bir erkeğe sarılıp 'seni çok özledim' de.","k"),
-T("Gruptaki bir kıza sarılıp 'seni çok özledim' de.","e"),
-]};
-
-// ---- SEVGİLİ MODU ----
-// Seviye 1: Isınma (flört, dokunuş) / 2: Ateşli / 3: Çılgın
-const COUPLE={
-truth:{
-1:[
-T("{p}'de ilk dikkatini çeken şey neydi?"),
-T("{p}'nin seni en çok etkileyen hali nedir?"),
-T("{p} ile ilk öpüşmemizi nasıl hatırlıyorsun?"),
-T("{p}'nin hangi kokusu seni delirtir?"),
-T("Beni en çok ne zaman özlüyorsun?"),
-T("{p}'nin vücudunda en sevdiğin yer neresi?"),
-T("{p} sana bakınca aklına gelen ilk 'ateşli' düşünce nedir?"),
-T("Birlikte yaşadığımız en romantik anı anlat."),
-T("{p}'nin dudaklarını ilk gördüğünde ne düşündün?"),
-T("Hiç {p}'yi gizlice izlediğin, hayran kaldığın bir an oldu mu?"),
-T("{p} seni en çok hangi cümleyle bayıltır?"),
-T("Bir gün {p} ile tek başına bir adada kalsak ilk ne yapmak isterdin?"),
-],
-2:[
-T("{p}'nin seni nerede öpmesi en çok hoşuna gider?"),
-T("Beni hiç hayal ederken kendini kaptırdığın oldu mu? Ne hayal ettin?"),
-T("Birlikte yaptığımız en tutkulu an hangisiydi?"),
-T("Beni en çok neyle baştan çıkarırsın, söyle."),
-T("{p}'nin üzerinde en çok neyi görmek istersin?"),
-T("Vücudunda dokunulduğunda en çok titrediğin yer neresi?"),
-T("Hiç iş yerinde/toplum içinde {p}'yi düşünüp kızardığın oldu mu?"),
-T("{p} ile hiç yapmadığımız ama denemek istediğin şey nedir?"),
-T("Beni 1 dakikada nasıl kendine çekerdin? Anlat."),
-T("{p}'nin hangi hareketi seni anında heyecanlandırıyor?"),
-T("Bu akşam bana yapmak istediğin ilk şey nedir?"),
-T("Hiç hayalini kurduğun bir yer var mı, orada yalnız kalmak istediğin?"),
-],
-3:[
-T("En çok hangi fantezinin gerçek olmasını istersin?"),
-T("{p} ile hiç yapmadığınız, aklına gelince yüzünü kızartan şey nedir?"),
-T("Seni en çok ne açar, ne kıpır kıpır yapar, açıkça söyle."),
-T("Bu akşamı sen yönetsen nasıl bir senaryo kurardın?"),
-T("{p}'ye hiç söylemediğin ateşli bir itirafın var mı? Şimdi söyle."),
-T("Bir gecelik rol yapma olsa, hangi rolleri seçerdik?"),
-T("Beni en son ne zaman düşünerek heyecanlandın? Detay ver."),
-T("Birlikte denemek istediğin en cesur şey nedir?"),
-T("Yatakta senin için olmazsa olmaz nedir?"),
-T("{p}'nin bir ses tonu/söylediği bir şey seni çıldırtıyor mu? Hangisi?"),
-T("Şu an aklından geçen en cüretkâr düşünceyi söyle."),
-T("Seni en çok ne zaman çok istedim dediğin an oldu, anlat."),
-]},
-dare:{
-1:[
-T("{p}'nin gözlerinin içine bakarak 30 saniye hiç konuşma ve gülme."),
-T("{p}'nin boynuna 3 yavaş öpücük kondur."),
-T("{p}'ye bir dakika boyunca ellerini tutarak en tatlı şeyleri fısılda."),
-T("{p}'yi kucağına al/ kucağına otur, bir dakika sarıl."),
-T("{p}'nin kulağına en sevdiği cümleyi fısılda."),
-T("{p}'ye 1 dakikalık omuz-sırt masajı yap."),
-T("{p}'nin dudaklarına 10 saniyelik yavaş bir öpücük ver."),
-T("Gözlerini kapat, {p} seni 3 yerden öpsün, nereden öptüğünü tahmin et."),
-T("{p}'nin parmaklarını tek tek öp."),
-T("Sarıl ve {p}'nin kalp atışını dinle, 30 saniye hiç konuşma."),
-T("{p}'nin elini al, avucuna ve bileğine yavaşça öpücük bırak."),
-T("{p}'ye bu akşam için en çekici bakışını at ve 20 saniye boyunca tut."),
-],
-2:[
-T("{p}'nin gözlerini bağla (atkı/tişört) ve boynuna, kulağına öpücükler bırak."),
-T("{p}'nin kucağında otur, 1 dakika yavaşça öpüş."),
-T("{p}'nin tişörtünü/üstünü çıkar (rahat olduğu kadar) ve sırtına 2 dakika masaj yap."),
-T("{p}'nin ensesine nefes üfle, ardından yavaşça öp. 1 dakika devam et."),
-T("{p}'ye yavaş yavaş, tam 1 dakika boyunca bir 'dans şovu' yap."),
-T("{p}'yi duvara yaslayıp 30 saniye öpüş."),
-T("Ağzına bir buz küpü al ve {p}'nin boynunda ve köprücüğünde dolaştır."),
-T("Dudaklarını sürerek {p}'nin kulağından omzuna kadar bir yol çiz."),
-T("{p}'nin elini al ve istediğin yere (rahat olduğun) koy, 30 saniye öyle dur."),
-T("{p}'yi 2 dakika boyunca öpmeden sadece dudaklarının yanına yaklaşarak bekle. Sonra öp."),
-T("{p}'nin bacağına/ diz üstüne yavaşça öpücükler bırak."),
-T("Gözlerin bağlı: {p} seni 1 dakika istediği gibi öpsün, tepkini sakla."),
-T("{p}'ye şu anda yüzüne bakmadan, sadece nefesiyle seni ısıtmasına izin ver (kulağına)."),
-],
-3:[
-T("{p}'nin üzerindeki bir parçayı çıkar, sonra 2 dakika boyunca öp."),
-T("{p}'ye 1 dakikalık özel dans yap ve istediğin kadar üstünden çıkar."),
-T("{p}'yi gözleri bağlı yatağa/koltuğa yatır, vücuduna parmak uçlarınla 2 dakika dolaş."),
-T("{p} sana istediği bir bölgeyi seçsin, o bölgeyi 1 dakika öp."),
-T("Buz ve sıcak içeceği dönüşümlü kullanarak {p}'nin boynuna ve göğsüne dolaştır."),
-T("Kıyafetlerini birbirinize çıkarın, sadece ikinizin rahat olduğu kadarını."),
-T("{p}'nin kulağına bu akşam ona ne yapmak istediğini fısılda, sonra 1 dakika da denemesine izin ver."),
-T("{p}'nin tüm vücuduna 3 dakikalık yağ/losyon masajı yap."),
-T("Dizlerinin üstünde {p}'nin yanına yaklaş ve 1 dakika yavaşça öp."),
-T("{p} 5 dakika boyunca sana istediği her şeyi yaptırabilir (yasak yok ama sınırlar sende)."),
-T("{p}'nin gözlerini bağla, onu istediğin yerinden öp ve ne hissettiğini söyletir ol."),
-T("Şimdi sıra {p}'de: 3 dakika boyunca sana istediği şeyi yapsın, sen sadece tepki ver."),
-]}};
-
-// Cinsiyete özel eklemeler (sevgili)
-COUPLE.dare[1].push(T("{p}'nin gözlerinin içine bakarak yavaşça gömleğinin/tişörtünün ilk düğmesini çöz.","e"));
-COUPLE.dare[1].push(T("{p}'ye kendi kollarınla sarıl ve onun omzuna başını koy, 1 dakika.","k"));
-COUPLE.dare[2].push(T("{p}'nin kucağında otur ve ellerini göğsüne yerleştir, 1 dakika yavaşça öp.","k"));
-COUPLE.dare[2].push(T("{p}'yi kendine çek, kalçasından yavaşça tut ve 30 saniye öp.","e"));
-COUPLE.dare[3].push(T("{p}'nin üzerine ağırlığını ver, 1 dakika yavaşça öp ve tenini hisset.","e"));
-COUPLE.dare[3].push(T("{p}'nin üzerine otur, yavaşça sürt ve 1 dakika öp.","k"));
-
-/* ============ DURUM ============ */
-const S={screen:"home",mode:null,players:[],turn:0,level:1,task:null,used:{},tempGender:null};
+"use strict";
+const MAX_PASS=3;
+const KEY='tod_v2';
+const S={mode:null,players:[],turn:0,level:1,auto:true,task:null,tmpG:null,hist:{},passes:[],timer:null,tleft:0};
 const app=document.getElementById('app');
-const el=(h)=>{app.innerHTML=h;window.scrollTo(0,0)};
-const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function save(){try{localStorage.setItem('tod',JSON.stringify({mode:S.mode,players:S.players}))}catch(e){}}
-function load(){try{return JSON.parse(localStorage.getItem('tod'))}catch(e){return null}}
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const vib=n=>{try{navigator.vibrate&&navigator.vibrate(n)}catch(e){}};
+function persist(){try{localStorage.setItem(KEY,JSON.stringify({hist:S.hist,saved:S.players}))}catch(e){}}
+function restore(){try{const d=JSON.parse(localStorage.getItem(KEY)||'{}');S.hist=d.hist||{};S.saved=d.saved||[]}catch(e){S.hist={};S.saved=[]}}
+function render(html){clearTimer();app.style.animation='none';void app.offsetWidth;app.style.animation='';app.innerHTML=html;window.scrollTo(0,0)}
 
-/* ============ EKRANLAR ============ */
+/* ---------- Ekranlar ---------- */
 function home(){
- S.screen="home";
- el(`<div class="spacer"></div>
- <h1>🔥 Doğruluk mu<br>Cesaret mi? 🔥</h1>
- <p class="sub">Reklamsız. Ücretsiz. Hepsi açık.</p>
+ S.task=null;
+ const standalone=window.navigator.standalone||matchMedia('(display-mode: standalone)').matches;
+ const ios=/iPhone|iPad|iPod/.test(navigator.userAgent);
+ render(`<div class="spacer"></div>
+ <div style="text-align:center;font-size:56px">🔥</div>
+ <h1>Doğruluk mu<br><span>Cesaret mi?</span></h1>
+ <p class="sub">Reklamsız • Ücretsiz • Türkçe</p>
  <div class="stack">
-  <button class="modecard f" onclick="pickMode('friend')"><b>👯 Arkadaş Modu</b><span>Eğlenceli, komik, sıkıntısız. 2+ oyuncu.</span></button>
-  <button class="modecard c" onclick="pickMode('couple')"><b>❤️‍🔥 Sevgili Modu</b><span>Çiftler için ateşli, fiziksel görevler. 18+</span></button>
+  <button class="mode f" onclick="pickMode('friend')"><div class="ico">👯</div><b>Arkadaş Modu</b><span>Komik, samimi, eğlenceli görevler. 2 veya daha fazla oyuncu.</span></button>
+  <button class="mode c" onclick="pickMode('couple')"><div class="ico">❤️‍🔥</div><b>Sevgili Modu</b><span>Çiftler için ateşli, fiziksel ve giderek kızışan görevler. 18+</span></button>
  </div>
- <div class="spacer"></div>`);
+ <div class="spacer"></div>
+ ${!standalone&&ios?'<p class="tip">📲 Uygulama gibi kullanmak için Safari’de <b>Paylaş</b> → <b>Ana Ekrana Ekle</b></p>':''}
+ <button class="btn ghost" onclick="resetHist()">Görev geçmişini sıfırla</button>`);
 }
+function resetHist(){if(confirm('Tüm görev geçmişi sıfırlansın mı? Görevler baştan gelmeye başlar.')){S.hist={};persist();alert('Sıfırlandı ✅')}}
 function pickMode(m){
- if(m==='couple' && !sessionStorageOK()){ }
  if(m==='couple'){
-  el(`<div class="spacer"></div><h2>18+ Uyarısı</h2>
-  <div class="warn">Sevgili modu yetişkin çiftler içindir. Tüm görevler karşılıklı rıza ile yapılmalıdır. Rahat hissetmediğin her görevi "Pas" geçebilirsin. Sınırlarına saygı göster.</div>
+  render(`<div class="spacer"></div><div style="text-align:center;font-size:48px">🔞</div><h2>18+ Uyarısı</h2>
+  <div class="warn">Sevgili modu yetişkin çiftler içindir. Tüm görevler <b>karşılıklı rıza</b> ile yapılmalıdır. Her oyuncunun ${MAX_PASS} pas hakkı vardır; rahatsız olduğun bir şeyi her zaman durdurabilirsin. Sınırlara saygı göster.</div>
   <div class="stack"><button class="btn red" onclick="setMode('couple')">18 yaşından büyüğüm, devam</button>
   <button class="btn ghost" onclick="home()">Geri</button></div><div class="spacer"></div>`);
  } else setMode('friend');
 }
-function sessionStorageOK(){return true}
-function setMode(m){
- S.mode=m;S.players=[];S.turn=0;S.used={};S.level=1;
- setup();
-}
-function setup(){
- S.screen="setup";
+function setMode(m){S.mode=m;S.players=[];S.tmpG=null;setup()}
+function setup(keep){
  const c=S.mode==='couple';
- const need=c?2:2;
  const full=c&&S.players.length>=2;
- const list=S.players.map((p,i)=>`<div class="player"><span>${p.g==='e'?'👨':'👩'} ${esc(p.n)}</span><button onclick="rmPlayer(${i})">✕</button></div>`).join('');
- el(`<div class="top"><button onclick="home()">← Geri</button><span></span></div>
- <h2>${c?'❤️‍🔥 Çift bilgileri':'👯 Oyuncuları ekle'}</h2>
- <p class="sub">${c?'İkinizin de adını ve cinsiyetini gir':'En az 2 oyuncu ekle'}</p>
- <div class="plist">${list||'<p class="sub">Henüz kimse yok</p>'}</div>
- ${full?'':`<div class="row"><input id="nm" type="text" maxlength="16" placeholder="İsim" autocomplete="off"></div>
- <div class="row" style="margin:10px 0 14px">
-  <button class="gbtn e ${S.tempGender==='e'?'on':''}" style="flex:1" onclick="setG('e')">👨 Erkek</button>
-  <button class="gbtn k ${S.tempGender==='k'?'on':''}" style="flex:1" onclick="setG('k')">👩 Kadın</button>
- </div>
- <button class="btn blue" onclick="addPlayer()">+ Ekle</button>`}
+ const ready=S.players.length>=2;
+ const list=S.players.map((p,i)=>`<div class="player"><span>${p.g==='e'?'👨':'👩'} ${esc(p.n)}</span><button aria-label="Sil" onclick="rmPlayer(${i})">✕</button></div>`).join('');
+ render(`<div class="top"><button onclick="home()">‹ Geri</button><span class="chip">${c?'❤️‍🔥 Sevgili':'👯 Arkadaş'}</span></div>
+ <h2>${c?'Çift bilgileri':'Oyuncuları ekle'}</h2>
+ <p class="sub">${c?'İkinizin de adını ve cinsiyetini girin.':'En az 2 oyuncu ekle. Sırayla oynanır.'}</p>
+ <div class="plist">${list}</div>
+ ${full?'':`<input id="nm" type="text" maxlength="16" placeholder="İsim" autocomplete="off" autocapitalize="words" enterkeyhint="done">
+ <div class="seg"><button class="e ${S.tmpG==='e'?'on':''}" onclick="setG('e')">👨 Erkek</button><button class="k ${S.tmpG==='k'?'on':''}" onclick="setG('k')">👩 Kadın</button></div>
+ <button class="btn blue" onclick="addPlayer()">＋ Oyuncu ekle</button>`}
  <div class="spacer"></div>
- <button class="btn pink" style="margin-top:16px;${S.players.length<need?'opacity:.4':''}" onclick="start()">Oyunu Başlat</button>`);
+ <button class="btn pink" style="margin-top:18px" ${ready?'':'disabled'} onclick="start()">Oyunu Başlat</button>`);
+ const i=document.getElementById('nm');if(i){if(keep)i.value=keep;i.addEventListener('keydown',e=>{if(e.key==='Enter')addPlayer()})}
 }
-function setG(g){const v=(document.getElementById('nm')||{}).value;S.tempGender=g;setup();if(v)document.getElementById('nm').value=v}
+function setG(g){const v=(document.getElementById('nm')||{}).value||'';S.tmpG=g;setup(v)}
 function addPlayer(){
- const n=document.getElementById('nm').value.trim();
- if(!n){alert('İsim yaz');return}
- if(!S.tempGender){alert('Cinsiyet seç');return}
- S.players.push({n,g:S.tempGender});S.tempGender=null;save();setup();
- const i=document.getElementById('nm');if(i)i.focus();
+ const n=(document.getElementById('nm').value||'').trim();
+ if(!n){alert('Bir isim yaz');return}
+ if(!S.tmpG){alert('Cinsiyet seç');return}
+ if(S.players.some(p=>p.n.toLowerCase()===n.toLowerCase())){alert('Bu isim zaten var');return}
+ S.players.push({n,g:S.tmpG});S.tmpG=null;setup();
 }
 function rmPlayer(i){S.players.splice(i,1);setup()}
 function start(){
  if(S.players.length<2){alert('En az 2 oyuncu gerekli');return}
- S.turn=0;S.task=null;S.screen="game";save();game();
+ S.turn=0;S.level=1;S.auto=true;S.task=null;S.passes=S.players.map(()=>MAX_PASS);persist();game();
 }
 
-function cur(){return S.players[S.turn%S.players.length]}
-function partner(){
- const o=cur();
- if(S.mode==='couple')return S.players.find(p=>p!==o);
+/* ---------- Oyun ---------- */
+const cur=()=>S.players[S.turn%S.players.length];
+const curIdx=()=>S.turn%S.players.length;
+const roundNo=()=>Math.floor(S.turn/S.players.length)+1;
+function effLevel(){return S.auto?Math.min(3,1+Math.floor((roundNo()-1)/3)):S.level}
+function partnerOf(o){
  const others=S.players.filter(p=>p!==o);
  return others[Math.floor(Math.random()*others.length)];
 }
 function game(){
- const o=cur();
- const c=S.mode==='couple';
- const lv=c?`<div class="lvl">${['🔥 Isınma','🔥🔥 Ateşli','🔥🔥🔥 Çılgın'].map((n,i)=>`<button class="${S.level===i+1?'on':''}" onclick="setLevel(${i+1})">${n}</button>`).join('')}</div>`:'';
- const kind=S.task?(S.task.kind==='truth'?'DOĞRULUK':'CESARET'):'';
- el(`<div class="top"><button onclick="home()">← Menü</button><button onclick="scoreInfo()">👥 ${S.players.length}</button></div>
+ const o=cur(),c=S.mode==='couple',lv=effLevel();
+ const left=S.passes[curIdx()];
+ const dots=Array.from({length:MAX_PASS},(_,i)=>`<i class="${i<left?'':'off'}"></i>`).join('');
+ const lvbar=c?`<div class="lvl">${['🔥 Isınma','🔥🔥 Ateşli','🔥🔥🔥 Çılgın'].map((n,i)=>`<button class="${(S.auto?lv:S.level)===i+1?'on':''}" onclick="setLevel(${i+1})">${n}</button>`).join('')}<button class="${S.auto?'on':''}" onclick="autoLevel()">⚡ Oto</button></div>`:'';
+ const t=S.task;
+ let body;
+ if(t){
+  const secs=timeOf(t.text);
+  body=`<div class="card ${t.kind}"><div class="kind">${t.kind==='truth'?'DOĞRULUK':'CESARET'}</div>${esc(t.text)}</div>
+  ${secs?`<div class="timer" id="tm"><button onclick="startTimer(${secs})">⏱ ${fmt(secs)} Başlat</button></div>`:''}
+  <div class="stack"><button class="btn pink" onclick="done()">✅ Tamamladım</button>
+  <button class="btn" ${left?'':'disabled'} onclick="pas()">⏭ Pas geç (${left} hakkın var)</button></div>`;
+ } else {
+  body=`<div class="card"><div style="font-size:54px;margin-bottom:8px">${c?'❤️‍🔥':'🎲'}</div>Seçimini yap, ${esc(o.n)}!</div>
+  <div class="row"><button class="btn blue" onclick="pick('truth')">🗣 Doğruluk</button><button class="btn pink" onclick="pick('dare')">💪 Cesaret</button></div>`;
+ }
+ render(`<div class="top"><button onclick="menu()">‹ Menü</button><span class="chip">Tur ${roundNo()}${c?' • Seviye '+lv:''}</span></div>
  <div class="turn"><div class="tag">Sıra</div><div class="who">${o.g==='e'?'👨':'👩'} ${esc(o.n)}</div></div>
- ${lv}
- ${S.task?`<div class="taskcard ${S.task.kind}"><div class="kind">${kind}</div>${esc(S.task.text)}</div>
-   <div class="timer" id="tm"></div>
-   <div class="stack"><button class="btn pink" onclick="done()">✅ Yaptım / Cevapladım</button>
-   <div class="row"><button class="btn ghost" onclick="another()">🔄 Başka ver</button><button class="btn ghost" onclick="pas()">⏭ Pas</button></div></div>`
- :`<div class="taskcard"><div style="font-size:48px">${c?'❤️‍🔥':'🎲'}</div><br>Seç bakalım ${esc(o.n)}!</div>
-   <div class="stack"><button class="btn blue" onclick="pick('truth')">🗣 Doğruluk</button><button class="btn pink" onclick="pick('dare')">💪 Cesaret</button></div>`}
- <div class="spacer"></div>`);
+ <div class="passes">Pas hakkı: ${dots}</div>
+ ${lvbar}${body}<div class="spacer"></div>`);
+ if(S.timer===null&&S.tleft>0)S.tleft=0;
 }
-function setLevel(l){S.level=l;S.task=null;game()}
-function scoreInfo(){alert('Oyuncular: '+S.players.map(p=>p.n).join(', '))}
-function pool(kind){
- const o=cur();
- let base=S.mode==='couple'?COUPLE[kind][S.level]:FRIEND[kind];
- return base.filter(x=>!x.g||x.g===o.g);
+function menu(){
+ const m=document.createElement('div');m.className='modal';
+ m.innerHTML=`<div class="stack"><h2 style="margin:0 0 6px">Menü</h2><button class="btn" id="mm1">▶ Devam et</button><button class="btn" id="mm2">🔁 Oyuncuları değiştir</button><button class="btn" id="mm3">🏠 Ana menü</button></div>`;
+ document.body.appendChild(m);
+ const close=()=>m.remove();
+ m.addEventListener('click',e=>{if(e.target===m)close()});
+ m.querySelector('#mm1').onclick=close;
+ m.querySelector('#mm2').onclick=()=>{close();setup()};
+ m.querySelector('#mm3').onclick=()=>{close();home()};
+}
+function setLevel(l){S.auto=false;S.level=l;S.task=null;game()}
+function autoLevel(){S.auto=true;S.task=null;game()}
+function poolFor(kind,o,lv){
+ let base;
+ if(S.mode==='couple')base=((TASKS.couple||{})[kind]||{})[lv];
+ else base=(TASKS.friend||{})[kind];
+ if(!Array.isArray(base)||!base.length)return [];
+ return base.filter(s=>{const m=/^([ek])\|/.exec(s);return !m||m[1]===o.g}).map(s=>s.replace(/^[ek]\|/,''));
 }
 function pick(kind){
- const o=cur(),p=partner();
- const base=pool(kind);
- const key=S.mode+kind+(S.mode==='couple'?S.level:'');
- S.used[key]=S.used[key]||[];
- let avail=base.filter(x=>!S.used[key].includes(x.t));
- if(!avail.length){S.used[key]=[];avail=base}
- const pickd=avail[Math.floor(Math.random()*avail.length)];
- S.used[key].push(pickd.t);
- S.task={kind,text:pickd.t.replace(/\{o\}/g,o.n).replace(/\{p\}/g,p.n),from:kind};
- game();
+ const o=cur(),lv=effLevel();
+ let base=poolFor(kind,o,lv),key=[S.mode,kind,S.mode==='couple'?lv:0].join('.');
+ if(!base.length){alert('Bu kategoride görev bulunamadı');return}
+ let used=S.hist[key]=S.hist[key]||[];
+ let avail=base.filter(t=>!used.includes(t));
+ let k=key;
+ if(!avail.length&&S.mode==='couple'){            // seviye havuzu bittiyse komşu seviyelerden al
+  for(const l of [lv+1,lv-1,lv+2,lv-2]){
+   if(l<1||l>3)continue;
+   const b2=poolFor(kind,o,l),k2=[S.mode,kind,l].join('.'),u2=S.hist[k2]=S.hist[k2]||[];
+   const a2=b2.filter(t=>!u2.includes(t));
+   if(a2.length){avail=a2;k=k2;break}
+  }
+ }
+ if(!avail.length){S.hist[key]=[];avail=base;k=key}  // hepsi bittiyse baştan karıştır
+ const txt=avail[Math.floor(Math.random()*avail.length)];
+ S.hist[k].push(txt);persist();
+ const p=S.mode==='couple'?(S.players.find(x=>x!==o)||o):partnerOf(o);
+ S.task={kind,text:txt.replace(/\{p\}/g,p.n).replace(/\{o\}/g,o.n)};
+ vib(15);game();
 }
-function another(){pick(S.task.kind)}
-function done(){S.task=null;S.turn++;game()}
-function pas(){S.task=null;S.turn++;game()}
+function advance(){S.task=null;S.turn++;game()}
+function done(){vib([10,30,10]);advance()}
+function pas(){
+ const i=curIdx();
+ if(S.passes[i]<=0){alert('Pas hakkın bitti! Görevi yapmalısın 😈');return}
+ S.passes[i]--;advance();
+}
+/* ---------- Zamanlayıcı ---------- */
+function timeOf(t){
+ const m=/(\d+)\s*(saniye|dakika|dk)/i.exec(t);if(!m)return 0;
+ const n=+m[1];return /sa/i.test(m[2])?n:n*60;
+}
+const fmt=s=>s>=60?`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`:`${s} sn`;
+function clearTimer(){if(S.timer){clearInterval(S.timer);S.timer=null}}
+function startTimer(sec){
+ clearTimer();S.tleft=sec;const box=document.getElementById('tm');
+ const show=()=>{box.innerHTML=`<div class="big">${S.tleft>=60?fmt(S.tleft):S.tleft}</div>`};show();
+ S.timer=setInterval(()=>{S.tleft--;if(S.tleft<=0){clearTimer();box.innerHTML='<div class="big">⏰ Süre doldu!</div>';vib([200,100,200])}else show()},1000);
+}
 
-(function init(){
- if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
- home();
-})();
+/* ---------- Başlat ---------- */
+window.addEventListener('error',e=>{app.innerHTML=`<div class="warn">Bir hata oluştu: ${esc(e.message)}<br><br><button class="btn" onclick="location.reload()">Yeniden başlat</button></div>`});
+if(typeof TASKS==='undefined'){app.innerHTML='<div class="warn">Görevler yüklenemedi. Sayfayı yenile.</div>'}
+else{restore();home();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{})}
 </script>
 </body>
 </html>
