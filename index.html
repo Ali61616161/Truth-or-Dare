@@ -122,6 +122,8 @@ input[type=text]:focus{border-color:var(--gold)}
 <script src="tasks4.js"></script>
 <script src="tasks_en.js"></script>
 <script src="tasks5.js"></script>
+<script src="tasks6.js"></script>
+<script src="tasks7.js"></script>
 <script>
 "use strict";
 const MAX_PASS=3;
@@ -328,11 +330,13 @@ function poolFor(kind,o,lv){
  const tr=srcArr(TASKS,kind,lv);
  if(!Array.isArray(tr)||!tr.length)return [];
  const en=(LANG==='en'&&typeof TASKS_EN!=='undefined')?srcArr(TASKS_EN,kind,lv):null;
+ const par=S.mode==='couple'?S.players.find(x=>x!==o):null;
  const out=[];
  tr.forEach((s,i)=>{
-  const m=/^([ek])\|/.exec(s);if(m&&m[1]!==o.g)return;
-  const id=s.replace(/^[ek]\|/,'');
-  const txt=(en&&en[i])?en[i].replace(/^[ek]\|/,''):id;
+  const m=/^([ek])(?:>([ek]))?\|/.exec(s);
+  if(m){if(m[1]!==o.g)return;if(m[2]&&(!par||par.g!==m[2]))return}
+  const id=s.replace(/^[ek](?:>[ek])?\|/,'');
+  const txt=(en&&en[i])?en[i].replace(/^[ek](?:>[ek])?\|/,''):id;
   out.push({id,text:txt});
  });
  return out;
