@@ -71,6 +71,7 @@ input[type=text]:focus{border-color:var(--acc2)}
 .tip{font-size:13px;color:var(--mut);margin-top:12px;line-height:1.5}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:flex-end;justify-content:center;z-index:9;animation:in .2s}
 .modal>div{background:var(--surf);border-radius:22px 22px 0 0;padding:24px 20px calc(env(safe-area-inset-bottom) + 22px);width:100%;max-width:520px;border:1px solid var(--line)}
+.langs{display:inline-flex;gap:4px}.langs button{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:99px;padding:6px 12px;font-size:12px;font-weight:700;letter-spacing:.08em}.langs button.on{background:var(--txt);border-color:var(--txt);color:var(--bg)}
 </style>
 </head>
 <body>
@@ -78,42 +79,89 @@ input[type=text]:focus{border-color:var(--acc2)}
 <script src="tasks.js"></script>
 <script src="tasks2.js"></script>
 <script src="tasks3.js"></script>
+<script src="tasks4.js"></script>
+<script src="tasks_en.js"></script>
 <script>
 "use strict";
 const MAX_PASS=3;
-const KEY='tod_v3';
-const LV_NAMES=['','Isınma','Ateşli','Çılgın','Sınırsız'];
+const KEY='tod_v3',LKEY='tod_lang';
+const STR={
+ tr:{
+  title:'Doğruluk mu Cesaret mi',h1a:'Doğruluk',h1b:'mu',h1c:'Cesaret',h1d:' mi?',eyebrow:'Oyun',
+  sub:'Reklamsız, ücretsiz, tamamen Türkçe. Bir mod seç ve başla.',
+  friend:'Arkadaş',friendD:'Komik, samimi, eğlenceli. İki veya daha fazla oyuncu.',
+  couple:'Sevgili',coupleD:'Çiftler için. Yavaş yavaş kızışan, fiziksel görevler. 18+',
+  iosTip:'Uygulama gibi kullanmak için Safari’de Paylaş, ardından Ana Ekrana Ekle’ye dokun.',
+  reset:'Görev geçmişini sıfırla',resetQ:'Tüm görev geçmişi sıfırlansın mı? Görevler baştan gelmeye başlar.',resetOk:'Sıfırlandı',
+  adultH:'Yetişkinlere özel',adultW:'Sevgili modu yetişkin çiftler içindir. Tüm görevler <b>karşılıklı rıza</b> ile yapılmalıdır. Her oyuncunun {n} pas hakkı var; rahatsız olduğun bir şeyi her zaman durdurabilirsin. Birbirinizin sınırlarına saygı gösterin.',
+  adultOk:'18 yaşından büyüğüm, devam',back:'Geri',
+  coupleInfo:'Çift bilgileri',players:'Oyuncular',coupleSub:'İkinizin de adını ve cinsiyetini girin.',friendSub:'En az iki oyuncu ekle. Sırayla oynanır.',
+  name:'İsim',male:'Erkek',female:'Kadın',add:'Oyuncu ekle',startGame:'Oyunu başlat',
+  needName:'Bir isim yaz',needGender:'Cinsiyet seç',dupName:'Bu isim zaten var',needTwo:'En az 2 oyuncu gerekli',
+  round:'Tur',turn:'Sıra',passLeft:'Pas hakkı',truth:'Doğruluk',dare:'Cesaret',TRUTH:'DOĞRULUK',DARE:'CESARET',
+  choose:'Seçimini yap, {n}.',done:'Tamamladım',pass:'Pas geç · {n} hak kaldı',noPass:'Pas hakkın bitti. Görevi yapmalısın.',
+  menu:'Menü',menuBack:'‹ Menü',cont:'Devam et',chPlayers:'Oyuncuları değiştir',home:'Ana menü',
+  auto:'Oto',random:'Rastgele',lv:['','Isınma','Ateşli','Çılgın','Sınırsız'],
+  nAuto:'Her 3 turda bir seviye yükselir. Şu an: {l}',nRandom:'Her görev rastgele bir seviyeden gelir.',nFixed:'Sabit seviye: {l}',
+  timer:'Sayaç',timeUp:'Süre doldu',noTask:'Bu kategoride görev bulunamadı',err:'Bir hata oluştu',restart:'Yeniden başlat',noLoad:'Görevler yüklenemedi. Sayfayı yenile.'
+ },
+ en:{
+  title:'Truth or Dare',h1a:'Truth',h1b:'or',h1c:'Dare',h1d:'?',eyebrow:'The game',
+  sub:'No ads, free, works offline. Pick a mode and start.',
+  friend:'Friends',friendD:'Funny, casual, playful. Two or more players.',
+  couple:'Couples',coupleD:'For couples. Physical tasks that heat up step by step. 18+',
+  iosTip:'To use it like an app, tap Share in Safari, then Add to Home Screen.',
+  reset:'Reset task history',resetQ:'Reset all task history? Tasks will start coming from the beginning again.',resetOk:'Reset done',
+  adultH:'Adults only',adultW:'Couples mode is for adult couples. Every task must be done with <b>mutual consent</b>. Each player has {n} passes; you can stop anything you are not comfortable with at any time. Respect each other’s limits.',
+  adultOk:'I am over 18, continue',back:'Back',
+  coupleInfo:'Couple details',players:'Players',coupleSub:'Enter both names and genders.',friendSub:'Add at least two players. You play in turns.',
+  name:'Name',male:'Male',female:'Female',add:'Add player',startGame:'Start game',
+  needName:'Enter a name',needGender:'Pick a gender',dupName:'That name already exists',needTwo:'At least 2 players are needed',
+  round:'Round',turn:'Turn',passLeft:'Passes',truth:'Truth',dare:'Dare',TRUTH:'TRUTH',DARE:'DARE',
+  choose:'Make your choice, {n}.',done:'Done',pass:'Pass · {n} left',noPass:'You are out of passes. You have to do the task.',
+  menu:'Menu',menuBack:'‹ Menu',cont:'Continue',chPlayers:'Change players',home:'Main menu',
+  auto:'Auto',random:'Random',lv:['','Warm-up','Hot','Wild','Unlimited'],
+  nAuto:'The level goes up every 3 rounds. Now: {l}',nRandom:'Every task comes from a random level.',nFixed:'Fixed level: {l}',
+  timer:'Timer',timeUp:'Time is up',noTask:'No task found in this category',err:'Something went wrong',restart:'Restart',noLoad:'Tasks could not be loaded. Refresh the page.'
+ }
+};
+let LANG='tr';
+try{const s=localStorage.getItem(LKEY);LANG=s||((navigator.language||'').toLowerCase().startsWith('tr')?'tr':'en')}catch(e){}
+const t=(k,v)=>{let s=(STR[LANG]||STR.tr)[k];if(s===undefined)s=STR.tr[k];if(typeof s==='string'&&v)for(const x in v)s=s.split('{'+x+'}').join(v[x]);return s};
+const LVN=l=>t('lv')[l];
 const S={mode:null,players:[],turn:0,lvMode:'auto',task:null,tmpG:null,hist:{},passes:[],timer:null,tleft:0};
 const app=document.getElementById('app');
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const vib=n=>{try{navigator.vibrate&&navigator.vibrate(n)}catch(e){}};
 function persist(){try{localStorage.setItem(KEY,JSON.stringify({hist:S.hist}))}catch(e){}}
 function restore(){try{S.hist=JSON.parse(localStorage.getItem(KEY)||'{}').hist||{}}catch(e){S.hist={}}}
+function setLang(l){LANG=l;try{localStorage.setItem(LKEY,l)}catch(e){}document.documentElement.lang=l;document.title=t('title');home()}
 function render(html){clearTimer();app.style.animation='none';void app.offsetWidth;app.style.animation='';app.innerHTML=html;window.scrollTo(0,0)}
 
 function home(){
  S.task=null;
  const standalone=window.navigator.standalone||matchMedia('(display-mode: standalone)').matches;
  const ios=/iPhone|iPad|iPod/.test(navigator.userAgent);
- render(`<div class="spacer"></div>
- <div class="eyebrow">Oyun</div>
- <h1>Doğruluk<br>mu <em>Cesaret</em> mi?</h1>
- <p class="sub">Reklamsız, ücretsiz, tamamen Türkçe. Bir mod seç ve başla.</p>
+ render(`<div class="top"><span></span><span class="langs"><button class="${LANG==='tr'?'on':''}" onclick="setLang('tr')">TR</button><button class="${LANG==='en'?'on':''}" onclick="setLang('en')">EN</button></span></div>
+ <div class="spacer"></div>
+ <div class="eyebrow">${t('eyebrow')}</div>
+ <h1>${t('h1a')}<br>${t('h1b')} <em>${t('h1c')}</em>${t('h1d')}</h1>
+ <p class="sub">${t('sub')}</p>
  <div class="stack">
-  <button class="mode" onclick="pickMode('friend')"><div class="num">I</div><div><b>Arkadaş</b><span>Komik, samimi, eğlenceli. İki veya daha fazla oyuncu.</span></div></button>
-  <button class="mode" onclick="pickMode('couple')"><div class="num">II</div><div><b>Sevgili</b><span>Çiftler için. Yavaş yavaş kızışan, fiziksel görevler. 18+</span></div></button>
+  <button class="mode" onclick="pickMode('friend')"><div class="num">I</div><div><b>${t('friend')}</b><span>${t('friendD')}</span></div></button>
+  <button class="mode" onclick="pickMode('couple')"><div class="num">II</div><div><b>${t('couple')}</b><span>${t('coupleD')}</span></div></button>
  </div>
  <div class="spacer"></div>
- ${!standalone&&ios?'<p class="tip">Uygulama gibi kullanmak için Safari’de Paylaş, ardından Ana Ekrana Ekle’ye dokun.</p>':''}
- <button class="btn ghost" onclick="resetHist()">Görev geçmişini sıfırla</button>`);
+ ${!standalone&&ios?`<p class="tip">${t('iosTip')}</p>`:''}
+ <button class="btn ghost" onclick="resetHist()">${t('reset')}</button>`);
 }
-function resetHist(){if(confirm('Tüm görev geçmişi sıfırlansın mı? Görevler baştan gelmeye başlar.')){S.hist={};persist();alert('Sıfırlandı')}}
+function resetHist(){if(confirm(t('resetQ'))){S.hist={};persist();alert(t('resetOk'))}}
 function pickMode(m){
  if(m==='couple'){
-  render(`<div class="spacer"></div><div class="eyebrow">18+</div><h2>Yetişkinlere özel</h2>
-  <div class="warn">Sevgili modu yetişkin çiftler içindir. Tüm görevler <b>karşılıklı rıza</b> ile yapılmalıdır. Her oyuncunun ${MAX_PASS} pas hakkı var; rahatsız olduğun bir şeyi her zaman durdurabilirsin. Birbirinizin sınırlarına saygı gösterin.</div>
-  <div class="stack"><button class="btn main" onclick="setMode('couple')">18 yaşından büyüğüm, devam</button>
-  <button class="btn ghost" onclick="home()">Geri</button></div><div class="spacer"></div>`);
+  render(`<div class="spacer"></div><div class="eyebrow">18+</div><h2>${t('adultH')}</h2>
+  <div class="warn">${t('adultW',{n:MAX_PASS})}</div>
+  <div class="stack"><button class="btn main" onclick="setMode('couple')">${t('adultOk')}</button>
+  <button class="btn ghost" onclick="home()">${t('back')}</button></div><div class="spacer"></div>`);
  } else setMode('friend');
 }
 function setMode(m){S.mode=m;S.players=[];S.tmpG=null;setup()}
@@ -121,36 +169,35 @@ function setup(keep){
  const c=S.mode==='couple';
  const full=c&&S.players.length>=2;
  const ready=S.players.length>=2;
- const list=S.players.map((p,i)=>`<div class="player"><div class="av">${esc(p.n[0].toUpperCase())}</div><span class="n">${esc(p.n)} <small style="color:var(--mut)">· ${p.g==='e'?'Erkek':'Kadın'}</small></span><button aria-label="Sil" onclick="rmPlayer(${i})">✕</button></div>`).join('');
- render(`<div class="top"><button onclick="home()">‹ Geri</button><span class="meta">${c?'Sevgili':'Arkadaş'}</span></div>
- <h2>${c?'Çift bilgileri':'Oyuncular'}</h2>
- <p class="sub">${c?'İkinizin de adını ve cinsiyetini girin.':'En az iki oyuncu ekle. Sırayla oynanır.'}</p>
+ const list=S.players.map((p,i)=>`<div class="player"><div class="av">${esc(p.n[0].toUpperCase())}</div><span class="n">${esc(p.n)} <small style="color:var(--mut)">· ${p.g==='e'?t('male'):t('female')}</small></span><button aria-label="x" onclick="rmPlayer(${i})">✕</button></div>`).join('');
+ render(`<div class="top"><button onclick="home()">‹ ${t('back')}</button><span class="meta">${c?t('couple'):t('friend')}</span></div>
+ <h2>${c?t('coupleInfo'):t('players')}</h2>
+ <p class="sub">${c?t('coupleSub'):t('friendSub')}</p>
  <div class="plist">${list}</div>
- ${full?'':`<input id="nm" type="text" maxlength="16" placeholder="İsim" autocomplete="off" autocapitalize="words" enterkeyhint="done">
- <div class="seg"><button class="${S.tmpG==='e'?'on':''}" onclick="setG('e')">Erkek</button><button class="${S.tmpG==='k'?'on':''}" onclick="setG('k')">Kadın</button></div>
- <button class="btn gold" onclick="addPlayer()">Oyuncu ekle</button>`}
+ ${full?'':`<input id="nm" type="text" maxlength="16" placeholder="${t('name')}" autocomplete="off" autocapitalize="words" enterkeyhint="done">
+ <div class="seg"><button class="${S.tmpG==='e'?'on':''}" onclick="setG('e')">${t('male')}</button><button class="${S.tmpG==='k'?'on':''}" onclick="setG('k')">${t('female')}</button></div>
+ <button class="btn gold" onclick="addPlayer()">${t('add')}</button>`}
  <div class="spacer"></div>
- <button class="btn main" style="margin-top:18px" ${ready?'':'disabled'} onclick="start()">Oyunu başlat</button>`);
+ <button class="btn main" style="margin-top:18px" ${ready?'':'disabled'} onclick="start()">${t('startGame')}</button>`);
  const i=document.getElementById('nm');if(i){if(keep)i.value=keep;i.addEventListener('keydown',e=>{if(e.key==='Enter')addPlayer()})}
 }
 function setG(g){const v=(document.getElementById('nm')||{}).value||'';S.tmpG=g;setup(v)}
 function addPlayer(){
  const n=(document.getElementById('nm').value||'').trim();
- if(!n){alert('Bir isim yaz');return}
- if(!S.tmpG){alert('Cinsiyet seç');return}
- if(S.players.some(p=>p.n.toLowerCase()===n.toLowerCase())){alert('Bu isim zaten var');return}
+ if(!n){alert(t('needName'));return}
+ if(!S.tmpG){alert(t('needGender'));return}
+ if(S.players.some(p=>p.n.toLowerCase()===n.toLowerCase())){alert(t('dupName'));return}
  S.players.push({n,g:S.tmpG});S.tmpG=null;setup();
 }
 function rmPlayer(i){S.players.splice(i,1);setup()}
 function start(){
- if(S.players.length<2){alert('En az 2 oyuncu gerekli');return}
+ if(S.players.length<2){alert(t('needTwo'));return}
  S.turn=0;S.lvMode='auto';S.task=null;S.passes=S.players.map(()=>MAX_PASS);persist();game();
 }
 
 const cur=()=>S.players[S.turn%S.players.length];
 const curIdx=()=>S.turn%S.players.length;
 const roundNo=()=>Math.floor(S.turn/S.players.length)+1;
-/* Seviye: 'auto' her 3 turda bir yükselir, 'random' her görevde rastgele, 1-4 sabit */
 function autoLevel(){return Math.min(4,1+Math.floor((roundNo()-1)/3))}
 function effLevel(){
  if(S.lvMode==='auto')return autoLevel();
@@ -158,37 +205,37 @@ function effLevel(){
  return S.lvMode;
 }
 function lvNote(){
- if(S.lvMode==='auto')return 'Her 3 turda bir seviye yükselir. Şu an: '+LV_NAMES[autoLevel()];
- if(S.lvMode==='random')return 'Her görev rastgele bir seviyeden gelir.';
- return 'Sabit seviye: '+LV_NAMES[S.lvMode];
+ if(S.lvMode==='auto')return t('nAuto',{l:LVN(autoLevel())});
+ if(S.lvMode==='random')return t('nRandom');
+ return t('nFixed',{l:LVN(S.lvMode)});
 }
 function partnerOf(o){const others=S.players.filter(p=>p!==o);return others[Math.floor(Math.random()*others.length)]}
 function game(){
  const o=cur(),c=S.mode==='couple';
  const left=S.passes[curIdx()];
  const dots=Array.from({length:MAX_PASS},(_,i)=>`<i class="${i<left?'':'off'}"></i>`).join('');
- const opts=[['auto','Oto'],['random','Rastgele'],[1,'Isınma'],[2,'Ateşli'],[3,'Çılgın'],[4,'Sınırsız']];
+ const opts=[['auto',t('auto')],['random',t('random')],[1,LVN(1)],[2,LVN(2)],[3,LVN(3)],[4,LVN(4)]];
  const lvbar=c?`<div class="lv">${opts.map(([v,n])=>`<button class="${S.lvMode===v?'on':''}" onclick="setLv('${v}')">${n}</button>`).join('')}</div><div class="lvnote">${lvNote()}</div>`:'';
- const t=S.task;
+ const tk=S.task;
  let body;
- if(t){
-  const secs=timeOf(t.text);
-  body=`<div class="card ${t.kind}"><div class="kind">${t.kind==='truth'?'DOĞRULUK':'CESARET'}${c&&t.lv?' · '+LV_NAMES[t.lv].toUpperCase():''}</div><div class="txt">${esc(t.text)}</div></div>
-  ${secs?`<div class="timer" id="tm"><button onclick="startTimer(${secs})">Sayaç · ${fmt(secs)}</button></div>`:''}
-  <div class="stack"><button class="btn main" onclick="done()">Tamamladım</button>
-  <button class="btn" ${left?'':'disabled'} onclick="pas()">Pas geç · ${left} hak kaldı</button></div>`;
+ if(tk){
+  const secs=timeOf(tk.text);
+  body=`<div class="card ${tk.kind}"><div class="kind">${tk.kind==='truth'?t('TRUTH'):t('DARE')}${c&&tk.lv?' · '+LVN(tk.lv).toUpperCase():''}</div><div class="txt">${esc(tk.text)}</div></div>
+  ${secs?`<div class="timer" id="tm"><button onclick="startTimer(${secs})">${t('timer')} · ${fmt(secs)}</button></div>`:''}
+  <div class="stack"><button class="btn main" onclick="done()">${t('done')}</button>
+  <button class="btn" ${left?'':'disabled'} onclick="pas()">${t('pass',{n:left})}</button></div>`;
  } else {
-  body=`<div class="card empty"><div class="txt">Seçimini yap, ${esc(o.n)}.</div></div>
-  <div class="row"><button class="btn gold" onclick="pick('truth')">Doğruluk</button><button class="btn main" onclick="pick('dare')">Cesaret</button></div>`;
+  body=`<div class="card empty"><div class="txt">${esc(t('choose',{n:o.n}))}</div></div>
+  <div class="row"><button class="btn gold" onclick="pick('truth')">${t('truth')}</button><button class="btn main" onclick="pick('dare')">${t('dare')}</button></div>`;
  }
- render(`<div class="top"><button onclick="menu()">‹ Menü</button><span class="meta">Tur ${roundNo()}</span></div>
- <div class="turn"><div class="meta">Sıra</div><div class="who">${esc(o.n)}</div></div>
- <div class="passes">Pas hakkı ${dots}</div>
+ render(`<div class="top"><button onclick="menu()">${t('menuBack')}</button><span class="meta">${t('round')} ${roundNo()}</span></div>
+ <div class="turn"><div class="meta">${t('turn')}</div><div class="who">${esc(o.n)}</div></div>
+ <div class="passes">${t('passLeft')} ${dots}</div>
  ${lvbar}${body}<div class="spacer"></div>`);
 }
 function menu(){
  const m=document.createElement('div');m.className='modal';
- m.innerHTML=`<div class="stack"><h2 style="margin:0 0 6px">Menü</h2><button class="btn" id="mm1">Devam et</button><button class="btn" id="mm2">Oyuncuları değiştir</button><button class="btn" id="mm3">Ana menü</button></div>`;
+ m.innerHTML=`<div class="stack"><h2 style="margin:0 0 6px">${t('menu')}</h2><button class="btn" id="mm1">${t('cont')}</button><button class="btn" id="mm2">${t('chPlayers')}</button><button class="btn" id="mm3">${t('home')}</button></div>`;
  document.body.appendChild(m);
  const close=()=>m.remove();
  m.addEventListener('click',e=>{if(e.target===m)close()});
@@ -197,52 +244,64 @@ function menu(){
  m.querySelector('#mm3').onclick=()=>{close();home()};
 }
 function setLv(v){S.lvMode=(v==='auto'||v==='random')?v:Number(v);S.task=null;game()}
+/* Havuz: TR dizisi kimlik (geçmiş için), EN dizisi aynı sıradaki çeviri */
+function srcArr(src,kind,lv){
+ if(!src)return null;
+ return S.mode==='couple'?((src.couple||{})[kind]||{})[lv]:(src.friend||{})[kind];
+}
 function poolFor(kind,o,lv){
- let base;
- if(S.mode==='couple')base=((TASKS.couple||{})[kind]||{})[lv];
- else base=(TASKS.friend||{})[kind];
- if(!Array.isArray(base)||!base.length)return [];
- return base.filter(s=>{const m=/^([ek])\|/.exec(s);return !m||m[1]===o.g}).map(s=>s.replace(/^[ek]\|/,''));
+ const tr=srcArr(TASKS,kind,lv);
+ if(!Array.isArray(tr)||!tr.length)return [];
+ const en=(LANG==='en'&&typeof TASKS_EN!=='undefined')?srcArr(TASKS_EN,kind,lv):null;
+ const out=[];
+ tr.forEach((s,i)=>{
+  const m=/^([ek])\|/.exec(s);if(m&&m[1]!==o.g)return;
+  const id=s.replace(/^[ek]\|/,'');
+  const txt=(en&&en[i])?en[i].replace(/^[ek]\|/,''):id;
+  out.push({id,text:txt});
+ });
+ return out;
 }
 function pick(kind){
  const o=cur();let lv=effLevel();
  const keyOf=l=>[S.mode,kind,S.mode==='couple'?l:0].join('.');
  let base=poolFor(kind,o,lv);
- if(!base.length){alert('Bu kategoride görev bulunamadı');return}
+ if(!base.length){alert(t('noTask'));return}
  let used=S.hist[keyOf(lv)]=S.hist[keyOf(lv)]||[];
- let avail=base.filter(t=>!used.includes(t)),useLv=lv;
+ let avail=base.filter(x=>!used.includes(x.id)),useLv=lv;
  if(!avail.length&&S.mode==='couple'){
   for(const l of [lv+1,lv-1,lv+2,lv-2,lv+3,lv-3]){
    if(l<1||l>4)continue;
    const u2=S.hist[keyOf(l)]=S.hist[keyOf(l)]||[];
-   const a2=poolFor(kind,o,l).filter(t=>!u2.includes(t));
+   const a2=poolFor(kind,o,l).filter(x=>!u2.includes(x.id));
    if(a2.length){avail=a2;useLv=l;break}
   }
  }
  if(!avail.length){S.hist[keyOf(lv)]=[];avail=base;useLv=lv}
- const txt=avail[Math.floor(Math.random()*avail.length)];
- S.hist[keyOf(useLv)].push(txt);persist();
- const p=S.mode==='couple'?(S.players.find(x=>x!==o)||o):partnerOf(o);
- S.task={kind,lv:S.mode==='couple'?useLv:0,text:txt.replace(/\{p\}/g,p.n).replace(/\{o\}/g,o.n)};
+ const x=avail[Math.floor(Math.random()*avail.length)];
+ S.hist[keyOf(useLv)].push(x.id);persist();
+ const p=S.mode==='couple'?(S.players.find(y=>y!==o)||o):partnerOf(o);
+ S.task={kind,lv:S.mode==='couple'?useLv:0,text:x.text.replace(/\{p\}/g,p.n).replace(/\{o\}/g,o.n)};
  vib(15);game();
 }
 function advance(){S.task=null;S.turn++;game()}
 function done(){vib([10,30,10]);advance()}
 function pas(){
  const i=curIdx();
- if(S.passes[i]<=0){alert('Pas hakkın bitti. Görevi yapmalısın.');return}
+ if(S.passes[i]<=0){alert(t('noPass'));return}
  S.passes[i]--;advance();
 }
-function timeOf(t){const m=/(\d+)\s*(saniye|dakika|dk)/i.exec(t);if(!m)return 0;const n=+m[1];return /sa/i.test(m[2])?n:n*60}
-const fmt=s=>s>=60?`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`:`${s} sn`;
+function timeOf(s){const m=/(\d+)[\s-]*(saniye|dakika|dk|seconds?|minutes?|sec|min)/i.exec(s);if(!m)return 0;const n=+m[1];return /^(sa|se)/i.test(m[2])?n:n*60}
+const fmt=s=>s>=60?`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`:`${s} ${LANG==='en'?'sec':'sn'}`;
 function clearTimer(){if(S.timer){clearInterval(S.timer);S.timer=null}}
 function startTimer(sec){
  clearTimer();S.tleft=sec;const box=document.getElementById('tm');
  const show=()=>{box.innerHTML=`<div class="big">${S.tleft>=60?fmt(S.tleft):S.tleft}</div>`};show();
- S.timer=setInterval(()=>{S.tleft--;if(S.tleft<=0){clearTimer();box.innerHTML='<div class="big">Süre doldu</div>';vib([200,100,200])}else show()},1000);
+ S.timer=setInterval(()=>{S.tleft--;if(S.tleft<=0){clearTimer();box.innerHTML=`<div class="big">${t('timeUp')}</div>`;vib([200,100,200])}else show()},1000);
 }
-window.addEventListener('error',e=>{app.innerHTML=`<div class="warn">Bir hata oluştu: ${esc(e.message)}<br><br><button class="btn" onclick="location.reload()">Yeniden başlat</button></div>`});
-if(typeof TASKS==='undefined'){app.innerHTML='<div class="warn">Görevler yüklenemedi. Sayfayı yenile.</div>'}
+window.addEventListener('error',e=>{app.innerHTML=`<div class="warn">${t('err')}: ${esc(e.message)}<br><br><button class="btn" onclick="location.reload()">${t('restart')}</button></div>`});
+document.documentElement.lang=LANG;document.title=t('title');
+if(typeof TASKS==='undefined'){app.innerHTML=`<div class="warn">${t('noLoad')}</div>`}
 else{restore();home();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{})}
 </script>
 </body>
