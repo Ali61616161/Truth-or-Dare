@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#14061f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>Doğruluk mu Cesaret mi</title>
+<style>
+:root{--bg:#14061f;--card:#22103a;--card2:#2d1750;--txt:#fff;--mut:#b9a6d6;--pink:#ff3d81;--org:#ff8a3d;--blue:#4da3ff;--red:#ff2d55}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+body{background:radial-gradient(circle at 20% 0%,#3a0f5c 0,transparent 50%),radial-gradient(circle at 100% 100%,#5c0f3a 0,transparent 50%),var(--bg);background-attachment:fixed}
+#app{min-height:100%;max-width:520px;margin:0 auto;padding:max(18px,env(safe-area-inset-top)) 18px max(18px,env(safe-area-inset-bottom));display:flex;flex-direction:column}
+h1{font-size:30px;margin:8px 0 4px;text-align:center}
+h2{font-size:22px;margin:6px 0 14px;text-align:center}
+.sub{color:var(--mut);text-align:center;margin:0 0 20px;font-size:15px}
+.btn{border:0;border-radius:18px;padding:16px 18px;font-size:18px;font-weight:700;color:#fff;background:var(--card2);width:100%;cursor:pointer;transition:transform .1s}
+.btn:active{transform:scale(.97)}
+.btn.pink{background:linear-gradient(135deg,var(--pink),var(--org))}
+.btn.blue{background:linear-gradient(135deg,#4da3ff,#7b5cff)}
+.btn.red{background:linear-gradient(135deg,#ff2d55,#b0003a)}
+.btn.ghost{background:transparent;border:1px solid #5a3a8a;color:var(--mut);font-size:15px;padding:12px}
+.btn.sm{width:auto;padding:10px 16px;font-size:15px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;gap:10px}
+.modecard{background:var(--card);border-radius:22px;padding:22px;text-align:left;border:2px solid transparent;cursor:pointer;color:#fff;width:100%;font:inherit}
+.modecard:active{transform:scale(.98)}
+.modecard b{font-size:22px;display:block;margin-bottom:6px}
+.modecard span{color:var(--mut);font-size:15px}
+.modecard.f{border-color:#4da3ff55}.modecard.c{border-color:#ff3d8155}
+input[type=text]{flex:1;min-width:0;padding:14px;border-radius:14px;border:1px solid #5a3a8a;background:var(--card);color:#fff;font-size:17px}
+.gbtn{flex:0 0 auto;padding:14px 16px;border-radius:14px;border:2px solid #5a3a8a;background:var(--card);color:var(--mut);font-size:17px;font-weight:700}
+.gbtn.on.e{border-color:var(--blue);color:#fff;background:#1d3b66}
+.gbtn.on.k{border-color:var(--pink);color:#fff;background:#6a1640}
+.plist{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+.player{display:flex;align-items:center;justify-content:space-between;background:var(--card);padding:12px 16px;border-radius:14px;font-size:17px}
+.player button{background:none;border:0;color:var(--mut);font-size:22px}
+.turn{text-align:center;margin:10px 0}
+.turn .who{font-size:34px;font-weight:800}
+.turn .tag{color:var(--mut);font-size:14px}
+.taskcard{background:var(--card);border-radius:26px;padding:26px 22px;margin:16px 0;min-height:200px;display:flex;flex-direction:column;justify-content:center;text-align:center;font-size:22px;line-height:1.4;border:2px solid #5a3a8a}
+.taskcard.truth{border-color:var(--blue)}.taskcard.dare{border-color:var(--pink)}
+.taskcard .kind{font-size:14px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;color:var(--mut)}
+.lvl{display:flex;gap:8px;justify-content:center;margin:0 0 6px}
+.lvl button{flex:1;padding:10px 4px;border-radius:12px;border:2px solid #5a3a8a;background:var(--card);color:var(--mut);font-weight:700;font-size:14px}
+.lvl button.on{color:#fff;border-color:var(--pink);background:#6a1640}
+.spacer{flex:1}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.top button{background:none;border:0;color:var(--mut);font-size:15px;padding:8px}
+.timer{font-size:15px;color:var(--mut);text-align:center;min-height:20px}
+.warn{background:#3b0d2a;border:1px solid #ff2d5588;border-radius:16px;padding:16px;font-size:15px;color:#ffd0dc;margin:16px 0;line-height:1.5}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* ============ GÖREV HAVUZU ============
+ Etiketler: g = [cinsiyet filtresi] 'e' erkek, 'k' kadın, yoksa herkes.
+ {o} = sıradaki oyuncu, {p} = partner / rastgele diğer oyuncu */
+const T=(t,g)=>g?{t,g}:{t};
+
+// ---- ARKADAŞ MODU ----
+const FRIEND={
+truth:[
+T("Bu odadaki kişilerden hangisine en çok güveniyorsun, neden?"),
+T("Hayatında yaptığın en utanç verici şey neydi?"),
+T("Hiç kimsenin bilmediği bir sırrını söyle."),
+T("Telefonundaki en utanç verici uygulama hangisi?"),
+T("Bir arkadaşının arkasından söylediğin en kötü şey neydi?"),
+T("Şu an burada olanlardan birine kıskançlık duydun mu? Kime?"),
+T("En son ne zaman yalan söyledin ve ne hakkındaydı?"),
+T("Hayatındaki en büyük pişmanlığın nedir?"),
+T("Bu gruptan biriyle çıkmak zorunda olsan kimi seçerdin?"),
+T("Hiç ağlayarak uyuduğun bir gece oldu mu? Neden?"),
+T("Sosyal medyada gizlice stalkladığın biri var mı? Kim?"),
+T("Şimdiye kadar aldığın en saçma hediye neydi?"),
+T("Hiç kopya çektin mi? En büyük kopyan neydi?"),
+T("İlk öpücüğün nasıldı? Anlat."),
+T("Birine 'seni seviyorum' deyip içinden yalan söylediğin oldu mu?"),
+T("Bu gruptaki herkesten bir şeyi değiştirebilseydin kimin neyini değiştirirdin?"),
+T("Telefonunun galerisindeki en saçma fotoğraf hangisi?"),
+T("En son ne zaman 'ben kötü biriyim' diye hissettin?"),
+T("Hiç yakalanmadığın bir suç/haylazlık var mı?"),
+T("Bu gruptaki kim sence en çok yalan söylüyor?"),
+T("Hayatında seni en çok kıran şey neydi?"),
+T("Eski sevgilini hâlâ düşündüğün oluyor mu?"),
+T("Hiç aynı anda iki kişiden hoşlandın mı?"),
+T("Şu an kimden hoşlanıyorsun? (Burada değilse baş harfi yeter.)"),
+T("{p} hakkında ilk izlenimin neydi? Dürüst ol."),
+T("{p} için en çok neye hayransın, en çok neye sinir oluyorsun?"),
+T("Hiç bir arkadaşının sevgilisine ilgi duydun mu?"),
+T("Banyoda yaptığın en tuhaf şey nedir?"),
+T("Kaç kişiyle öpüştün? Dürüst sayıyı söyle."),
+T("En çılgın flört hikâyeni anlat."),
+T("Bir gün boyunca karşı cinsin bedeninde olsan ilk ne yapardın?","e"),
+T("Bir erkekte seni en çok etkileyen şey nedir?","k"),
+T("Bir kadında seni en çok etkileyen şey nedir?","e"),
+T("Hiç bir erkeğin sana yazdığı mesaja bilerek cevap vermediğin oldu mu? Neden?","k"),
+T("Hiç bir kadına açılıp reddedildin mi? Anlat.","e"),
+],
+dare:[
+T("1 dakika boyunca robot gibi konuş."),
+T("En sevdiğin şarkıyı en abartılı şekilde söyle."),
+T("{p} için 30 saniyelik bir şiir uydur ve oku."),
+T("Telefonundan son arama yaptığın kişiye 'seni özledim' mesajı at."),
+T("10 şınav çek (çekemezsen 10 squat)."),
+T("{p} sana bir hareket verecek, o hareketi 30 saniye yap."),
+T("Bir sonraki turuna kadar her cümlenin sonuna 'efendim' ekle."),
+T("En komik yüz ifadeni yap ve 20 saniye boyunca tut."),
+T("Bardağını/ellerini kullanmadan bir şeyler içmeye çalış."),
+T("Dans et! 30 saniye, müziksiz."),
+T("Taklit yap: {p}'yi 30 saniye taklit et, kim olduğu anlaşılsın."),
+T("Bir hayvan sesi çıkar, grup hangi hayvan olduğunu bilsin."),
+T("Sosyal medya hikâyene gruptan biri seçsin, o yazsın, sen paylaş."),
+T("Gözlerin kapalı {p}'nin yüzünü eline alıp tarif et."),
+T("Ayakkabı çorabını çıkar, 1 tur öyle otur."),
+T("Telefonunu {p}'ye ver, 1 dakika istediği mesajı galerinden/ayarlardan göstersin."),
+T("Bir arkadaşını ara ve 20 saniye boyunca çok ciddi şekilde saçma konuş."),
+T("Grupta en iyi arkadaşına/kardeşine sesli mesaj at: 'Seni çok seviyorum'."),
+T("Yüzüne bir bardak su dök (yeter ki gülsün herkes)."),
+T("{p}'ye bir iltifat et ve 30 saniye boyunca sürekli devam et."),
+T("Bir sonraki 3 tur boyunca bir aksanla konuş."),
+T("Odadaki en yakışıklı/güzel kişiyi seç ve nedenini söyle.", ),
+T("Komik bir pozda selfie çek ve grup profil resmi yap (1 saat)."),
+T("Kendini 1 dakikada bir reklam filmi gibi tanıt."),
+T("{p} ile 20 saniye boyunca göz teması kur, kim önce gülerse kaybeder."),
+T("{p}'ye 20 saniye omuz masajı yap."),
+T("Bir tur boyunca sadece fısıltıyla konuş."),
+T("Yerde sırtüstü yat, {p} başına bir bardak koysun, 1 dakika kıpırdama.", ),
+T("En iyi flört cümleni {p}'ye söyle (şaka olarak)."),
+T("Mum gibi davran: 30 saniye dümdüz dur, erirmiş gibi yere çök."),
+T("Saçını en komik haline getir ve fotoğraf çek.", ),
+T("Gruptaki bir erkeğe sarılıp 'seni çok özledim' de.","k"),
+T("Gruptaki bir kıza sarılıp 'seni çok özledim' de.","e"),
+]};
+
+// ---- SEVGİLİ MODU ----
+// Seviye 1: Isınma (flört, dokunuş) / 2: Ateşli / 3: Çılgın
+const COUPLE={
+truth:{
+1:[
+T("{p}'de ilk dikkatini çeken şey neydi?"),
+T("{p}'nin seni en çok etkileyen hali nedir?"),
+T("{p} ile ilk öpüşmemizi nasıl hatırlıyorsun?"),
+T("{p}'nin hangi kokusu seni delirtir?"),
+T("Beni en çok ne zaman özlüyorsun?"),
+T("{p}'nin vücudunda en sevdiğin yer neresi?"),
+T("{p} sana bakınca aklına gelen ilk 'ateşli' düşünce nedir?"),
+T("Birlikte yaşadığımız en romantik anı anlat."),
+T("{p}'nin dudaklarını ilk gördüğünde ne düşündün?"),
+T("Hiç {p}'yi gizlice izlediğin, hayran kaldığın bir an oldu mu?"),
+T("{p} seni en çok hangi cümleyle bayıltır?"),
+T("Bir gün {p} ile tek başına bir adada kalsak ilk ne yapmak isterdin?"),
+],
+2:[
+T("{p}'nin seni nerede öpmesi en çok hoşuna gider?"),
+T("Beni hiç hayal ederken kendini kaptırdığın oldu mu? Ne hayal ettin?"),
+T("Birlikte yaptığımız en tutkulu an hangisiydi?"),
+T("Beni en çok neyle baştan çıkarırsın, söyle."),
+T("{p}'nin üzerinde en çok neyi görmek istersin?"),
+T("Vücudunda dokunulduğunda en çok titrediğin yer neresi?"),
+T("Hiç iş yerinde/toplum içinde {p}'yi düşünüp kızardığın oldu mu?"),
+T("{p} ile hiç yapmadığımız ama denemek istediğin şey nedir?"),
+T("Beni 1 dakikada nasıl kendine çekerdin? Anlat."),
+T("{p}'nin hangi hareketi seni anında heyecanlandırıyor?"),
+T("Bu akşam bana yapmak istediğin ilk şey nedir?"),
+T("Hiç hayalini kurduğun bir yer var mı, orada yalnız kalmak istediğin?"),
+],
+3:[
+T("En çok hangi fantezinin gerçek olmasını istersin?"),
+T("{p} ile hiç yapmadığınız, aklına gelince yüzünü kızartan şey nedir?"),
+T("Seni en çok ne açar, ne kıpır kıpır yapar, açıkça söyle."),
+T("Bu akşamı sen yönetsen nasıl bir senaryo kurardın?"),
+T("{p}'ye hiç söylemediğin ateşli bir itirafın var mı? Şimdi söyle."),
+T("Bir gecelik rol yapma olsa, hangi rolleri seçerdik?"),
+T("Beni en son ne zaman düşünerek heyecanlandın? Detay ver."),
+T("Birlikte denemek istediğin en cesur şey nedir?"),
+T("Yatakta senin için olmazsa olmaz nedir?"),
+T("{p}'nin bir ses tonu/söylediği bir şey seni çıldırtıyor mu? Hangisi?"),
+T("Şu an aklından geçen en cüretkâr düşünceyi söyle."),
+T("Seni en çok ne zaman çok istedim dediğin an oldu, anlat."),
+]},
+dare:{
+1:[
+T("{p}'nin gözlerinin içine bakarak 30 saniye hiç konuşma ve gülme."),
+T("{p}'nin boynuna 3 yavaş öpücük kondur."),
+T("{p}'ye bir dakika boyunca ellerini tutarak en tatlı şeyleri fısılda."),
+T("{p}'yi kucağına al/ kucağına otur, bir dakika sarıl."),
+T("{p}'nin kulağına en sevdiği cümleyi fısılda."),
+T("{p}'ye 1 dakikalık omuz-sırt masajı yap."),
+T("{p}'nin dudaklarına 10 saniyelik yavaş bir öpücük ver."),
+T("Gözlerini kapat, {p} seni 3 yerden öpsün, nereden öptüğünü tahmin et."),
+T("{p}'nin parmaklarını tek tek öp."),
+T("Sarıl ve {p}'nin kalp atışını dinle, 30 saniye hiç konuşma."),
+T("{p}'nin elini al, avucuna ve bileğine yavaşça öpücük bırak."),
+T("{p}'ye bu akşam için en çekici bakışını at ve 20 saniye boyunca tut."),
+],
+2:[
+T("{p}'nin gözlerini bağla (atkı/tişört) ve boynuna, kulağına öpücükler bırak."),
+T("{p}'nin kucağında otur, 1 dakika yavaşça öpüş."),
+T("{p}'nin tişörtünü/üstünü çıkar (rahat olduğu kadar) ve sırtına 2 dakika masaj yap."),
+T("{p}'nin ensesine nefes üfle, ardından yavaşça öp. 1 dakika devam et."),
+T("{p}'ye yavaş yavaş, tam 1 dakika boyunca bir 'dans şovu' yap."),
+T("{p}'yi duvara yaslayıp 30 saniye öpüş."),
+T("Ağzına bir buz küpü al ve {p}'nin boynunda ve köprücüğünde dolaştır."),
+T("Dudaklarını sürerek {p}'nin kulağından omzuna kadar bir yol çiz."),
+T("{p}'nin elini al ve istediğin yere (rahat olduğun) koy, 30 saniye öyle dur."),
+T("{p}'yi 2 dakika boyunca öpmeden sadece dudaklarının yanına yaklaşarak bekle. Sonra öp."),
+T("{p}'nin bacağına/ diz üstüne yavaşça öpücükler bırak."),
+T("Gözlerin bağlı: {p} seni 1 dakika istediği gibi öpsün, tepkini sakla."),
+T("{p}'ye şu anda yüzüne bakmadan, sadece nefesiyle seni ısıtmasına izin ver (kulağına)."),
+],
+3:[
+T("{p}'nin üzerindeki bir parçayı çıkar, sonra 2 dakika boyunca öp."),
+T("{p}'ye 1 dakikalık özel dans yap ve istediğin kadar üstünden çıkar."),
+T("{p}'yi gözleri bağlı yatağa/koltuğa yatır, vücuduna parmak uçlarınla 2 dakika dolaş."),
+T("{p} sana istediği bir bölgeyi seçsin, o bölgeyi 1 dakika öp."),
+T("Buz ve sıcak içeceği dönüşümlü kullanarak {p}'nin boynuna ve göğsüne dolaştır."),
+T("Kıyafetlerini birbirinize çıkarın, sadece ikinizin rahat olduğu kadarını."),
+T("{p}'nin kulağına bu akşam ona ne yapmak istediğini fısılda, sonra 1 dakika da denemesine izin ver."),
+T("{p}'nin tüm vücuduna 3 dakikalık yağ/losyon masajı yap."),
+T("Dizlerinin üstünde {p}'nin yanına yaklaş ve 1 dakika yavaşça öp."),
+T("{p} 5 dakika boyunca sana istediği her şeyi yaptırabilir (yasak yok ama sınırlar sende)."),
+T("{p}'nin gözlerini bağla, onu istediğin yerinden öp ve ne hissettiğini söyletir ol."),
+T("Şimdi sıra {p}'de: 3 dakika boyunca sana istediği şeyi yapsın, sen sadece tepki ver."),
+]}};
+
+// Cinsiyete özel eklemeler (sevgili)
+COUPLE.dare[1].push(T("{p}'nin gözlerinin içine bakarak yavaşça gömleğinin/tişörtünün ilk düğmesini çöz.","e"));
+COUPLE.dare[1].push(T("{p}'ye kendi kollarınla sarıl ve onun omzuna başını koy, 1 dakika.","k"));
+COUPLE.dare[2].push(T("{p}'nin kucağında otur ve ellerini göğsüne yerleştir, 1 dakika yavaşça öp.","k"));
+COUPLE.dare[2].push(T("{p}'yi kendine çek, kalçasından yavaşça tut ve 30 saniye öp.","e"));
+COUPLE.dare[3].push(T("{p}'nin üzerine ağırlığını ver, 1 dakika yavaşça öp ve tenini hisset.","e"));
+COUPLE.dare[3].push(T("{p}'nin üzerine otur, yavaşça sürt ve 1 dakika öp.","k"));
+
+/* ============ DURUM ============ */
+const S={screen:"home",mode:null,players:[],turn:0,level:1,task:null,used:{},tempGender:null};
+const app=document.getElementById('app');
+const el=(h)=>{app.innerHTML=h;window.scrollTo(0,0)};
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function save(){try{localStorage.setItem('tod',JSON.stringify({mode:S.mode,players:S.players}))}catch(e){}}
+function load(){try{return JSON.parse(localStorage.getItem('tod'))}catch(e){return null}}
+
+/* ============ EKRANLAR ============ */
+function home(){
+ S.screen="home";
+ el(`<div class="spacer"></div>
+ <h1>🔥 Doğruluk mu<br>Cesaret mi? 🔥</h1>
+ <p class="sub">Reklamsız. Ücretsiz. Hepsi açık.</p>
+ <div class="stack">
+  <button class="modecard f" onclick="pickMode('friend')"><b>👯 Arkadaş Modu</b><span>Eğlenceli, komik, sıkıntısız. 2+ oyuncu.</span></button>
+  <button class="modecard c" onclick="pickMode('couple')"><b>❤️‍🔥 Sevgili Modu</b><span>Çiftler için ateşli, fiziksel görevler. 18+</span></button>
+ </div>
+ <div class="spacer"></div>`);
+}
+function pickMode(m){
+ if(m==='couple' && !sessionStorageOK()){ }
+ if(m==='couple'){
+  el(`<div class="spacer"></div><h2>18+ Uyarısı</h2>
+  <div class="warn">Sevgili modu yetişkin çiftler içindir. Tüm görevler karşılıklı rıza ile yapılmalıdır. Rahat hissetmediğin her görevi "Pas" geçebilirsin. Sınırlarına saygı göster.</div>
+  <div class="stack"><button class="btn red" onclick="setMode('couple')">18 yaşından büyüğüm, devam</button>
+  <button class="btn ghost" onclick="home()">Geri</button></div><div class="spacer"></div>`);
+ } else setMode('friend');
+}
+function sessionStorageOK(){return true}
+function setMode(m){
+ S.mode=m;S.players=[];S.turn=0;S.used={};S.level=1;
+ setup();
+}
+function setup(){
+ S.screen="setup";
+ const c=S.mode==='couple';
+ const need=c?2:2;
+ const full=c&&S.players.length>=2;
+ const list=S.players.map((p,i)=>`<div class="player"><span>${p.g==='e'?'👨':'👩'} ${esc(p.n)}</span><button onclick="rmPlayer(${i})">✕</button></div>`).join('');
+ el(`<div class="top"><button onclick="home()">← Geri</button><span></span></div>
+ <h2>${c?'❤️‍🔥 Çift bilgileri':'👯 Oyuncuları ekle'}</h2>
+ <p class="sub">${c?'İkinizin de adını ve cinsiyetini gir':'En az 2 oyuncu ekle'}</p>
+ <div class="plist">${list||'<p class="sub">Henüz kimse yok</p>'}</div>
+ ${full?'':`<div class="row"><input id="nm" type="text" maxlength="16" placeholder="İsim" autocomplete="off"></div>
+ <div class="row" style="margin:10px 0 14px">
+  <button class="gbtn e ${S.tempGender==='e'?'on':''}" style="flex:1" onclick="setG('e')">👨 Erkek</button>
+  <button class="gbtn k ${S.tempGender==='k'?'on':''}" style="flex:1" onclick="setG('k')">👩 Kadın</button>
+ </div>
+ <button class="btn blue" onclick="addPlayer()">+ Ekle</button>`}
+ <div class="spacer"></div>
+ <button class="btn pink" style="margin-top:16px;${S.players.length<need?'opacity:.4':''}" onclick="start()">Oyunu Başlat</button>`);
+}
+function setG(g){const v=(document.getElementById('nm')||{}).value;S.tempGender=g;setup();if(v)document.getElementById('nm').value=v}
+function addPlayer(){
+ const n=document.getElementById('nm').value.trim();
+ if(!n){alert('İsim yaz');return}
+ if(!S.tempGender){alert('Cinsiyet seç');return}
+ S.players.push({n,g:S.tempGender});S.tempGender=null;save();setup();
+ const i=document.getElementById('nm');if(i)i.focus();
+}
+function rmPlayer(i){S.players.splice(i,1);setup()}
+function start(){
+ if(S.players.length<2){alert('En az 2 oyuncu gerekli');return}
+ S.turn=0;S.task=null;S.screen="game";save();game();
+}
+
+function cur(){return S.players[S.turn%S.players.length]}
+function partner(){
+ const o=cur();
+ if(S.mode==='couple')return S.players.find(p=>p!==o);
+ const others=S.players.filter(p=>p!==o);
+ return others[Math.floor(Math.random()*others.length)];
+}
+function game(){
+ const o=cur();
+ const c=S.mode==='couple';
+ const lv=c?`<div class="lvl">${['🔥 Isınma','🔥🔥 Ateşli','🔥🔥🔥 Çılgın'].map((n,i)=>`<button class="${S.level===i+1?'on':''}" onclick="setLevel(${i+1})">${n}</button>`).join('')}</div>`:'';
+ const kind=S.task?(S.task.kind==='truth'?'DOĞRULUK':'CESARET'):'';
+ el(`<div class="top"><button onclick="home()">← Menü</button><button onclick="scoreInfo()">👥 ${S.players.length}</button></div>
+ <div class="turn"><div class="tag">Sıra</div><div class="who">${o.g==='e'?'👨':'👩'} ${esc(o.n)}</div></div>
+ ${lv}
+ ${S.task?`<div class="taskcard ${S.task.kind}"><div class="kind">${kind}</div>${esc(S.task.text)}</div>
+   <div class="timer" id="tm"></div>
+   <div class="stack"><button class="btn pink" onclick="done()">✅ Yaptım / Cevapladım</button>
+   <div class="row"><button class="btn ghost" onclick="another()">🔄 Başka ver</button><button class="btn ghost" onclick="pas()">⏭ Pas</button></div></div>`
+ :`<div class="taskcard"><div style="font-size:48px">${c?'❤️‍🔥':'🎲'}</div><br>Seç bakalım ${esc(o.n)}!</div>
+   <div class="stack"><button class="btn blue" onclick="pick('truth')">🗣 Doğruluk</button><button class="btn pink" onclick="pick('dare')">💪 Cesaret</button></div>`}
+ <div class="spacer"></div>`);
+}
+function setLevel(l){S.level=l;S.task=null;game()}
+function scoreInfo(){alert('Oyuncular: '+S.players.map(p=>p.n).join(', '))}
+function pool(kind){
+ const o=cur();
+ let base=S.mode==='couple'?COUPLE[kind][S.level]:FRIEND[kind];
+ return base.filter(x=>!x.g||x.g===o.g);
+}
+function pick(kind){
+ const o=cur(),p=partner();
+ const base=pool(kind);
+ const key=S.mode+kind+(S.mode==='couple'?S.level:'');
+ S.used[key]=S.used[key]||[];
+ let avail=base.filter(x=>!S.used[key].includes(x.t));
+ if(!avail.length){S.used[key]=[];avail=base}
+ const pickd=avail[Math.floor(Math.random()*avail.length)];
+ S.used[key].push(pickd.t);
+ S.task={kind,text:pickd.t.replace(/\{o\}/g,o.n).replace(/\{p\}/g,p.n),from:kind};
+ game();
+}
+function another(){pick(S.task.kind)}
+function done(){S.task=null;S.turn++;game()}
+function pas(){S.task=null;S.turn++;game()}
+
+(function init(){
+ if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+ home();
+})();
+</script>
+</body>
+</html>
