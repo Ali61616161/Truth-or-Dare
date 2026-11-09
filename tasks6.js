@@ -167,7 +167,7 @@ cd(4,"Oyuncak ya da bir aksesuar kullanarak birbirinizi çıldırtın.","Use a t
 cd(4,"Seks sırasında birbirinize nasıl hissettiğinizi sesli söyleyin.","Say out loud how you feel to each other during sex.");
 cd(4,"{p}'nin bacaklarını omuzlarına al ve onu ağzınla sev.","Take {p}'s legs over your shoulders and pleasure them with your mouth.");
 cd(4,"{p}'nin üzerine otur ve yavaşça ritim tut.","Sit on {p} and set a slow rhythm.");
-cd(4,"Arkadan sarıl ve sevişmeye başla; ellerin her yerinde olsun.","Hold {p} from behind and start making love, hands everywhere.");
+cd(4,"{p}'ye arkadan sarıl ve sevişmeye başla; ellerin her yerinde olsun.","Hold {p} from behind and start making love, hands everywhere.");
 cd(4,"{p} istediği pozisyonu seçsin ve birlikte yapın.","{p} picks any position and you do it together.");
 cd(4,"Bu görev sizi yatağa götürsün: devam edin ve oyunu kapatın.","Let this task take you to bed: keep going and close the game.");
 cd(4,"k>e|{p}'nin penisini elinle ve ağzınla sev.","k>e|Pleasure {p}'s penis with your hand and your mouth.");

@@ -2,6 +2,8 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com; base-uri 'self'; form-action 'none'; object-src 'none'">
+
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#120b0d">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -347,7 +349,7 @@ async function createRoom(){
 async function joinRoomUi(){
  const me=readMe();if(!me||!netGuard())return;
  const code=(document.getElementById('cd').value||'').trim().toUpperCase();
- if(code.length!==5){alert(t('codeErr'));return}
+ if(!/^[A-Z2-9]{5}$/.test(code)){alert(t('codeErr'));return}
  let r;try{r=await RT.join(code,me)}catch(e){alert(t('netErr'));return}
  if(r.err){alert(r.err==='full'?t('roomFull'):r.err==='closed'?t('roomClosed'):t('noRoom'));return}
  if(r.data&&r.data.v&&r.data.v!==SIG())alert(t('verDiff'));
@@ -373,15 +375,34 @@ function leaveRoom(){
  if(code){try{RT.update(code,{closed:true})}catch(e){}}
  home();
 }
-function onRoom(d){
- if(d===undefined){alert(t('netErr'));leaveLocal();home();return}
- if(!d||d.closed){const closed=!!d;leaveLocal();alert(closed?t('roomClosed'):t('noRoom'));home();return}
+function sanitizeRoom(d){
+ const ok=g=>g==='e'||g==='k';
+ const pl=p=>(p&&typeof p.n==='string'&&p.n.length&&ok(p.g))?{n:p.n.slice(0,16),g:p.g}:null;
+ const int=(v,a,b,def)=>(Number.isInteger(v)&&v>=a&&v<=b)?v:def;
+ if(!d||typeof d!=='object'||!['call','msg','couple'].includes(d.mode))return null;
+ const p0=pl(d.p0);if(!p0)return null;
+ const p1=d.p1?pl(d.p1):null;
+ const out={mode:d.mode,p0,p1,closed:d.closed===true,
+  turn:int(d.turn,0,100000,0),pa:int(d.pa,0,MAX_PASS,MAX_PASS),pb:int(d.pb,0,MAX_PASS,MAX_PASS),
+  lv:(d.lv==='auto'||d.lv==='random')?d.lv:(['1','2','3','4'].includes(String(d.lv))?Number(d.lv):'auto'),task:null};
+ const k=d.task;
+ if(k&&typeof k==='object'&&(k.kind==='truth'||k.kind==='dare')){
+  const lv=int(k.lv,0,4,0),i=int(k.i,0,100000,-1),pi=int(k.pi,0,1,0);
+  if(i>=0)out.task={kind:k.kind,lv,i,pi};
+ }
+ return out;
+}
+function onRoom(raw){
+ if(raw===undefined){alert(t('netErr'));leaveLocal();home();return}
+ if(!raw){leaveLocal();alert(t('noRoom'));home();return}
+ const d=sanitizeRoom(raw);
+ if(!d||d.closed){const closed=!!(d&&d.closed);leaveLocal();alert(closed?t('roomClosed'):t('noRoom'));home();return}
  S.mode=d.mode;
  S.players=d.p1?[d.p0,d.p1]:[d.p0];
- S.turn=d.turn||0;
- S.lvMode=(d.lv==='auto'||d.lv==='random')?d.lv:(Number(d.lv)||'auto');
- S.task=d.task||null;
- S.passes=[d.pa==null?MAX_PASS:d.pa,d.pb==null?MAX_PASS:d.pb];
+ S.turn=d.turn;
+ S.lvMode=d.lv;
+ S.task=d.task;
+ S.passes=[d.pa,d.pb];
  const sig=JSON.stringify([S.players,S.turn,S.lvMode,S.task,S.passes,LANG]);
  if(sig===S._sig&&(S.view==='game'||S.view==='wait'))return;
  S._sig=sig;

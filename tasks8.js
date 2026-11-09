@@ -31,7 +31,7 @@ D(1,"Saçını {p}'nin sevdiği gibi yap ve göster.","Style your hair the way {
 D(1,"Ekrana elini koy, {p} da koysun; bir dakika öyle kalın.","Put your hand on the screen and have {p} do the same; stay like that.");
 D(1,"{p}'ye bir selfie pozu ver, ekran görüntüsü almadan sadece o an gör.","Strike a selfie pose for {p}, just for the moment, no screenshots.");
 D(1,"Kameradan {p}'ye 3 şey söyle: hoşuna giden, seni güldüren, seni heyecanlandıran.","Tell {p} three things: what you like, what makes you laugh, what excites you.");
-D(1,"Üstündekini göster, bir tur dön ve nasıl göründüğünü sor.","Show {p} what you're wearing, do a spin and ask how you look.");
+D(1,"Üstündekini {p}'ye göster, bir tur dön ve nasıl göründüğünü sor.","Show {p} what you're wearing, do a spin and ask how you look.");
 D(1,"{p}'ye bir 'öpücük havada' gönder.","Blow {p} a kiss through the camera.");
 D(1,"{p}'ye yakından bakıp yüzünün sevdiğin yerini söyle.","Look closely at {p} and name your favourite part of their face.");
 D(1,"Birlikte aynı anda bir şarkı açıp başınızı sallayın.","Put the same song on at once and sway together.");
