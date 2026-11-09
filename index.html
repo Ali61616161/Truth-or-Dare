@@ -40,7 +40,7 @@ h2{font-family:var(--serif);font-size:30px;margin:10px 0 4px;font-weight:700;let
 .stack{display:flex;flex-direction:column;gap:12px}
 .row{display:flex;gap:12px}.row>*{flex:1}
 .spacer{flex:1}
-.hero{width:190px;height:190px;margin:8px auto 14px;position:relative;animation:float 5s ease-in-out infinite}
+.hero{width:140px;height:140px;margin:4px auto 10px;position:relative;animation:float 5s ease-in-out infinite}
 .hero svg{width:100%;height:100%}
 .langs{display:inline-flex;gap:4px}.top .langs button{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:99px;padding:6px 12px;font-size:12px;font-weight:700;letter-spacing:.08em;font-family:inherit}.top .langs button.on{background:var(--txt);border-color:var(--txt);color:var(--bg)}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -113,6 +113,12 @@ input[type=text]:focus{border-color:var(--gold)}
 .opt .ic{width:32px;height:32px;color:var(--gold);display:grid;place-items:center}
 .opt .ic svg{width:24px;height:24px}
 .eico{width:68px;height:68px;margin:0 auto 14px;color:var(--acc);opacity:.85}.eico svg{width:100%;height:100%}
+.tile.m .ic{background:rgba(120,200,140,.14);color:#7fd09a}.tile.m{border-color:rgba(120,200,140,.3)}
+.tile.v .ic,.tile.m .ic,.tile.f .ic,.tile.c .ic{width:60px;height:60px}.tile .ic svg{width:34px;height:34px}.tile{padding:18px 12px 16px}
+.codebox{font-family:var(--serif);font-size:54px;letter-spacing:.14em;text-align:center;font-weight:700;margin:10px 0;color:var(--txt)}
+.hint{color:var(--mut);font-size:14px;text-align:center;line-height:1.5}
+.div{display:flex;align-items:center;gap:12px;color:var(--mut);font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:16px 0}.div:before,.div:after{content:"";flex:1;height:1px;background:var(--line)}
+.waitnote{text-align:center;color:var(--mut);font-size:15px;margin:0 0 12px}
 </style>
 </head>
 <body>
@@ -127,6 +133,9 @@ input[type=text]:focus{border-color:var(--gold)}
 <script src="tasks7.js"></script>
 <script src="tasks8.js"></script>
 <script src="tasks9.js"></script>
+<script src="tasks_msg.js"></script>
+<script src="firebase-config.js"></script>
+<script src="online.js"></script>
 <script>
 "use strict";
 const MAX_PASS=3;
@@ -149,7 +158,7 @@ const STR={
   menu:'Menü',menuBack:'‹ Menü',cont:'Devam et',chPlayers:'Oyuncuları değiştir',home:'Ana menü',
   auto:'Oto',random:'Rastgele',lv:['','Isınma','Ateşli','Çılgın','Sınırsız'],
   nAuto:'Her 3 turda bir seviye yükselir. Şu an: {l}',nRandom:'Her görev rastgele bir seviyeden gelir.',nFixed:'Sabit seviye: {l}',
-  timer:'Sayaç',timeUp:'Süre doldu',noTask:'Bu kategoride görev bulunamadı',err:'Bir hata oluştu',levels:'Seviye',autoD:'Yavaş yavaş kızışır: her 3 turda bir seviye yükselir.',randomD:'Her görev rastgele bir seviyeden gelir.',video:'Görüntülü',videoD:'FaceTime / uzaktan çiftler · 18+',callW:'Görüntülü aramada ekran kaydı ve ekran görüntüsü almayın. Telefonlardan biri uygulamayı açık tutsun, sıra isimle gösterilir; görevi yapan kişi kameraya, diğeri ekrana bakar.',restart:'Yeniden başlat',noLoad:'Görevler yüklenemedi. Sayfayı yenile.'
+  timer:'Sayaç',timeUp:'Süre doldu',noTask:'Bu kategoride görev bulunamadı',err:'Bir hata oluştu',levels:'Seviye',autoD:'Yavaş yavaş kızışır: her 3 turda bir seviye yükselir.',randomD:'Her görev rastgele bir seviyeden gelir.',video:'Görüntülü',videoD:'FaceTime / uzaktan çiftler · 18+',callW:'Görüntülü aramada ekran kaydı ve ekran görüntüsü almayın. Telefonlardan biri uygulamayı açık tutsun, sıra isimle gösterilir; görevi yapan kişi kameraya, diğeri ekrana bakar.',msg:'Mesaj',msgD:'Uzaktan mesaj, ses, foto · 18+',msgW:'Fotoğraf ve ses görevlerinde yüzünü göstermemeyi, "tek seferlik görüntüle" kullanmayı seç ve ekran görüntüsü alma. Görevleri uygulama vermez, kendi sohbetinizde yaparsınız.',howH:'Nasıl oynayacaksınız?',howSub:'Aynı telefondan ya da iki ayrı telefondan.',single:'Tek telefon',singleD:'Sırayla aynı ekrana bakın',two:'İki telefon',twoD:'Kodla eşleşin, herkes kendi telefonunda',yourInfo:'Senin bilgilerin',createRoom:'Oda kur',joinRoom:'Odaya katıl',codePh:'Oda kodu',or:'ya da',roomCode:'Oda kodu',waitPartner:'Partnerin katılması bekleniyor…',shareCode:'Kodu paylaş',cancel:'İptal',noRoom:'Böyle bir oda bulunamadı.',roomFull:'Oda dolu.',roomClosed:'Oda kapatıldı.',noNet:'Çevrimiçi eşleşme henüz kurulmadı (Firebase ayarı eksik).',netErr:'Bağlantı kurulamadı, internetini kontrol et.',waitTurn:'{n} sırada',waitPick:'{n} seçiyor…',waitDo:'{n} görevi yapıyor',verDiff:'Uygulama sürümleriniz farklı. İkiniz de sayfayı yenileyin.',leave:'Odadan çık',backRoom:'Odaya dön',codeErr:'Kod 5 karakter olmalı.',copied:'Kod kopyalandı',restart:'Yeniden başlat',noLoad:'Görevler yüklenemedi. Sayfayı yenile.'
  },
  en:{
   title:'Truth or Dare',h1a:'Truth',h1b:'or',h1c:'Dare',h1d:'?',eyebrow:'The game',
@@ -168,7 +177,7 @@ const STR={
   menu:'Menu',menuBack:'‹ Menu',cont:'Continue',chPlayers:'Change players',home:'Main menu',
   auto:'Auto',random:'Random',lv:['','Warm-up','Hot','Wild','Unlimited'],
   nAuto:'The level goes up every 3 rounds. Now: {l}',nRandom:'Every task comes from a random level.',nFixed:'Fixed level: {l}',
-  timer:'Timer',timeUp:'Time is up',noTask:'No task found in this category',err:'Something went wrong',levels:'Level',autoD:'Heats up gradually: the level goes up every 3 rounds.',randomD:'Every task comes from a random level.',video:'Video call',videoD:'FaceTime / long distance · 18+',callW:'Do not screen-record or take screenshots during the call. One phone keeps the app open and shows whose turn it is; the person doing the task faces the camera, the other watches the screen.',restart:'Restart',noLoad:'Tasks could not be loaded. Refresh the page.'
+  timer:'Timer',timeUp:'Time is up',noTask:'No task found in this category',err:'Something went wrong',levels:'Level',autoD:'Heats up gradually: the level goes up every 3 rounds.',randomD:'Every task comes from a random level.',video:'Video call',videoD:'FaceTime / long distance · 18+',callW:'Do not screen-record or take screenshots during the call. One phone keeps the app open and shows whose turn it is; the person doing the task faces the camera, the other watches the screen.',msg:'Message',msgD:'Long distance: text, voice, photo · 18+',msgW:'For photo and voice tasks, consider not showing your face, use view-once, and do not screenshot. The app only gives the tasks; you do them in your own chat.',howH:'How will you play?',howSub:'On one phone or on two separate phones.',single:'One phone',singleD:'Take turns on the same screen',two:'Two phones',twoD:'Pair with a code, each on their own phone',yourInfo:'Your details',createRoom:'Create room',joinRoom:'Join room',codePh:'Room code',or:'or',roomCode:'Room code',waitPartner:'Waiting for your partner to join…',shareCode:'Share code',cancel:'Cancel',noRoom:'No such room found.',roomFull:'The room is full.',roomClosed:'The room was closed.',noNet:'Online pairing is not set up yet (missing Firebase config).',netErr:'Could not connect, check your internet.',waitTurn:'{n} is up',waitPick:'{n} is choosing…',waitDo:'{n} is doing the task',verDiff:'Your app versions differ. Both of you refresh the page.',leave:'Leave room',backRoom:'Back to room',codeErr:'The code must be 5 characters.',copied:'Code copied',restart:'Restart',noLoad:'Tasks could not be loaded. Refresh the page.'
  }
 };
 let LANG='tr';
@@ -186,6 +195,8 @@ const IC={
  heart:'<svg viewBox="0 0 24 24"><path d="M12 21s-7.2-4.7-9.4-9.2A5.3 5.3 0 0 1 12 6.6a5.3 5.3 0 0 1 9.4 5.2C19.2 16.3 12 21 12 21z"/></svg>',
  chat:'<svg viewBox="0 0 24 24"><path d="M5 3h14a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-7l-5 4v-4H5a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3zm7 3.2a2.7 2.7 0 0 0-2.7 2.7h1.7a1 1 0 1 1 1 1c-.6 0-1 .4-1 1v1h1.6v-.4a2.7 2.7 0 0 0-.6-5.3zM11.2 14.2h1.6V16h-1.6z" fill-rule="evenodd"/></svg>',
  bolt:'<svg viewBox="0 0 24 24"><path d="M13.5 1.5 4 13.5h6.5L9.5 22.5 20 9.5h-6.7z"/></svg>',
+ phone:'<svg viewBox="0 0 24 24"><path d="M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm4 17a1.200 1.200 0 1 0 0 2.400 1.200 1.200 0 0 0 0-2.400zM8 5v11h8V5z" fill-rule="evenodd"/></svg>',
+ phones:'<svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm2 1v10h6V6z" fill-rule="evenodd"/><path d="M15 8h4a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-4v-2h4v-9h-4z" opacity=".6"/></svg>',
  video:'<svg viewBox="0 0 24 24"><path d="M3 6.5A2.500 2.500 0 0 1 5.500 4h8A2.500 2.500 0 0 1 16 6.500v2.600l4.200-2.600c.7-.4 1.800.1 1.800 1v9c0 .9-1.100 1.400-1.800 1L16 14.900v2.600a2.500 2.500 0 0 1-2.500 2.500h-8A2.500 2.500 0 0 1 3 17.500z"/></svg>',
  group:'<svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3.4"/><circle cx="17" cy="9" r="2.8" opacity=".7"/><path d="M1.5 19a6.5 6.5 0 0 1 13 0z"/><path d="M15 14.2a5.2 5.2 0 0 1 7.5 4.8H16a7.3 7.3 0 0 0-1-4.8z" opacity=".7"/></svg>',
  couple:'<svg viewBox="0 0 24 24"><path d="M8.5 20s-6-3.9-7.8-7.6A4.4 4.4 0 0 1 8.5 8a4.4 4.4 0 0 1 7.8 4.4C14.5 16.1 8.5 20 8.5 20z" opacity=".6"/><path d="M15.5 17s-5-3.2-6.4-6.2a3.6 3.6 0 0 1 6.4-3.5 3.6 3.6 0 0 1 6.4 3.5c-1.4 3-6.4 6.2-6.4 6.2z"/></svg>',
@@ -200,15 +211,23 @@ const IC={
  dice:'<svg viewBox="0 0 24 24"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm3 4a1.4 1.4 0 1 0 0 2.8A1.4 1.4 0 0 0 8 7zm8 0a1.4 1.4 0 1 0 0 2.8A1.4 1.4 0 0 0 16 7zm-4 4.6a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8zM8 14.2a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8zm8 0a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z" fill-rule="evenodd"/></svg>'
 };
 const HERO='<svg viewBox="0 0 200 200"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8a05a"/><stop offset="1" stop-color="#e5484d"/></linearGradient></defs><circle cx="78" cy="100" r="58" fill="none" stroke="#d9a566" stroke-width="5" opacity=".9"/><circle cx="122" cy="100" r="58" fill="none" stroke="#e5484d" stroke-width="5" opacity=".9"/><path d="M100 56c2.6 11 16 17 16 31.5a16 16 0 0 1-32 0c0-6 3-10 7-13.5.6 5.5 3 8.5 6.5 9.5-1.5-10-1.5-17 2.5-27.5z" fill="url(#g1)"/></svg>';
-const duo=()=>S.mode==='couple'||S.mode==='call';
+const duo=()=>S.mode!=='friend';
 const lvAttr=l=>{document.body.setAttribute('data-lv',l||1)};
+const MOCK=/[?&]mock\b/.test(location.search);
+const ST=MOCK?sessionStorage:localStorage;
+const ROOMKEY='tod_room';
+const NET={code:null,seat:0,unsub:null};
+S.online=false;S.view='';
+const modeName=m=>m==='call'?t('video'):m==='msg'?t('msg'):m==='couple'?t('couple'):t('friend');
 function setLang(l){LANG=l;try{localStorage.setItem(LKEY,l)}catch(e){}document.documentElement.lang=l;document.title=t('title');home()}
 function render(html){clearTimer();app.style.animation='none';void app.offsetWidth;app.style.animation='';app.innerHTML=html;window.scrollTo(0,0)}
+function savedRoom(){try{return JSON.parse(ST.getItem(ROOMKEY)||'null')}catch(e){return null}}
 
 function home(){
- S.task=null;lvAttr(1);
+ S.task=null;S.view='home';lvAttr(1);
  const standalone=window.navigator.standalone||matchMedia('(display-mode: standalone)').matches;
  const ios=/iPhone|iPad|iPod/.test(navigator.userAgent);
+ const sr=!S.online?savedRoom():null;
  render(`<div class="top"><span></span><span class="langs"><button class="${LANG==='tr'?'on':''}" onclick="setLang('tr')">TR</button><button class="${LANG==='en'?'on':''}" onclick="setLang('en')">EN</button></span></div>
  <div class="spacer"></div>
  <div class="hero">${HERO}</div>
@@ -217,28 +236,40 @@ function home(){
  <div class="tiles">
   <button class="tile f" onclick="pickMode('friend')"><div class="ic">${IC.group}</div><b>${t('friend')}</b><small>${t('friendD')}</small></button>
   <button class="tile c" onclick="pickMode('couple')"><div class="ic">${IC.couple}</div><b>${t('couple')}</b><small>${t('coupleD')}</small></button>
+  <button class="tile v" onclick="pickMode('call')"><div class="ic">${IC.video}</div><b>${t('video')}</b><small>${t('videoD')}</small></button>
+  <button class="tile m" onclick="pickMode('msg')"><div class="ic">${IC.chat}</div><b>${t('msg')}</b><small>${t('msgD')}</small></button>
  </div>
- <button class="tile v" style="width:100%;margin-top:14px;flex-direction:row;justify-content:flex-start;text-align:left" onclick="pickMode('call')"><div class="ic">${IC.video}</div><div><b>${t('video')}</b><br><small>${t('videoD')}</small></div></button>
+ ${sr?`<button class="btn" style="margin-top:14px" onclick="resumeRoom()">${IC.back}${t('backRoom')} · ${esc(sr.code)}</button>`:''}
  <div class="spacer"></div>
  ${!standalone&&ios?`<p class="tip">${t('iosTip')}</p>`:''}
  <button class="btn ghost" onclick="resetHist()">${t('reset')}</button>`);
 }
 function resetHist(){if(confirm(t('resetQ'))){S.hist={};persist();alert(t('resetOk'))}}
 function pickMode(m){
- if(m==='couple'||m==='call'){
-  render(`<div class="spacer"></div><div class="eyebrow">18+</div><h2>${t('adultH')}</h2>
-  <div class="warn">${t('adultW',{n:MAX_PASS})}${m==='call'?'<br><br>'+t('callW'):''}</div>
-  <div class="stack"><button class="btn main" onclick="setMode('${m}')">${t('adultOk')}</button>
-  <button class="btn ghost" onclick="home()">${t('back')}</button></div><div class="spacer"></div>`);
- } else setMode('friend');
+ if(m==='friend'){setMode('friend');return}
+ const extra=m==='call'?'<br><br>'+t('callW'):m==='msg'?'<br><br>'+t('msgW'):'';
+ const next=m==='couple'?`setMode('couple')`:`playHow('${m}')`;
+ render(`<div class="spacer"></div><div class="eyebrow">18+</div><h2>${t('adultH')}</h2>
+ <div class="warn">${t('adultW',{n:MAX_PASS})}${extra}</div>
+ <div class="stack"><button class="btn main" onclick="${next}">${t('adultOk')}</button>
+ <button class="btn ghost" onclick="home()">${t('back')}</button></div><div class="spacer"></div>`);
 }
-function setMode(m){S.mode=m;S.players=[];S.tmpG=null;setup()}
+function playHow(m){
+ S.mode=m;
+ render(`<div class="top"><button onclick="home()">${IC.back}${t('back')}</button><span class="pill">${modeName(m)}</span></div>
+ <h2>${t('howH')}</h2><p class="sub">${t('howSub')}</p>
+ <div class="stack">
+  <button class="tile f" style="flex-direction:row;text-align:left;justify-content:flex-start" onclick="setMode('${m}')"><div class="ic">${IC.phone}</div><div><b>${t('single')}</b><br><small>${t('singleD')}</small></div></button>
+  <button class="tile v" style="flex-direction:row;text-align:left;justify-content:flex-start" onclick="onlineSetup('${m}')"><div class="ic">${IC.phones}</div><div><b>${t('two')}</b><br><small>${t('twoD')}</small></div></button>
+ </div>`);
+}
+function setMode(m){S.mode=m;S.players=[];S.tmpG=null;S.online=false;setup()}
 function setup(keep){
  const c=duo();
  const full=c&&S.players.length>=2;
  const ready=S.players.length>=2;
  const list=S.players.map((p,i)=>`<div class="player"><div class="av ${p.g}">${esc(p.n[0].toUpperCase())}</div><span class="n">${esc(p.n)} <small style="color:var(--mut)">· ${p.g==='e'?t('male'):t('female')}</small></span><button aria-label="x" onclick="rmPlayer(${i})">✕</button></div>`).join('');
- render(`<div class="top"><button onclick="home()">${IC.back}${t('back')}</button><span class="pill">${S.mode==='call'?t('video'):(c?t('couple'):t('friend'))}</span></div>
+ render(`<div class="top"><button onclick="home()">${IC.back}${t('back')}</button><span class="pill">${modeName(S.mode)}</span></div>
  <h2>${c?t('coupleInfo'):t('players')}</h2>
  <p class="sub">${c?t('coupleSub'):t('friendSub')}</p>
  <div class="plist">${list}</div>
@@ -263,6 +294,112 @@ function start(){
  S.turn=0;S.lvMode='auto';S.task=null;S.passes=S.players.map(()=>MAX_PASS);persist();game();
 }
 
+/* ---------- Çevrimiçi eşleşme ---------- */
+function countAll(o){return Array.isArray(o)?o.length:(o&&typeof o==='object'?Object.values(o).reduce((a,x)=>a+countAll(x),0):0)}
+const SIG=()=>String(countAll(TASKS));
+function genCode(){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let s='';for(let i=0;i<5;i++)s+=c[Math.floor(Math.random()*c.length)];return s}
+function onlineSetup(m,keep){
+ S.mode=m;
+ const k=keep||{};
+ render(`<div class="top"><button onclick="playHow('${m}')">${IC.back}${t('back')}</button><span class="pill">${modeName(m)}</span></div>
+ <h2>${t('yourInfo')}</h2>
+ <input id="nm" type="text" maxlength="16" placeholder="${t('name')}" autocomplete="off" autocapitalize="words">
+ <div class="seg"><button class="${S.tmpG==='e'?'on':''}" onclick="setOG('${m}','e')">${IC.male}${t('male')}</button><button class="${S.tmpG==='k'?'on':''}" onclick="setOG('${m}','k')">${IC.female}${t('female')}</button></div>
+ <button class="btn main" onclick="createRoom()">${t('createRoom')}</button>
+ <div class="div">${t('or')}</div>
+ <input id="cd" type="text" maxlength="5" placeholder="${t('codePh')}" autocomplete="off" autocapitalize="characters" style="text-align:center;letter-spacing:.3em;text-transform:uppercase">
+ <button class="btn gold" style="margin-top:12px" onclick="joinRoomUi()">${t('joinRoom')}</button>`);
+ if(k.n)document.getElementById('nm').value=k.n;if(k.c)document.getElementById('cd').value=k.c;
+}
+function setOG(m,g){const n=(document.getElementById('nm')||{}).value||'',c=(document.getElementById('cd')||{}).value||'';S.tmpG=g;onlineSetup(m,{n,c})}
+function readMe(){
+ const n=(document.getElementById('nm').value||'').trim();
+ if(!n){alert(t('needName'));return null}
+ if(!S.tmpG){alert(t('needGender'));return null}
+ return {n,g:S.tmpG};
+}
+function netGuard(){
+ if(typeof RT==='undefined'||!RT.available()){alert(t('noNet'));return false}
+ return true;
+}
+async function createRoom(){
+ const me=readMe();if(!me||!netGuard())return;
+ const code=genCode();
+ const data={mode:S.mode,v:SIG(),ts:Date.now(),p0:me,turn:0,lv:'auto',pa:MAX_PASS,pb:MAX_PASS,closed:false};
+ try{await RT.create(code,data)}catch(e){alert(t('netErr'));return}
+ enterRoom(code,0);
+}
+async function joinRoomUi(){
+ const me=readMe();if(!me||!netGuard())return;
+ const code=(document.getElementById('cd').value||'').trim().toUpperCase();
+ if(code.length!==5){alert(t('codeErr'));return}
+ let r;try{r=await RT.join(code,me)}catch(e){alert(t('netErr'));return}
+ if(r.err){alert(r.err==='full'?t('roomFull'):r.err==='closed'?t('roomClosed'):t('noRoom'));return}
+ if(r.data&&r.data.v&&r.data.v!==SIG())alert(t('verDiff'));
+ enterRoom(code,1);
+}
+function enterRoom(code,seat){
+ if(NET.unsub){NET.unsub();NET.unsub=null}
+ NET.code=code;NET.seat=seat;S.online=true;S._sig='';
+ try{ST.setItem(ROOMKEY,JSON.stringify({code,seat}))}catch(e){}
+ NET.unsub=RT.watch(code,onRoom);
+}
+function resumeRoom(){
+ const r=savedRoom();if(!r||!netGuard())return;
+ enterRoom(r.code,r.seat);
+}
+function leaveLocal(){
+ if(NET.unsub){NET.unsub();NET.unsub=null}
+ S.online=false;NET.code=null;try{ST.removeItem(ROOMKEY)}catch(e){}
+}
+function leaveRoom(){
+ const code=NET.code;
+ leaveLocal();
+ if(code){try{RT.update(code,{closed:true})}catch(e){}}
+ home();
+}
+function onRoom(d){
+ if(d===undefined){alert(t('netErr'));leaveLocal();home();return}
+ if(!d||d.closed){const closed=!!d;leaveLocal();alert(closed?t('roomClosed'):t('noRoom'));home();return}
+ S.mode=d.mode;
+ S.players=d.p1?[d.p0,d.p1]:[d.p0];
+ S.turn=d.turn||0;
+ S.lvMode=(d.lv==='auto'||d.lv==='random')?d.lv:(Number(d.lv)||'auto');
+ S.task=d.task||null;
+ S.passes=[d.pa==null?MAX_PASS:d.pa,d.pb==null?MAX_PASS:d.pb];
+ const sig=JSON.stringify([S.players,S.turn,S.lvMode,S.task,S.passes,LANG]);
+ if(sig===S._sig&&(S.view==='game'||S.view==='wait'))return;
+ S._sig=sig;
+ if(!d.p1){waitScreen();return}
+ game();
+}
+function waitScreen(){
+ S.view='wait';lvAttr(1);
+ render(`<div class="top"><button onclick="leaveRoom()">${IC.back}${t('cancel')}</button><span class="pill">${modeName(S.mode)}</span></div>
+ <div class="spacer"></div>
+ <div class="eyebrow" style="text-align:center">${t('roomCode')}</div>
+ <div class="codebox" id="rc">${esc(NET.code)}</div>
+ <p class="hint">${t('waitPartner')}</p>
+ <div class="spacer"></div>
+ <button class="btn gold" onclick="shareCode()">${t('shareCode')}</button>`);
+}
+function shareCode(){
+ const txt=NET.code;
+ if(navigator.share){navigator.share({text:txt+' · '+location.href.split('?')[0]}).catch(()=>{})}
+ else if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>alert(t('copied')))}
+}
+function commit(p){
+ if(!S.online){Object.assign(S,p);game();return}
+ const d={};
+ if('turn'in p)d.turn=p.turn;
+ if('task'in p)d.task=p.task;
+ if('lvMode'in p)d.lv=String(p.lvMode);
+ if('passes'in p){d.pa=p.passes[0];d.pb=p.passes[1]}
+ RT.update(NET.code,d);
+}
+const myTurn=()=>!S.online||(S.turn%S.players.length===NET.seat);
+
+/* ---------- Oyun ---------- */
 const cur=()=>S.players[S.turn%S.players.length];
 const curIdx=()=>S.turn%S.players.length;
 const roundNo=()=>Math.floor(S.turn/S.players.length)+1;
@@ -272,14 +409,24 @@ function effLevel(){
  if(S.lvMode==='random')return 1+Math.floor(Math.random()*4);
  return S.lvMode;
 }
-function lvNote(){
- if(S.lvMode==='auto')return t('nAuto',{l:LVN(autoLevel())});
- if(S.lvMode==='random')return t('nRandom');
- return t('nFixed',{l:LVN(S.lvMode)});
+function srcArr(src,kind,lv){
+ if(!src)return null;
+ if(S.mode==='call'||S.mode==='msg')return ((src[S.mode]||{})[kind]||{})[lv];
+ return S.mode==='couple'?((src.couple||{})[kind]||{})[lv]:(src.friend||{})[kind];
 }
-function partnerOf(o){const others=S.players.filter(p=>p!==o);return others[Math.floor(Math.random()*others.length)]}
+const stripTag=s=>String(s).replace(/^[ek](?:>[ek])?\|/,'');
+function rawText(kind,lv,i){
+ const tr=srcArr(TASKS,kind,lv);if(!tr||tr[i]==null)return '';
+ const en=(LANG==='en'&&typeof TASKS_EN!=='undefined')?srcArr(TASKS_EN,kind,lv):null;
+ return stripTag((en&&en[i])?en[i]:tr[i]);
+}
+function taskText(tk){
+ const o=cur(),pl=S.players[tk.pi!=null?tk.pi:0]||o;
+ return rawText(tk.kind,tk.lv,tk.i).replace(/\{p\}/g,pl.n).replace(/\{o\}/g,o.n);
+}
 function game(){
- const o=cur(),c=duo();
+ S.view='game';
+ const o=cur(),c=duo(),mine=myTurn();
  const left=S.passes[curIdx()];
  const lvNow=c?(S.task?S.task.lv:(S.lvMode==='auto'?autoLevel():(S.lvMode==='random'?0:S.lvMode))):1;
  lvAttr(lvNow||autoLevel());
@@ -291,17 +438,20 @@ function game(){
  const tk=S.task;
  let body;
  if(tk){
-  const secs=timeOf(tk.text);
+  const text=taskText(tk);
+  const secs=mine?timeOf(text):0;
   const k=tk.kind==='truth';
-  body=`<div class="card ${tk.kind}"><div class="wm">${k?IC.chat:IC.bolt}</div><div class="kind">${k?IC.chat:IC.bolt}${k?t('TRUTH'):t('DARE')}</div><div class="txt">${esc(tk.text)}</div></div>
+  body=`<div class="card ${tk.kind}"><div class="wm">${k?IC.chat:IC.bolt}</div><div class="kind">${k?IC.chat:IC.bolt}${k?t('TRUTH'):t('DARE')}</div><div class="txt">${esc(text)}</div></div>
   ${secs?`<div class="timer" id="tm"><button onclick="startTimer(${secs})">${t('timer')} · ${fmt(secs)}</button></div>`:''}
-  <div class="stack"><button class="btn main" onclick="done()">${IC.check}${t('done')}</button>
-  <button class="btn" ${left?'':'disabled'} onclick="pas()">${IC.skip}${t('pass',{n:left})}</button></div>`;
- } else {
+  ${mine?`<div class="stack"><button class="btn main" onclick="done()">${IC.check}${t('done')}</button>
+  <button class="btn" ${left?'':'disabled'} onclick="pas()">${IC.skip}${t('pass',{n:left})}</button></div>`:`<p class="waitnote">${t('waitDo',{n:esc(o.n)})}</p>`}`;
+ } else if(mine){
   body=`<div class="card empty"><div class="eico">${c?IC.couple:IC.group}</div><div class="txt">${esc(t('choose',{n:o.n}))}</div></div>
   <div class="choose"><button class="t" onclick="pick('truth')">${IC.chat}${t('truth')}</button><button class="d" onclick="pick('dare')">${IC.bolt}${t('dare')}</button></div>`;
+ } else {
+  body=`<div class="card empty"><div class="eico">${c?IC.couple:IC.group}</div><div class="txt">${esc(t('waitPick',{n:o.n}))}</div></div>`;
  }
- render(`<div class="top"><button onclick="menu()">${IC.menu}</button><span class="pill">${t('round')} ${roundNo()}</span></div>
+ render(`<div class="top"><button onclick="menu()">${IC.menu}</button><span class="pill">${t('round')} ${roundNo()}${S.online?' · '+esc(NET.code):''}</span></div>
  <div class="who"><div class="av ${o.g}">${esc(o.n[0].toUpperCase())}</div><div class="nm">${esc(o.n)}</div><div class="hearts">${hearts}</div></div>
  ${lvrow}${body}<div class="spacer"></div>`);
 }
@@ -318,37 +468,30 @@ function levelSheet(){
 }
 function menu(){
  const m=document.createElement('div');m.className='modal';
- m.innerHTML=`<div class="stack"><h2 style="margin:0 0 6px">${t('menu')}</h2><button class="btn" id="mm1">${t('cont')}</button><button class="btn" id="mm2">${t('chPlayers')}</button><button class="btn" id="mm3">${t('home')}</button></div>`;
+ m.innerHTML=`<div class="stack"><h2 style="margin:0 0 6px">${t('menu')}</h2><button class="btn" id="mm1">${t('cont')}</button>${S.online?`<button class="btn" id="mm4">${t('leave')}</button>`:`<button class="btn" id="mm2">${t('chPlayers')}</button>`}<button class="btn" id="mm3">${t('home')}</button></div>`;
  document.body.appendChild(m);
  const close=()=>m.remove();
  m.addEventListener('click',e=>{if(e.target===m)close()});
  m.querySelector('#mm1').onclick=close;
- m.querySelector('#mm2').onclick=()=>{close();setup()};
- m.querySelector('#mm3').onclick=()=>{close();home()};
+ const b2=m.querySelector('#mm2');if(b2)b2.onclick=()=>{close();setup()};
+ const b4=m.querySelector('#mm4');if(b4)b4.onclick=()=>{close();leaveRoom()};
+ m.querySelector('#mm3').onclick=()=>{close();if(S.online){if(NET.unsub){NET.unsub();NET.unsub=null}S.online=false}home()};
 }
-function setLv(v){S.lvMode=(v==='auto'||v==='random')?v:Number(v);S.task=null;game()}
-/* Havuz: TR dizisi kimlik (geçmiş için), EN dizisi aynı sıradaki çeviri */
-function srcArr(src,kind,lv){
- if(!src)return null;
- if(S.mode==='call')return ((src.call||{})[kind]||{})[lv];
- return S.mode==='couple'?((src.couple||{})[kind]||{})[lv]:(src.friend||{})[kind];
-}
+function setLv(v){commit({lvMode:(v==='auto'||v==='random')?v:Number(v)})}
 function poolFor(kind,o,lv){
  const tr=srcArr(TASKS,kind,lv);
  if(!Array.isArray(tr)||!tr.length)return [];
- const en=(LANG==='en'&&typeof TASKS_EN!=='undefined')?srcArr(TASKS_EN,kind,lv):null;
  const par=duo()?S.players.find(x=>x!==o):null;
  const out=[];
  tr.forEach((s,i)=>{
   const m=/^([ek])(?:>([ek]))?\|/.exec(s);
   if(m){if(m[1]!==o.g)return;if(m[2]&&(!par||par.g!==m[2]))return}
-  const id=s.replace(/^[ek](?:>[ek])?\|/,'');
-  const txt=(en&&en[i])?en[i].replace(/^[ek](?:>[ek])?\|/,''):id;
-  out.push({id,text:txt});
+  out.push({id:stripTag(s),i,timed:!!timeOf(rawText(kind,lv,i))});
  });
  return out;
 }
 function pick(kind){
+ if(!myTurn())return;
  const o=cur();let lv=effLevel();
  const keyOf=l=>[S.mode,kind,duo()?l:0].join('.');
  let base=poolFor(kind,o,lv);
@@ -365,20 +508,23 @@ function pick(kind){
  }
  if(!avail.length){S.hist[keyOf(lv)]=[];avail=base;useLv=lv}
  let cand=avail;
- const untimed=avail.filter(y=>!timeOf(y.text));
+ const untimed=avail.filter(y=>!y.timed);
  if(untimed.length&&(Math.random()<0.8||untimed.length===avail.length))cand=untimed;
  const x=cand[Math.floor(Math.random()*cand.length)];
- S.hist[keyOf(useLv)].push(x.id);persist();
- const p=duo()?(S.players.find(y=>y!==o)||o):partnerOf(o);
- S.task={kind,lv:duo()?useLv:0,text:x.text.replace(/\{p\}/g,p.n).replace(/\{o\}/g,o.n)};
- vib(15);game();
+ (S.hist[keyOf(useLv)]=S.hist[keyOf(useLv)]||[]).push(x.id);persist();
+ let pi;
+ if(duo())pi=S.players.findIndex(y=>y!==o);
+ else{const others=S.players.map((p,i)=>i).filter(i=>S.players[i]!==o);pi=others[Math.floor(Math.random()*others.length)]}
+ vib(15);
+ commit({task:{kind,lv:duo()?useLv:0,i:x.i,pi}});
 }
-function advance(){S.task=null;S.turn++;game()}
-function done(){vib([10,30,10]);advance()}
+function advance(extra){commit(Object.assign({task:null,turn:S.turn+1},extra||{}))}
+function done(){if(!myTurn())return;vib([10,30,10]);advance()}
 function pas(){
+ if(!myTurn())return;
  const i=curIdx();
  if(S.passes[i]<=0){alert(t('noPass'));return}
- S.passes[i]--;advance();
+ const np=S.passes.slice();np[i]--;advance({passes:np});
 }
 function timeOf(s){const m=/(\d+)[\s-]*(saniye|dakika|dk|seconds?|minutes?|sec|min)/i.exec(s);if(!m)return 0;const n=+m[1];return /^(sa|se)/i.test(m[2])?n:n*60}
 const fmt=s=>s>=60?`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`:`${s} ${LANG==='en'?'sec':'sn'}`;
