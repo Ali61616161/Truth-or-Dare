@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - run: mkdir site && cp index.html tasks.js tasks2.js tasks3.js tasks4.js tasks_en.js tasks5.js tasks6.js tasks7.js tasks8.js tasks9.js tasks_msg.js firebase-config.js online.js manifest.webmanifest icon.svg icon.png sw.js site/
+      - run: mkdir site && cp index.html tasks.js tasks2.js tasks3.js tasks4.js tasks_en.js tasks5.js tasks6.js tasks7.js tasks8.js tasks9.js tasks_msg.js tasks_call2.js tasks_call3.js tasks_msg2.js tasks_msg3.js tasks_cpl2.js tasks_cpl3.js tasks_cpl4.js tasks_fr2.js tasks_cpl5.js tasks_msg4.js tasks_fr3.js tasks_x.js firebase-config.js online.js manifest.webmanifest icon.svg icon.png sw.js site/
       - uses: actions/upload-pages-artifact@v3
         with: {path: site}
       - id: d
