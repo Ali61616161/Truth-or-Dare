@@ -563,7 +563,11 @@ function pick(kind){
  // Çılgın/Sınırsız'da kadına gelen ilk cesaret: partnerin seçtiği kıyafeti giyme görevi
  if(S.mode==='couple'&&kind==='dare'&&o.g==='k'&&!S.outfit&&lv>=3){
   const sp=poolFor(kind,o,lv,true);
-  if(sp.length){const x=sp[Math.floor(Math.random()*sp.length)];vib(15);commit({task:{kind,lv,i:x.i,pi:S.players.findIndex(y=>y!==o),setup:1}});return}
+  if(sp.length){
+   const hk='couple.outfit',used=S.hist[hk]=S.hist[hk]||[];
+   let pool=sp.filter(y=>!used.includes(y.id));if(!pool.length){S.hist[hk]=[];pool=sp}
+   const x=pool[Math.floor(Math.random()*pool.length)];S.hist[hk].push(x.id);persist();
+   vib(15);commit({task:{kind,lv,i:x.i,pi:S.players.findIndex(y=>y!==o),setup:1}});return}
  }
  const keyOf=l=>[S.mode,kind,duo()?l:0].join('.');
  let base=poolFor(kind,o,lv);
