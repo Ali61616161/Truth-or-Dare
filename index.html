@@ -151,6 +151,7 @@ body.flash::after{content:"";position:fixed;inset:0;background:var(--acc);pointe
 <script src="tasks_fr3.js"></script>
 <script src="tasks_x.js"></script>
 <script src="tasks_hot.js"></script>
+<script src="tasks_dress.js"></script>
 <script src="firebase-config.js"></script>
 <script src="online.js"></script>
 <script>
@@ -336,7 +337,7 @@ function addPlayer(){
 function rmPlayer(i){S.players.splice(i,1);setup()}
 function start(){
  if(S.players.length<2){alert(t('needTwo'));return}
- S.turn=0;S.lvMode='auto';S.task=null;S.outfit=false;S.passes=S.players.map(()=>MAX_PASS);persist();game();
+ S.turn=0;S.lvMode='auto';S.task=null;S.outfit=false;S.lastDress=null;S.lastStrip=null;S.passes=S.players.map(()=>MAX_PASS);persist();game();
 }
 
 /* ---------- Çevrimiçi eşleşme ---------- */
@@ -478,7 +479,8 @@ function srcArr(src,kind,lv){
  if(S.mode==='call'||S.mode==='msg')return ((src[S.mode]||{})[kind]||{})[lv];
  return S.mode==='couple'?((src.couple||{})[kind]||{})[lv]:(src.friend||{})[kind];
 }
-const stripTag=s=>String(s).replace(/^[ek](?:>[ek])?[!*]?\|/,'');
+const TAGRE=/^(?:([ek])(?:>([ek]))?)?([!*~])?\|/;
+const stripTag=s=>String(s).replace(TAGRE,'');
 function rawText(kind,lv,i){
  const tr=srcArr(TASKS,kind,lv);if(!tr||tr[i]==null)return '';
  const en=(LANG==='en'&&typeof TASKS_EN!=='undefined')?srcArr(TASKS_EN,kind,lv):null;
@@ -548,12 +550,17 @@ function poolFor(kind,o,lv,setupOnly){
  const par=duo()?S.players.find(x=>x!==o):null;
  const out=[];
  tr.forEach((s,i)=>{
-  const m=/^([ek])(?:>([ek]))?([!*])?\|/.exec(s);
-  const flag=m&&m[3];
-  if(m){if(m[1]!==o.g)return;if(m[2]&&(!par||par.g!==m[2]))return}
-  if(setupOnly?flag!=='!':flag==='!')return;          // kıyafet görevi yalnızca özel yoldan gelir
-  if(flag==='*'&&!S.outfit)return;                    // devam görevleri kıyafetten sonra
-  out.push({id:stripTag(s),i,timed:!!timeOf(rawText(kind,lv,i)),star:flag==='*'});
+  const m=TAGRE.exec(s);
+  const g=m&&m[1],pg=m&&m[2],flag=(m&&m[3])||'';
+  if(g&&g!==o.g)return;
+  if(pg&&(!par||par.g!==pg))return;
+  if(setupOnly){if(flag!=='!')return}
+  else{
+   if(flag==='!'&&!(S.lastDress==null||S.turn-S.lastDress>=8))return;   // giydirme görevleri arasında en az 8 tur
+   if(flag==='*'&&!S.outfit)return;                                    // kıyafetle yapılan görevler giydikten sonra
+   if(flag==='~'&&!(S.lastStrip==null||S.turn-S.lastStrip>=3))return;  // parça çıkarma görevleri arasında en az 3 tur
+  }
+  out.push({id:stripTag(s),i,timed:!!timeOf(rawText(kind,lv,i)),star:flag==='*',flag});
  });
  return out;
 }
@@ -567,6 +574,7 @@ function pick(kind){
    const hk='couple.outfit',used=S.hist[hk]=S.hist[hk]||[];
    let pool=sp.filter(y=>!used.includes(y.id));if(!pool.length){S.hist[hk]=[];pool=sp}
    const x=pool[Math.floor(Math.random()*pool.length)];S.hist[hk].push(x.id);persist();
+   S.lastDress=S.turn;
    vib(15);commit({task:{kind,lv,i:x.i,pi:S.players.findIndex(y=>y!==o),setup:1}});return}
  }
  const keyOf=l=>[S.mode,kind,duo()?l:0].join('.');
@@ -585,17 +593,22 @@ function pick(kind){
  if(!avail.length){S.hist[keyOf(lv)]=[];avail=base;useLv=lv}
  let cand=avail;
  // kıyafet giyildiyse, o kıyafetle yapılan görevler sık gelsin
- const stars=avail.filter(y=>y.star);
- if(stars.length&&Math.random()<0.4){cand=stars}
+ const stars=avail.filter(y=>y.star),dress=avail.filter(y=>y.flag==='!'),strip=avail.filter(y=>y.flag==='~');
+ const r=Math.random();
+ if(dress.length&&r<0.3){cand=dress}
+ else if(strip.length&&r<0.42){cand=strip}
+ else if(stars.length&&Math.random()<0.4){cand=stars}
  const untimed=cand.filter(y=>!y.timed);
  if(untimed.length&&(Math.random()<0.8||untimed.length===cand.length))cand=untimed;
  const x=cand[Math.floor(Math.random()*cand.length)];
  (S.hist[keyOf(useLv)]=S.hist[keyOf(useLv)]||[]).push(x.id);persist();
+ if(x.flag==='!')S.lastDress=S.turn;
+ if(x.flag==='~')S.lastStrip=S.turn;
  let pi;
  if(duo())pi=S.players.findIndex(y=>y!==o);
  else{const others=S.players.map((p,i)=>i).filter(i=>S.players[i]!==o);pi=others[Math.floor(Math.random()*others.length)]}
  vib(15);
- commit({task:{kind,lv:duo()?useLv:0,i:x.i,pi}});
+ commit({task:{kind,lv:duo()?useLv:0,i:x.i,pi,setup:x.flag==='!'?1:0}});
 }
 function advance(extra){commit(Object.assign({task:null,turn:S.turn+1},extra||{}))}
 function done(){if(!myTurn())return;vib([10,30,10]);if(S.task&&S.task.setup)S.outfit=true;advance()}
