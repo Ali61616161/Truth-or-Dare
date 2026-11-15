@@ -9,9 +9,9 @@ const T=(l,a,b)=>{C.truth[l].push(a);E.truth[l].push(b)};
 /* ===== Kıyafet görevleri (kadın) ===== */
 D(3,"k!|{p} sana giymen için bir iç çamaşırı seçsin; git, onu giy ve karşısına öyle çık.","k!|Let {p} pick a set of lingerie for you; go put it on and come back wearing only that.");
 D(3,"k!|{p}'nin senin için seçtiği elbiseyi giy, altına sadece onun seçtiği iç çamaşırını giy ve gel.","k!|Put on the dress {p} picks for you, with only the underwear he chooses underneath, and come back.");
-D(3,"k!|{p}'nin gömleğini üzerine giy, düğmelerini yarıya kadar ilikle ve altına hiçbir şey giyme.","k!|Put on {p}'s shirt, button it halfway and wear nothing underneath.");
+D(3,"k!|{p}'nin seçtiği gömleğini üzerine giy, düğmelerini yarıya kadar ilikle ve altına hiçbir şey giyme.","k!|Put on whichever of his shirts {p} picks, button it halfway and wear nothing underneath.");
 D(3,"k!|{p} dolabından senin için bir kıyafet seçsin: kısa etek, dar elbise ya da iç çamaşırı. Giy ve onun için bir tur dön.","k!|Let {p} choose something from your wardrobe: a short skirt, a tight dress or lingerie. Put it on and twirl for him.");
-D(4,"k!|{p}'nin en sevdiği iç çamaşırını giy, varsa topuklu ayakkabılarını da giy ve odaya yavaşça yürü.","k!|Put on the lingerie {p} likes best, heels too if you have them, and walk slowly into the room.");
+D(4,"k!|{p}'nin seçtiği iç çamaşırını ve ayakkabıları giy, sonra odaya yavaşça yürü.","k!|Put on the lingerie and shoes {p} picks, then walk slowly into the room.");
 D(4,"k!|{p}'nin seçtiği elbiseyi altında hiçbir şey olmadan giy ve oyunun sonuna kadar öyle kal.","k!|Wear the dress {p} picks with nothing underneath and stay in it for the rest of the game.");
 D(4,"k!|{p} sana bir kıyafet söylesin (iç çamaşırı, çorap, gömlek...); onu giy ve gelip dizlerinin dibine otur.","k!|Let {p} name an outfit (lingerie, stockings, a shirt...); put it on, come back and sit at his feet.");
 D(4,"k!|Sadece {p}'nin seçtiği tek bir parçayı giy, geri kalan her şeyi çıkar ve öyle gel.","k!|Wear only the one piece {p} chooses, take off everything else and come back like that.");
