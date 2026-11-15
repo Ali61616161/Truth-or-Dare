@@ -32,7 +32,7 @@ D(3,"{p}'ye ışığı kıs ve gölgeli bir şekilde soyun.","Dim the light and 
 D(3,"{p}'ye bacak bacak üstüne atıp iç çamaşırının kenarını göster.","Cross your legs and show the edge of your underwear to {p}.");
 D(3,"{p}'ye saçını çek ve başını geriye atarak nefes ver.","Pull your hair and tilt your head back, breathing for {p}.");
 D(3,"{p}'ye kameraya dönük bir omuz ve sırt çıplak pozu ver.","Give {p} a bare shoulder and back pose toward the camera.");
-D(3,"{p}'ye 1 dakikalık yavaş bir soyunma dansı yap.","Give {p} a slow one-minute striptease.");
+D(3,"k|{p}'ye 1 dakikalık yavaş bir soyunma dansı yap.","k|Give {p} a slow one-minute striptease.");
 D(3,"{p}'nin müzik seçmesine izin ver ve ona göre hareket et.","Let {p} pick the music and move to it.");
 D(3,"{p}'ye gözlerini ona dikip kemerini çıkar.","Lock eyes with {p} and take off your belt.");
 D(3,"{p}'ye kamerayı ayağından başa doğru gezdir.","Sweep the camera from your feet up to your head for {p}.");
@@ -105,7 +105,7 @@ D(4,"k>e|{p}'ye üstüne çıkıyormuş gibi kameranın üstünde yavaşça hare
 D(4,"e>k|{p}'ye penisini kameraya göster ve onun ne yapmasını istediğini anlat.","e>k|Show your penis to the camera and tell {p} what you want her to do.");
 D(4,"e>k|{p}'nin kendine dokunmasını izle ve ona ne yapacağını anlat.","e>k|Watch {p} touch herself and tell her what you'll do to her.");
 D(4,"e>k|{p}'ye elinle kendine yavaşça dokun ve ona bak.","e>k|Slowly stroke yourself with your hand, looking at {p}.");
-D(4,"e>k|{p}'ye onu dilinle nasıl sevip bitireceğini anlat.","e>k|Tell {p} how you'll pleasure and finish her with your tongue.");
+D(4,"e>k|{p}'ye onu dilinle nasıl yalayıp bitireceğini anlat.","e>k|Tell {p} how you'll lick her until she comes.");
 D(4,"e>k|{p}'ye bitirmeden önce onun ismini söyle.","e>k|Say {p}'s name before you finish.");
 D(4,"e>e|{p}'ye birbirinize bakarak kendinize dokunun.","e>e|Touch yourselves while looking at each other, with {p}.");
 D(4,"e>e|{p}'ye ona ağzınla ne yapacağını anlat ve kendine dokun.","e>e|Tell {p} what you'll do to him with your mouth and touch yourself.");

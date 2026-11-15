@@ -101,7 +101,7 @@ D(2,"{p}'nin dudaklarını parmağınla yavaşça gez ve öp.","Slowly trace {p}
 D(2,"{p}'ye ne yapmak istediğini fısıldayarak anlat, sonra bir öpücükle sus.","Whisper to {p} what you want to do, then stop with a kiss.");
 D(2,"{p}'nin elini bileğinden tut ve kendine çek.","Take {p} by the wrist and pull them close.");
 D(2,"{p}'nin boynuna ve omzuna dudaklarınla bir yol çiz.","Trace a path with your lips along {p}'s neck and shoulder.");
-D(2,"{p}'nin kucağına otur ve gözlerinin içine bak.","Sit on {p}'s lap and look into their eyes.");
+D(2,"k|{p}'nin kucağına otur ve gözlerinin içine bak.","k|Sit on {p}'s lap and look into their eyes.");
 D(2,"{p}'nin saçını geriye al ve kulağının arkasını öp.","Sweep back {p}'s hair and kiss behind their ear.");
 D(2,"{p}'ye göz bağı tak ve dudaklarına bir elma ya da üzüm ver.","Blindfold {p} and offer a piece of apple or grape to their lips.");
 D(2,"{p}'ye yavaşça sarıl ve nefesini hissedene kadar bekle.","Hug {p} slowly and wait until you feel their breathing.");

@@ -308,7 +308,7 @@ C.dare[2].push(
 );
 C.dare[3].push(
 "{p}'nin gözlerini bağla, tüm vücuduna tüy gibi bir dokunuşla 2 dakika dokun.",
-"{p}'yi kucağına oturt, birbirinizin üstünü yavaşça çıkarın.",
+"e|{p}'yi kucağına oturt, birbirinizin üstünü yavaşça çıkarın.",
 "{p}'nin karnından göğsüne kadar dudaklarınla bir yol çiz.",
 "{p}'nin tenine bal/çikolata ve dudaklarınla bir çizgi çiz.",
 "Müzik aç, {p}'nin gözlerinin içine bakarak yavaşça bir şey çıkar.",
