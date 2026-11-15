@@ -152,6 +152,7 @@ body.flash::after{content:"";position:fixed;inset:0;background:var(--acc);pointe
 <script src="tasks_x.js"></script>
 <script src="tasks_hot.js"></script>
 <script src="tasks_dress.js"></script>
+<script src="tasks_spice.js"></script>
 <script src="firebase-config.js"></script>
 <script src="online.js"></script>
 <script>
@@ -337,7 +338,7 @@ function addPlayer(){
 function rmPlayer(i){S.players.splice(i,1);setup()}
 function start(){
  if(S.players.length<2){alert(t('needTwo'));return}
- S.turn=0;S.lvMode='auto';S.task=null;S.outfit=false;S.lastDress=null;S.lastStrip=null;S.passes=S.players.map(()=>MAX_PASS);persist();game();
+ S.turn=0;S.lvMode='auto';S.task=null;S.outfit=false;S.lastDress=null;S.lastStrip=null;S.lastSpice=null;S.passes=S.players.map(()=>MAX_PASS);persist();game();
 }
 
 /* ---------- Çevrimiçi eşleşme ---------- */
@@ -479,7 +480,7 @@ function srcArr(src,kind,lv){
  if(S.mode==='call'||S.mode==='msg')return ((src[S.mode]||{})[kind]||{})[lv];
  return S.mode==='couple'?((src.couple||{})[kind]||{})[lv]:(src.friend||{})[kind];
 }
-const TAGRE=/^(?:([ek])(?:>([ek]))?)?([!*~])?\|/;
+const TAGRE=/^(?:([ek])(?:>([ek]))?)?([!*~^])?\|/;
 const stripTag=s=>String(s).replace(TAGRE,'');
 function rawText(kind,lv,i){
  const tr=srcArr(TASKS,kind,lv);if(!tr||tr[i]==null)return '';
@@ -559,6 +560,7 @@ function poolFor(kind,o,lv,setupOnly){
    if(flag==='!'&&!(S.lastDress==null||S.turn-S.lastDress>=8))return;   // giydirme görevleri arasında en az 8 tur
    if(flag==='*'&&!S.outfit)return;                                    // kıyafetle yapılan görevler giydikten sonra
    if(flag==='~'&&!(S.lastStrip==null||S.turn-S.lastStrip>=3))return;  // parça çıkarma görevleri arasında en az 3 tur
+   if(flag==='^'&&!(S.lastSpice==null||S.turn-S.lastSpice>=5))return;  // foto / kucak dansı arasında en az 5 tur
   }
   out.push({id:stripTag(s),i,timed:!!timeOf(rawText(kind,lv,i)),star:flag==='*',flag});
  });
@@ -593,10 +595,11 @@ function pick(kind){
  if(!avail.length){S.hist[keyOf(lv)]=[];avail=base;useLv=lv}
  let cand=avail;
  // kıyafet giyildiyse, o kıyafetle yapılan görevler sık gelsin
- const stars=avail.filter(y=>y.star),dress=avail.filter(y=>y.flag==='!'),strip=avail.filter(y=>y.flag==='~');
+ const stars=avail.filter(y=>y.star),dress=avail.filter(y=>y.flag==='!'),strip=avail.filter(y=>y.flag==='~'),spice=avail.filter(y=>y.flag==='^');
  const r=Math.random();
  if(dress.length&&r<0.3){cand=dress}
  else if(strip.length&&r<0.42){cand=strip}
+ else if(spice.length&&r<0.62){cand=spice}
  else if(stars.length&&Math.random()<0.4){cand=stars}
  const untimed=cand.filter(y=>!y.timed);
  if(untimed.length&&(Math.random()<0.8||untimed.length===cand.length))cand=untimed;
@@ -604,6 +607,7 @@ function pick(kind){
  (S.hist[keyOf(useLv)]=S.hist[keyOf(useLv)]||[]).push(x.id);persist();
  if(x.flag==='!')S.lastDress=S.turn;
  if(x.flag==='~')S.lastStrip=S.turn;
+ if(x.flag==='^')S.lastSpice=S.turn;
  let pi;
  if(duo())pi=S.players.findIndex(y=>y!==o);
  else{const others=S.players.map((p,i)=>i).filter(i=>S.players[i]!==o);pi=others[Math.floor(Math.random()*others.length)]}
