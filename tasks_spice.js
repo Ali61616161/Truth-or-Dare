@@ -30,7 +30,6 @@ D(4,"k>e^|{p}'nin telefonunu al ve onun için çıplak bir selfie çek, telefonu
 D(4,"e>k^|{p}'nin çıplak fotoğrafını çek; birlikte bakın ve hangisinin kalacağına o karar versin.","e>k^|Take nude photos of {p}; look at them together and let her decide which ones stay.");
 D(4,"^|{p}'nin yüzü görünmeyecek şekilde çıplak bir fotoğrafını çek.","^|Take a nude photo of {p} without their face in the shot.");
 D(4,"^|{p} ile çıplak bir ayna fotoğrafı çekin; ikiniz de karede olun.","^|Take a naked mirror photo with {p}, both of you in the frame.");
-D(4,"k>e^|{p}'ye sakso çekerken o senin fotoğrafını çeksin, yüzün görünmesin.","k>e^|Let {p} take a photo of you giving him a blowjob, without your face in it.");
 D(4,"e>k^|{p} senin üzerine çıktığında o anın fotoğrafını çek.","e>k^|When {p} climbs on top of you, take a photo of that moment.");
 D(4,"^|{p} telefonuyla kendine dokunduğun 10 saniyelik bir video çeksin, sonra birlikte izleyin.","^|Let {p} film a 10-second video of you touching yourself on their phone, then watch it together.");
 D(4,"^|Birbirinizin çıplak fotoğrafını çekin ve hangisinin daha ateşli olduğunu oylayın.","^|Take nude photos of each other and vote on which one is hotter.");
