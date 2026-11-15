@@ -63,7 +63,7 @@ cd(3,"{p}'yi gözleri bağlı bırak ve istediğin yerine öpücük bırak.","Le
 cd(3,"Birbirinizin üstünü çıkarın ve sarılın.","Take off each other's tops and hug.");
 cd(3,"{p}'nin belini kavra ve nefesin kesilene kadar öp.","Grab {p}'s waist and kiss until you're out of breath.");
 cd(3,"{p}'nin karnını ve belini öp, kulağına 'seni istiyorum' fısılda.","Kiss {p}'s stomach and waist and whisper \"I want you\" in their ear.");
-cd(3,"{p}'nin kucağına otur ve istediğin yere dokunmasına izin ver.","Sit on {p}'s lap and let them touch you wherever they like.");
+cd(3,"k|{p}'nin kucağına otur ve istediğin yere dokunmasına izin ver.","k|Sit on {p}'s lap and let them touch you wherever they like.");
 ct(3,"Bu gece seni en çok neyin heyecanlandıracağını söyle.","Tell me what would excite you most tonight.");
 ct(3,"Beni nasıl soymak isterdin?","How would you like to undress me?");
 
@@ -79,11 +79,11 @@ cd(4,"{p}'nin gözlerini bağla ve onu parmak uçlarınla çıldırtana kadar do
 cd(4,"{p}'yi duvara yasla, bir bacağını belinde tut ve öpüş.","Press {p} against the wall, hold one of their legs around your waist and kiss.");
 cd(4,"{p}'nin sırtından kalçasına öpücük bırak, sonra bacaklarının arasına geç.","Kiss from {p}'s back to their hips, then move between their legs.");
 cd(4,"{p}'ye kendini göster: yavaşça soyun ve sadece bakmasına izin ver.","Show yourself to {p}: undress slowly and just let them look.");
-cd(4,"{p}'yi kucağına oturt, birbirinize bastırıp yavaşça hareket edin.","Sit {p} on your lap, press into each other and move slowly.");
+cd(4,"e|{p}'yi kucağına oturt, birbirinize bastırıp yavaşça hareket edin.","e|Sit {p} on your lap, press into each other and move slowly.");
 cd(4,"{p}'ye en çok neyi istediğini söyle ve bunu yaptırması için ona 30 saniye ver.","Tell {p} what you want most and give them 30 seconds to do it.");
 cd(4,"{p}'nin tüm boynunu, göğsünü ve karnını öp; ardından iç çamaşırının kenarına kadar in.","Kiss {p}'s neck, chest and stomach, then go down to the edge of their underwear.");
 cd(4,"{p}'nin üzerine yat, vücut vücuda öpüş; ellerin her yerde olsun.","Lie on top of {p}, body to body, kissing with your hands everywhere.");
-cd(4,"{p}'yi yavaşça dizlerinin üstüne oturt ve kulağına en cesur isteğini fısılda.","Slowly sit {p} on your knees and whisper your boldest wish in their ear.");
+cd(4,"e|{p}'yi yavaşça dizlerinin üstüne oturt ve kulağına en cesur isteğini fısılda.","e|Slowly sit {p} on your knees and whisper your boldest wish in their ear.");
 cd(4,"{p}'nin bacak aralarını ve iç bacağını yavaşça öp, sonra dur ve gözlerine bak.","Slowly kiss {p}'s inner thighs, then stop and look into their eyes.");
 cd(4,"{p}'nin tüm vücuduna tenin tenine değerek sarıl, kimse konuşmasın.","Hold {p} skin to skin with no one speaking.");
 cd(4,"{p}'nin elini al ve kendi vücudunda istediğin yere götür.","Take {p}'s hand and guide it anywhere on your body you want.");

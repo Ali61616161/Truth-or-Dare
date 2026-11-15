@@ -56,7 +56,7 @@ cd(4,"Birbirinize ne yapmak istediğinizi sırayla açıkça söyleyin ve yapın
 cd(4,"{p}'nin üzerine çık ve onu bakışlarınla tutsak et.","Get on top of {p} and hold them captive with your gaze.");
 cd(4,"{p}'nin bacaklarını açarak iç bacaklarını dudaklarınla ısıt, sonra yukarı çık.","Part {p}'s legs and warm their inner thighs with your lips, then move up.");
 cd(4,"{p}'nin iç çamaşırını ağzınla indir.","Pull down {p}'s underwear with your mouth.");
-cd(4,"{p}'yi yatağın kenarına oturt ve dizlerinin üstünde onu ağzınla sev.","Sit {p} on the edge of the bed and pleasure them with your mouth from your knees.");
+cd(4,"{p}'yi yatağın kenarına oturt, önünde diz çök ve ona oral seks yap.","Sit {p} on the edge of the bed, kneel in front of them and go down on them.");
 cd(4,"Birbirinizi soyun ve en çok sevdiğiniz hareketi gösterin.","Strip each other and show your favourite move.");
 cd(4,"{p}'nin her iki bacağını belinde tut ve yavaşça sevişmeye başla.","Hold both of {p}'s legs around your waist and slowly begin to make love.");
 cd(4,"{p}'nin elini bacak arana götür ve ne hissettirdiğini göster.","Guide {p}'s hand between your legs and show how it feels.");

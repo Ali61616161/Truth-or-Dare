@@ -116,7 +116,7 @@ cd(2,"{p}'nin belinden tutup kendine sar ve öp.","Hold {p} by the waist, pull t
 cd(2,"{p}'nin elini al ve dudaklarına götür, sonra gözlerine bak.","Bring {p}'s hand to your lips, then look into their eyes.");
 cd(2,"{p}'nin tişörtünün altından sırtına dokun ve yavaşça öp.","Touch {p}'s back under their shirt and kiss slowly.");
 cd(2,"{p}'ye sırtını dön ve ona çok yakın dur, kulağına fısılda.","Turn your back to {p}, stand very close and whisper in their ear.");
-cd(2,"{p}'nin kucağında otur ve saçlarını okşa.","Sit on {p}'s lap and stroke their hair.");
+cd(2,"k|{p}'nin kucağına yerleş, parmaklarını saçlarında gezdir ve ensesini öp.","k|Settle onto {p}'s lap, run your fingers through their hair and kiss their nape.");
 ct(3,"Bana bu akşam hangi 3 şeyi yaptırırdın?","What 3 things would you have me do tonight?");
 ct(3,"Beni nasıl uyandırmak seni heyecanlandırır?","How would waking me up excite you?");
 ct(3,"Seni en çok hangi kelime çıldırtır?","Which word drives you wildest?");
@@ -137,8 +137,8 @@ cd(4,"Birbirinizi tatmin edin ve her şeyi yüksek sesle söyleyin.","Satisfy ea
 cd(4,"{p}'nin vücudunun her yerine yağ sür ve dilediğin yerde dur.","Oil {p}'s body all over and stop wherever you like.");
 cd(4,"{p}'nin üstüne çık ve ona bakarak sevişmeye başla.","Get on top of {p} and start making love, looking at them.");
 cd(4,"Birbirinizin gözlerinin içine bakarak sevişin.","Make love looking into each other's eyes.");
-cd(4,"k>e|{p}'yi ağzınla sevmeye başla ve gözlerini ayırma.","k>e|Begin pleasuring {p} with your mouth and keep eye contact.");
+cd(4,"k>e|{p}'ye sakso çekmeye başla ve gözlerini ondan ayırma.","k>e|Start giving {p} a blowjob and keep looking him in the eye.");
 cd(4,"k>e|{p}'nin üzerinde dans et ve yavaşça kendini ona indir.","k>e|Dance on {p} and slowly lower yourself onto them.");
-cd(4,"e>k|{p}'nin bacaklarını aç ve onu dilinle yavaşça sev.","e>k|Part {p}'s legs and slowly pleasure her with your tongue.");
-cd(4,"e>k|{p}'yi yatağın kenarına oturt ve dizlerinin üstünde onu sev.","e>k|Sit {p} on the edge of the bed and pleasure her from your knees.");
+cd(4,"e>k|{p}'nin bacaklarını aç ve klitorisini dilinle yavaşça yala.","e>k|Part {p}'s legs and slowly lick her clitoris.");
+cd(4,"e>k|{p}'yi yatağın kenarına oturt, önünde diz çök ve onu dilinle bitir.","e>k|Sit {p} on the edge of the bed, kneel in front of her and finish her with your tongue.");
 })();

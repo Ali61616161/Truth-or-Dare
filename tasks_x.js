@@ -44,7 +44,7 @@ D(3,"{p}'nin belini sar ve yavaşça yatağa götür.","Hold {p} by the waist an
 D(3,"{p}'nin göğsüne başını koy ve kalbini dinle, sonra aşağı in.","Rest your head on {p}'s chest and listen to their heart, then move lower.");
 D(4,"{p}'ye 'seni bu gece istiyorum' de ve ona sevişmenin ilk adımını yap.","Tell {p} \"I want you tonight\" and take the first step toward making love.");
 D(4,"{p}'nin her istediğini yap, ama önce ona istediğini sor.","Do everything {p} wants, but first ask what they want.");
-D(4,"{p}'nin üzerine uzan, ellerini bağla ve bacaklarının arasını sev.","Lie over {p}, tie their hands and pleasure between their legs.");
+D(4,"{p}'nin ellerini bağla, üzerine uzan ve bacak arasını dilinle yala.","Tie {p}'s hands, lie over them and lick between their legs.");
 D(4,"{p}'nin üzerine çık, gözlerine bak ve hareket et.","Get on {p}, look into their eyes and move.");
 D(4,"{p}'nin bacak arasına öpücükler bırak, bitirmeden yavaşla ve devam et.","Kiss between {p}'s legs, slow before finishing, and continue.");
 D(4,"{p}'yi duşa götür ve birbirinizi tatmin edin.","Take {p} to the shower and pleasure each other.");

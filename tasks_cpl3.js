@@ -34,7 +34,7 @@ D("{p}'ye üstüne uzan ve sürtünerek öpüş (kıyafetli).","Lie on {p} and g
 D("{p}'yi duvara yasla ve bir bacağını belinde tut.","Press {p} against the wall and hold one leg around your waist.");
 D("{p}'nin gözlerini bağla ve onu istediğin yerinden öp.","Blindfold {p} and kiss them wherever you like.");
 D("{p}'nin ellerini yatağa tut ve boynunu yavaşça öp.","Pin {p}'s hands to the bed and slowly kiss their neck.");
-D("{p}'nin kucağında yavaşça hareket et ve onu öp.","Move slowly on {p}'s lap while kissing them.");
+D("k|{p}'nin kucağında yavaşça hareket et ve onu öp.","k|Move slowly on {p}'s lap while kissing them.");
 D("{p}'ye bacağını bacağına sürt ve fısılda.","Rub your leg against {p}'s and whisper.");
 D("{p}'nin tişörtünü çıkar ve omuzlarına öpücük bırak.","Take off {p}'s shirt and kiss their shoulders.");
 D("{p}'nin ellerini beline götür ve sıkıca tutmasını söyle.","Guide {p}'s hands to your waist and tell them to hold tight.");
@@ -62,7 +62,7 @@ D("{p}'nin ellerini göğsüne yerleştir ve gözlerinin içine bak.","Put {p}'s
 D("{p}'nin ensesinden kalçasına bir parmakla yavaşça in.","Trail one finger slowly from {p}'s nape to their hips.");
 D("{p}'ye iç çamaşırınla yavaşça yaklaş.","Approach {p} slowly in your underwear.");
 D("{p}'yi yatakta soyunurken izle.","Watch {p} undress on the bed.");
-D("{p}'ye üstüne otur ve yavaşça kendini ona bastır (kıyafetli).","Sit on {p} and slowly press against them (clothed).");
+D("k|{p}'nin üstüne otur ve kendini yavaşça ona bastır (kıyafetli).","k|Sit on top of {p} and slowly press yourself against them (clothed).");
 D("{p}'ye gözlerini kapat ve ne hissettiğini tarif etmesini iste, sen dokun.","Ask {p} to close their eyes and describe what they feel as you touch.");
 D("e|{p}'nin üzerine eğil ve göğüslerini kıyafetinin üstünden öp.","e|Lean over {p} and kiss their breasts through their clothes.");
 D("k|{p}'nin göğsüne ve karnına dudaklarınla in, iç çamaşırının kenarında dur.","k|Kiss down {p}'s chest and stomach, stopping at the edge of their underwear.");

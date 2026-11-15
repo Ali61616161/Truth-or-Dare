@@ -31,7 +31,7 @@ D(3,"{p}'ye bacaklarının tamamını gösteren bir ayna fotoğrafı gönder.","
 D(3,"{p}'ye göğsünün üst kısmını gösteren bir fotoğraf gönder (yüzsüz).","Send {p} a photo of your upper chest (no face).");
 D(3,"{p}'ye iç çamaşırını giydiğini anlatan bir mesaj yaz (fotoğraf yok).","Write {p} a message saying you're in your underwear (no photo).");
 D(3,"{p}'ye 30 saniyelik fısıltılı bir sesle ona neler yapacağını anlat.","Describe to {p} in a 30-second whispered voice note what you'll do to them.");
-D(3,"{p}'ye karnının ve belinin fotoğrafını gönder.","Send {p} a photo of your stomach and waist.");
+D(3,"e|{p}'ye karın kaslarını ve belini gösteren bir fotoğraf gönder.","e|Send {p} a photo showing your abs and waist.");
 D(3,"{p}'ye yatakta uzanmış, ışığı kısık bir fotoğraf gönder.","Send {p} a photo lying in bed with low light.");
 D(3,"{p}'ye kendini nasıl hazırladığını adım adım yaz.","Write {p} step by step how you're getting ready.");
 D(3,"{p}'ye bir 'ipucu' gönder: üstünde ne olduğunu sadece bir kenarıyla göster.","Send {p} a hint: show what you're wearing by just one edge.");
@@ -124,7 +124,7 @@ D(4,"e>k|{p}'ye ona nasıl gireceğini yavaş yavaş yaz.","e>k|Write {p} slowly
 D(4,"e>k|{p}'ye onu nasıl çıldırtacağını 8 cümleyle yaz.","e>k|Write {p} in 8 sentences how you'll drive her wild.");
 D(4,"e>k|{p}'ye arkadan nasıl sahip olacağını sesli mesajla anlat.","e>k|Tell {p} by voice note how you'll take her from behind.");
 D(4,"e>e|{p}'ye ona ağzınla ne yapacağını sesli mesajla anlat.","e>e|Tell {p} by voice note what you'll do to him with your mouth.");
-D(4,"e>e|{p}'ye çıplak bir fotoğraf gönder (yüzsüz, tek seferlik).","e>e|Send {p} a nude photo (no face, view-once).");
+D(4,"e>e|{p}'ye ne kadar hazır olduğunu gösteren çıplak bir fotoğraf gönder (yüzsüz, tek seferlik).","e>e|Send {p} a nude photo showing how ready you are (no face, view-once).");
 D(4,"k>k|{p}'ye ona dilinle ne yapacağını sesli mesajla anlat.","k>k|Tell {p} by voice note what you'll do to her with your tongue.");
-D(4,"k>k|{p}'ye çıplak bir fotoğraf gönder (yüzsüz, tek seferlik).","k>k|Send {p} a nude photo (no face, view-once).");
+D(4,"k>k|{p}'ye yatakta çıplak uzanırken çektiğin bir fotoğraf gönder (yüzsüz, tek seferlik).","k>k|Send {p} a photo of you lying naked in bed (no face, view-once).");
 })();

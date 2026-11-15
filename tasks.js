@@ -299,7 +299,7 @@ dare:{
 ],
 2:[
 "{p}'nin gözlerini bağla (atkı/tişört), boynuna ve kulağına öpücükler bırak.",
-"{p}'nin kucağında otur, 1 dakika yavaşça öpüş.",
+"k|{p}'nin kucağına ata biner gibi otur ve dudaklarını yavaşça öp.",
 "{p}'nin üstünü çıkar ve sırtına 2 dakika masaj yap.",
 "{p}'nin ensesine nefes üfle, sonra yavaşça öp. 1 dakika devam et.",
 "{p}'ye 1 dakikalık bir 'dans şovu' yap.",

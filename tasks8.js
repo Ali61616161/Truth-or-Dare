@@ -98,7 +98,7 @@ D(3,"İç çamaşırınla ayakta dur ve {p}'ye nasıl göründüğünü sor.","S
 D(3,"Yatağa uzan ve elini yavaşça karnından aşağı kaydır (kıyafetli).","Lie on the bed and slowly slide your hand down your stomach (clothed).");
 D(3,"{p}'nin kamerada bir parça çıkarmanı söylemesini bekle ve yap.","Wait for {p} to tell you to take something off on camera, then do it.");
 D(3,"Kamerayı bacaklarına çevir ve iç bacağını yavaşça okşa.","Point the camera at your legs and slowly stroke your inner thigh.");
-D(3,"Müzik aç ve {p} için kısa bir soyunma dansı yap.","Put on music and give {p} a short striptease.");
+D(3,"k|Müzik aç ve {p} için kısa bir soyunma dansı yap.","k|Put on music and give {p} a short striptease.");
 D(3,"İç çamaşırının kenarında parmağını gezdir ve kameraya bak.","Trace your underwear line with a finger and look at the camera.");
 D(3,"Kendini yavaşça öpüp ellerini göğsünden karnına kaydır.","Slowly slide your hands from your chest to your stomach.");
 D(3,"{p}'nin ismini fısıldayarak kendini okşa (giyinik).","Whisper {p}'s name while stroking yourself (clothed).");
@@ -152,7 +152,7 @@ D(4,"Kendi sesinle {p}'ye en çok sevdiği sesi çıkar.","Make the sound {p} lo
 D(4,"k>e|Göğüslerini kameraya göster ve {p}'nin tepkisini izle.","k>e|Show your breasts to the camera and watch {p}'s reaction.");
 D(4,"k>e|{p}'ye bacaklarını aç, kendine dokun ve gözlerini ayırma.","k>e|Spread your legs for {p}, touch yourself and keep eye contact.");
 D(4,"k>e|{p} penisini göstersin; sen ona ne yapmak istediğini anlat.","k>e|{p} shows you his penis; tell him what you want to do to him.");
-D(4,"k>e|Dizlerinin üstüne çök ve {p}'ye 'seni ağzımla sevmek istiyorum' de.","k>e|Kneel and tell {p} \"I want to pleasure you with my mouth\".");
+D(4,"k>e|Dizlerinin üstüne çök ve {p}'ye 'sana sakso çekmek istiyorum' de.","k>e|Kneel and tell {p} \"I want to give you a blowjob\".");
 D(4,"e>k|Kendine dokunurken {p}'ye ona ne yapacağını anlat.","e>k|Touch yourself while telling {p} what you'd do to her.");
 D(4,"e>k|{p}'nin göğüslerini göstermesini iste ve ona ne yapacağını anlat.","e>k|Ask {p} to show her breasts and tell her what you'd do to her.");
 D(4,"e>k|Penisini kameraya göster ve {p}'nin onu nasıl istediğini sor.","e>k|Show your penis to the camera and ask {p} how she wants it.");
