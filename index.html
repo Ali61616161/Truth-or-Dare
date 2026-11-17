@@ -153,6 +153,7 @@ body.flash::after{content:"";position:fixed;inset:0;background:var(--acc);pointe
 <script src="tasks_hot.js"></script>
 <script src="tasks_dress.js"></script>
 <script src="tasks_spice.js"></script>
+<script src="tasks_story.js"></script>
 <script src="firebase-config.js"></script>
 <script src="online.js"></script>
 <script>
@@ -338,7 +339,7 @@ function addPlayer(){
 function rmPlayer(i){S.players.splice(i,1);setup()}
 function start(){
  if(S.players.length<2){alert(t('needTwo'));return}
- S.turn=0;S.lvMode='auto';S.task=null;S.outfit=false;S.lastDress=null;S.lastStrip=null;S.lastSpice=null;S.passes=S.players.map(()=>MAX_PASS);persist();game();
+ S.turn=0;S.lvMode='auto';S.task=null;S.outfit=false;S.lastDress=null;S.lastStrip=null;S.lastSpice=null;S.lastFeat=null;S.featUsed=[];S.passes=S.players.map(()=>MAX_PASS);persist();game();
 }
 
 /* ---------- Çevrimiçi eşleşme ---------- */
@@ -480,7 +481,7 @@ function srcArr(src,kind,lv){
  if(S.mode==='call'||S.mode==='msg')return ((src[S.mode]||{})[kind]||{})[lv];
  return S.mode==='couple'?((src.couple||{})[kind]||{})[lv]:(src.friend||{})[kind];
 }
-const TAGRE=/^(?:([ek])(?:>([ek]))?)?([!*~^])?\|/;
+const TAGRE=/^(?:([ek])(?:>([ek]))?)?([!*~^@])?\|/;
 const stripTag=s=>String(s).replace(TAGRE,'');
 function rawText(kind,lv,i){
  const tr=srcArr(TASKS,kind,lv);if(!tr||tr[i]==null)return '';
@@ -555,8 +556,10 @@ function poolFor(kind,o,lv,setupOnly){
   const g=m&&m[1],pg=m&&m[2],flag=(m&&m[3])||'';
   if(g&&g!==o.g)return;
   if(pg&&(!par||par.g!==pg))return;
-  if(setupOnly){if(flag!=='!')return}
+  if(setupOnly==='feat'){if(flag!=='@'||!S.outfit)return}
+  else if(setupOnly){if(flag!=='!')return}
   else{
+   if(flag==='@')return;                                               // senaryo görevleri yalnızca sırasıyla gelir
    if(flag==='!'&&!(S.lastDress==null||S.turn-S.lastDress>=8))return;   // giydirme görevleri arasında en az 8 tur
    if(flag==='*'&&!S.outfit)return;                                    // kıyafetle yapılan görevler giydikten sonra
    if(flag==='~'&&!(S.lastStrip==null||S.turn-S.lastStrip>=3))return;  // parça çıkarma görevleri arasında en az 3 tur
@@ -569,6 +572,12 @@ function poolFor(kind,o,lv,setupOnly){
 function pick(kind){
  if(!myTurn())return;
  const o=cur();let lv=effLevel();
+ // Gece senaryosu: kıyafet giyildikten sonra öne çıkan görevler yazıldıkları sırayla ve sık gelir
+ if(S.mode==='couple'&&kind==='dare'&&lv>=3&&S.outfit&&(S.lastFeat==null||S.turn-S.lastFeat>=3)&&Math.random()<0.75){
+  S.featUsed=S.featUsed||[];
+  const nx=poolFor(kind,o,lv,'feat').find(y=>!S.featUsed.includes(y.id));
+  if(nx){S.featUsed.push(nx.id);S.lastFeat=S.turn;vib(15);commit({task:{kind,lv,i:nx.i,pi:S.players.findIndex(y=>y!==o)}});return}
+ }
  // Çılgın/Sınırsız'da kadına gelen ilk cesaret: partnerin seçtiği kıyafeti giyme görevi
  if(S.mode==='couple'&&kind==='dare'&&o.g==='k'&&!S.outfit&&lv>=3){
   const sp=poolFor(kind,o,lv,true);
