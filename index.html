@@ -339,7 +339,7 @@ function addPlayer(){
 function rmPlayer(i){S.players.splice(i,1);setup()}
 function start(){
  if(S.players.length<2){alert(t('needTwo'));return}
- S.turn=0;S.lvMode='auto';S.task=null;S.outfit=false;S.lastDress=null;S.lastStrip=null;S.lastSpice=null;S.lastFeat=null;S.featUsed=[];S.passes=S.players.map(()=>MAX_PASS);persist();game();
+ S.turn=0;S.lvMode='auto';S.task=null;S.outfit=false;S.lastDress=null;S.lastStrip=null;S.lastSpice=null;S.lastFeat=null;S.featUsed=[];S.stage=0;S.passes=S.players.map(()=>MAX_PASS);persist();game();
 }
 
 /* ---------- Çevrimiçi eşleşme ---------- */
@@ -481,7 +481,8 @@ function srcArr(src,kind,lv){
  if(S.mode==='call'||S.mode==='msg')return ((src[S.mode]||{})[kind]||{})[lv];
  return S.mode==='couple'?((src.couple||{})[kind]||{})[lv]:(src.friend||{})[kind];
 }
-const TAGRE=/^(?:([ek])(?:>([ek]))?)?([!*~^@])?\|/;
+const TAGRE=/^(?:([ek])(?:>([ek]))?)?([!*~^@%&])?\|/;
+const STAGEFLAG={1:'@',2:'%',3:'&'};
 const stripTag=s=>String(s).replace(TAGRE,'');
 function rawText(kind,lv,i){
  const tr=srcArr(TASKS,kind,lv);if(!tr||tr[i]==null)return '';
@@ -556,13 +557,17 @@ function poolFor(kind,o,lv,setupOnly){
   const g=m&&m[1],pg=m&&m[2],flag=(m&&m[3])||'';
   if(g&&g!==o.g)return;
   if(pg&&(!par||par.g!==pg))return;
-  if(setupOnly==='feat'){if(flag!=='@'||!S.outfit)return}
+  const st=S.stage||0,story=S.mode==='couple'&&lv>=3;
+  if(typeof setupOnly==='string'&&setupOnly.startsWith('st')){if(flag!==STAGEFLAG[setupOnly.slice(2)])return}
   else if(setupOnly){if(flag!=='!')return}
   else{
-   if(flag==='@')return;                                               // senaryo görevleri yalnızca sırasıyla gelir
+   if(flag==='@'||flag==='%'||flag==='&')return;                       // senaryo görevleri yalnızca sırasıyla gelir
+   if(flag==='!'&&(story||st>=2))return;                               // Çılgın/Sınırsız'da giydirme yalnızca başta; soyduktan sonra hiç
    if(flag==='!'&&!(S.lastDress==null||S.turn-S.lastDress>=8))return;   // giydirme görevleri arasında en az 8 tur
-   if(flag==='*'&&!S.outfit)return;                                    // kıyafetle yapılan görevler giydikten sonra
+   if(flag==='*'&&!(S.outfit&&st<=1))return;                           // kıyafetle yapılan görevler yalnızca kıyafet üstündeyken
+   if(flag==='~'&&story&&st!==2)return;                                // senaryoda parça çıkarma yalnızca soyma aşamasında
    if(flag==='~'&&!(S.lastStrip==null||S.turn-S.lastStrip>=3))return;  // parça çıkarma görevleri arasında en az 3 tur
+   if(flag==='^'&&story&&st===1)return;                                // kıyafet aşamasında serpiştirme yok
    if(flag==='^'&&!(S.lastSpice==null||S.turn-S.lastSpice>=5))return;  // foto / kucak dansı arasında en az 5 tur
   }
   out.push({id:stripTag(s),i,timed:!!timeOf(rawText(kind,lv,i)),star:flag==='*',flag});
@@ -573,10 +578,14 @@ function pick(kind){
  if(!myTurn())return;
  const o=cur();let lv=effLevel();
  // Gece senaryosu: kıyafet giyildikten sonra öne çıkan görevler yazıldıkları sırayla ve sık gelir
- if(S.mode==='couple'&&kind==='dare'&&lv>=3&&S.outfit&&(S.lastFeat==null||S.turn-S.lastFeat>=3)&&Math.random()<0.75){
+ if(S.mode==='couple'&&kind==='dare'&&lv>=3&&(S.stage||0)>=1){
   S.featUsed=S.featUsed||[];
-  const nx=poolFor(kind,o,lv,'feat').find(y=>!S.featUsed.includes(y.id));
-  if(nx){S.featUsed.push(nx.id);S.lastFeat=S.turn;vib(15);commit({task:{kind,lv,i:nx.i,pi:S.players.findIndex(y=>y!==o)}});return}
+  const left=(st,p)=>poolFor(kind,p,lv,'st'+st).filter(y=>!S.featUsed.includes(y.id));
+  while(S.stage<3&&S.players.every(p=>!left(S.stage,p).length))S.stage++;   // aşama iki oyuncu için de bittiyse ilerle
+  if((S.lastFeat==null||S.turn-S.lastFeat>=3)&&Math.random()<0.75){
+   const nx=left(S.stage,o)[0];
+   if(nx){S.featUsed.push(nx.id);S.lastFeat=S.turn;vib(15);commit({task:{kind,lv,i:nx.i,pi:S.players.findIndex(y=>y!==o)}});return}
+  }
  }
  // Çılgın/Sınırsız'da kadına gelen ilk cesaret: partnerin seçtiği kıyafeti giyme görevi
  if(S.mode==='couple'&&kind==='dare'&&o.g==='k'&&!S.outfit&&lv>=3){
@@ -609,7 +618,7 @@ function pick(kind){
  if(dress.length&&r<0.3){cand=dress}
  else if(strip.length&&r<0.42){cand=strip}
  else if(spice.length&&r<0.62){cand=spice}
- else if(stars.length&&Math.random()<0.4){cand=stars}
+ else if(stars.length&&Math.random()<0.25){cand=stars}
  const untimed=cand.filter(y=>!y.timed);
  if(untimed.length&&(Math.random()<0.8||untimed.length===cand.length))cand=untimed;
  const x=cand[Math.floor(Math.random()*cand.length)];
@@ -624,7 +633,7 @@ function pick(kind){
  commit({task:{kind,lv:duo()?useLv:0,i:x.i,pi,setup:x.flag==='!'?1:0}});
 }
 function advance(extra){commit(Object.assign({task:null,turn:S.turn+1},extra||{}))}
-function done(){if(!myTurn())return;vib([10,30,10]);if(S.task&&S.task.setup)S.outfit=true;advance()}
+function done(){if(!myTurn())return;vib([10,30,10]);if(S.task&&S.task.setup){S.outfit=true;if(!S.stage)S.stage=1}advance()}
 function pas(){
  if(!myTurn())return;
  const i=curIdx();
