@@ -41,7 +41,7 @@ vd(3,"Elini kalçana ve belinden yukarı yavaşça kaydır.","Slowly slide your 
 vd(3,"{p}'nin söylediği her şeyi 2 dakika boyunca yap (giyinik kalma şartı yok).","Do everything {p} says for 2 minutes.");
 vd(3,"Kameraya yan dön ve iç çamaşırınla yürü.","Turn sideways to the camera and walk in your underwear.");
 vd(3,"İç çamaşırının bir parçasını çıkar ve kameraya tut.","Take off a piece of underwear and hold it up to the camera.");
-vd(3,"Ayna karşısında kendini göster ve {p}'ye ne düşündüğünü sor.","Show yourself in the mirror and ask {p} what they think.");
+vd(3,"{p}'ye kendini tam boy göster ve ne düşündüğünü sor.","Show {p} your whole body and ask what they think.");
 vd(3,"Bir ipek parçayı vücudunda gezdir ve {p}'ye bak.","Drag a piece of silk across your body while looking at {p}.");
 vd(4,"{p}'ye en çok neyi istediğini göster ve izlemesini sağla.","Show {p} what you want most and make them watch.");
 vd(4,"Kendi sesinle ve elinle {p}'yi 3 dakika boyunca ele geçir.","Take {p} over for 3 minutes with your voice and your hands.");

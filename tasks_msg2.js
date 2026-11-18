@@ -91,7 +91,7 @@ D(2,"{p}'ye gözlerini kapatıp dudaklarını büzdüğün bir fotoğraf gönder
 D(2,"{p}'ye bir buz küpünü dudaklarında tuttuğun bir fotoğraf gönder.","Send {p} a photo holding an ice cube to your lips.");
 D(2,"{p}'ye kolunu başının üstüne koyup yattığın bir fotoğraf gönder.","Send {p} a photo lying with your arm above your head.");
 D(2,"{p}'ye 'sana ne yapmak istediğimi bil ister misin?' yaz ve cevabı bekle.","Write {p} \"want to know what I want to do to you?\" and wait for their answer.");
-D(2,"{p}'ye ayakta, aynada, belden yukarı bir fotoğraf gönder.","Send {p} a mirror photo from the waist up.");
+D(2,"{p}'ye ayakta, belden yukarı bir fotoğraf gönder.","Send {p} a standing photo from the waist up.");
 D(2,"{p}'ye saçını omzuna attığın bir fotoğraf gönder.","Send {p} a photo with your hair thrown over your shoulder.");
 D(2,"{p}'ye gece lambası ışığında çekilmiş bir selfie gönder.","Send {p} a selfie in the glow of a night light.");
 D(2,"{p}'ye 15 saniyelik bir ses kaydıyla ismini çok yavaş söyle.","Say {p}'s name very slowly in a 15-second voice note.");

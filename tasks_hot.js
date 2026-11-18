@@ -8,11 +8,11 @@ const T=(l,a,b)=>{C.truth[l].push(a);E.truth[l].push(b)};
 
 /* ===== Kıyafet görevleri (kadın) ===== */
 D(3,"k!|{p} sana giymen için bir iç çamaşırı seçsin; git, onu giy ve karşısına öyle çık.","k!|Let {p} pick a set of lingerie for you; go put it on and come back wearing only that.");
-D(3,"k>e!|{p}'nin senin için seçtiği elbiseyi giy, içine onun seçtiği renkte sutyen ve külot giy ve gel.","k>e!|Put on the dress {p} picks for you, with a bra and panties in the colour he picks underneath, and come back.");
+D(3,"k>e!|{p} bir elbise seçsin; altına da onun seçtiği renkte sutyen ve külot giy, sonra yanına gel.","k>e!|Let {p} pick a dress; wear a bra and panties in the colour he picks underneath, then come to him.");
 D(3,"k>e!|{p}'nin seçtiği gömleğini üzerine giy, düğmelerini yarıya kadar ilikle ve altına hiçbir şey giyme.","k>e!|Put on whichever of his shirts {p} picks, button it halfway and wear nothing underneath.");
-D(3,"k>e!|{p} dolabından senin için bir kıyafet seçsin: kısa etek, dar elbise ya da iç çamaşırı. Giy ve onun için bir tur dön.","k>e!|Let {p} choose something from your wardrobe: a short skirt, a tight dress or lingerie. Put it on and twirl for him.");
+D(3,"k>e!|{p} dolabından senin için bir şey seçsin: şort, tayt ya da iç çamaşırı. Giy ve önünde bir tur dön.","k>e!|Let {p} pick something for you from your wardrobe: shorts, leggings or lingerie. Put it on and do a spin in front of him.");
 D(4,"k!|{p}'nin seçtiği iç çamaşırını ve ayakkabıları giy, sonra odaya yavaşça yürü.","k!|Put on the lingerie and shoes {p} picks, then walk slowly into the room.");
-D(4,"k>e!|{p}'nin seçtiği elbiseyi, içine onun seçtiği renkte iç çamaşırı giy ve oyunun sonuna kadar öyle kal.","k>e!|Put on the dress {p} picks, with underwear in the colour he picks underneath, and stay in it for the rest of the game.");
+D(4,"k>e!|{p}'nin seçtiği elbiseyi, altına onun seçtiği renkte iç çamaşırı giyerek giy ve oyunun sonuna kadar öyle kal.","k>e!|Put on the dress {p} picks, with underwear in the colour he picks underneath, and stay in it for the rest of the game.");
 D(4,"k>e!|{p} sana bir kıyafet söylesin (iç çamaşırı, çorap, gömlek...); onu giy ve gelip dizlerinin dibine otur.","k>e!|Let {p} name an outfit (lingerie, stockings, a shirt...); put it on, come back and sit at his feet.");
 D(4,"k!|Sadece {p}'nin seçtiği tek bir parçayı giy, geri kalan her şeyi çıkar ve öyle gel.","k!|Wear only the one piece {p} chooses, take off everything else and come back like that.");
 
@@ -22,13 +22,13 @@ D(3,"k*|O kıyafetle {p}'nin önünde yavaşça dön, eğil ve omzunun üstünde
 D(3,"e>k*|{p}'nin giydiği kıyafetin üstünden tüm vücudunu ellerinle keşfet.","e>k*|Explore {p}'s whole body with your hands over the outfit she's wearing.");
 D(3,"e>k*|{p}'nin iç çamaşırının askısını dişlerinle indir ve omzunu öp.","e>k*|Pull down the strap of {p}'s lingerie with your teeth and kiss her shoulder.");
 D(3,"k>e*|O kıyafetle {p}'nin önünde diz çök ve pantolonunu yavaşça aç.","k>e*|In that outfit, kneel in front of {p} and slowly undo his pants.");
-D(3,"e>k*|{p}'nin eteğinin ya da elbisesinin altına elini sok ve iç bacağını okşa.","e>k*|Slide your hand under {p}'s skirt or dress and stroke her inner thigh.");
+D(3,"e>k*|{p}'nin kıyafetinin altına elini sok ve iç bacağını okşa.","e>k*|Slide your hand under {p}'s outfit and stroke her inner thigh.");
 D(3,"k*|O kıyafetle yatağa uzan ve {p}'ye nereden başlaması gerektiğini göster.","k*|Lie on the bed in that outfit and show {p} where to start.");
 D(4,"k>e*|O kıyafeti çıkarmadan {p}'ye sakso çek.","k>e*|Without taking off that outfit, give {p} a blowjob.");
 D(4,"k>e*|O kıyafetle {p}'nin üzerine çık, iç çamaşırını kenara çek ve onu içine al.","k>e*|In that outfit, climb on top of {p}, pull your underwear aside and take him inside you.");
 D(4,"k>e*|O kıyafetle {p} ile 69 yapın.","k>e*|Do a 69 with {p} while you're still in that outfit.");
 D(4,"e>k*|{p}'nin iç çamaşırını çıkarmadan kenara çek ve onu dilinle yala.","e>k*|Without taking off {p}'s underwear, pull it aside and lick her.");
-D(4,"e>k*|{p}'yi o kıyafetle duvara yasla, eteğini kaldır ve arkadan seviş.","e>k*|Press {p} against the wall in that outfit, lift her skirt and take her from behind.");
+D(4,"e>k*|{p}'yi o kıyafetle duvara yasla, kıyafetini sıyır ve arkadan seviş.","e>k*|Press {p} against the wall in that outfit, pull her clothes aside and take her from behind.");
 D(4,"e>k*|{p}'nin üzerindeki kıyafeti hızla, ama yırtmadan çıkar ve onu yatağa at.","e>k*|Strip that outfit off {p} fast, without tearing it, and throw her onto the bed.");
 D(4,"k>e*|O kıyafetle {p}'ye sırtını dön, yatağın kenarında eğil ve onu bekle.","k>e*|In that outfit, turn your back to {p}, bend over the edge of the bed and wait for him.");
 D(4,"e>k*|{p} o kıyafetle sana sakso çeksin; sen de saçlarını tut.","e>k*|Have {p} give you a blowjob in that outfit while you hold her hair.");
@@ -53,7 +53,7 @@ D(3,"k>e|{p}'nin penisinin ucunu öp ve orada dur.","k>e|Kiss the tip of {p}'s p
 D(3,"k>e|Üstünü çıkar ve {p}'nin göğüslerini emmesine izin ver.","k>e|Take your top off and let {p} suck your breasts.");
 D(3,"k>e|Elini külotunun içine sok ve {p}'nin önünde kendine dokun.","k>e|Slip your hand into your panties and touch yourself in front of {p}.");
 D(3,"{p} ile birbirinizin iç çamaşırının içine elinizi sokun ve aynı anda okşayın.","Slip your hands into each other's underwear with {p} and stroke each other at the same time.");
-D(3,"{p}'nin elini bacak arana götür ve ne kadar hazır olduğunu hissettir.","Guide {p}'s hand between your legs and let them feel how ready you are.");
+D(3,"{p}'nin elini bacak arana götür ve ne kadar istediğini hissettir.","Guide {p}'s hand between your legs and let them feel how ready you are.");
 D(3,"e>e|{p}'nin pantolonunu aç ve ona mastürbasyon yap.","e>e|Undo {p}'s pants and give him a handjob.");
 D(3,"k>k|{p}'nin külotunun içine elini sok ve onu parmaklarınla okşa.","k>k|Slip your hand into {p}'s panties and stroke her with your fingers.");
 

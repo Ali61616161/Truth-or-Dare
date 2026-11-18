@@ -47,7 +47,7 @@ D(2,"{p}'ye şu an üzerindekileri ve ne hissettirdiğini yaz.","Write {p} what 
 D(2,"{p}'ye omzunun ya da boynunun fotoğrafını gönder.","Send {p} a photo of your shoulder or neck.");
 D(2,"{p}'ye ona fısıldar gibi 15 saniyelik bir sesli mesaj bırak.","Leave {p} a 15-second voice note as if whispering to them.");
 D(2,"{p}'ye bu akşam onu nasıl öpeceğini detaylıca yaz.","Write {p} in detail how you'll kiss them tonight.");
-D(2,"{p}'ye aynada çektiğin bir fotoğraf gönder (giyinik, çekici bir pozda).","Send {p} a mirror photo (clothed, in an attractive pose).");
+D(2,"{p}'ye boydan çektiğin bir fotoğraf gönder (giyinik, çekici bir pozda).","Send {p} a full-length photo of you (clothed, in an attractive pose).");
 D(2,"{p}'ye bacaklarının ya da ayaklarının fotoğrafını gönder.","Send {p} a photo of your legs or feet.");
 D(2,"{p}'ye dudaklarının yakın çekim fotoğrafını gönder.","Send {p} a close-up photo of your lips.");
 D(2,"{p}'ye yataktan çektiğin bir fotoğraf gönder.","Send {p} a photo taken from your bed.");
@@ -72,7 +72,7 @@ D(3,"{p}'ye ona ne yapmak istediğini 5 cümleyle yaz.","Write {p} five sentence
 D(3,"{p}'ye bacaklarının ve kalçanın yan profilini gönder (giyinik).","Send {p} a side profile of your legs and hips (clothed).");
 D(3,"{p}'ye sırtının çıplak bir fotoğrafını gönder (yüzsüz).","Send {p} a photo of your bare back (no face).");
 D(3,"{p}'ye ona fısıldadığın 30 saniyelik bir ses kaydı bırak.","Leave {p} a 30-second whispering voice note.");
-D(3,"{p}'ye ayna karşısında iç çamaşırınla bir fotoğraf gönder (yüzsüz).","Send {p} a mirror photo in your underwear (no face).");
+D(3,"{p}'ye iç çamaşırınla ayakta çekilmiş bir fotoğraf gönder (yüzsüz).","Send {p} a standing photo in your underwear (no face).");
 D(3,"{p}'ye 'ben yanında olsam' diye başlayan 4 cümle yaz.","Write {p} 4 sentences starting with \"if I were next to you\".");
 D(3,"{p}'ye banyodan havluyla çıktığın bir fotoğraf gönder (yüzsüz).","Send {p} a photo in a towel after the shower (no face).");
 D(3,"{p}'ye bu gece onun yanında olduğunu hayal ederek bir ses mesajı bırak.","Leave {p} a voice note imagining you're with them tonight.");
@@ -149,7 +149,7 @@ D(3,"{p}'ye 'seni üzerimde hissetmek istiyorum' yaz ve nasıl diye anlat.","Wri
 D(3,"{p}'ye bacak arası bölgeni gizleyen bir 'ipucu' fotoğrafı gönder (giyinik).","Send {p} a clothed teaser photo.");
 D(3,"{p}'ye ona sarılırken ne yapacağını 4 cümleyle yaz.","Write {p} four sentences on what you'll do while holding them.");
 D(3,"{p}'ye ona dokunma şeklini anlatan 20 saniyelik bir ses kaydı gönder.","Send {p} a 20-second voice note describing how you'll touch them.");
-D(3,"{p}'ye ayna karşısında yarı çıplak bir fotoğraf gönder (yüzsüz).","Send {p} a half-naked mirror photo (no face).");
+D(3,"{p}'ye yarı çıplak bir fotoğraf gönder (yüzsüz).","Send {p} a half-naked photo (no face).");
 D(3,"{p}'ye sabaha kadar ne yapmak istediğinizi madde madde yaz.","List for {p} bullet by bullet what you want to do until morning.");
 D(4,"{p}'ye çıplak bir video gönder (yüzsüz, tek seferlik).","Send {p} a nude video (no face, view-once).");
 D(4,"{p}'ye şu an kendine dokunduğunu söyleyen bir ses kaydı bırak.","Leave {p} a voice note saying you're touching yourself right now.");

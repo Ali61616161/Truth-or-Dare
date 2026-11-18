@@ -47,7 +47,7 @@ D(4,"{p}'nin her istediğini yap, ama önce ona istediğini sor.","Do everything
 D(4,"{p}'nin ellerini bağla, üzerine uzan ve bacak arasını dilinle yala.","Tie {p}'s hands, lie over them and lick between their legs.");
 D(4,"{p}'nin üzerine çık, gözlerine bak ve hareket et.","Get on {p}, look into their eyes and move.");
 D(4,"{p}'nin bacak arasına öpücükler bırak, bitirmeden yavaşla ve devam et.","Kiss between {p}'s legs, slow before finishing, and continue.");
-D(4,"{p}'yi duşa götür ve birbirinizi tatmin edin.","Take {p} to the shower and pleasure each other.");
+D(4,"{p}'yi duşa götür ve birbirinizi tatmin edin.","Take {p} to the shower and make each other feel good.");
 D(4,"{p}'nin her iki bacağını omuzlarına al ve yavaşça sevişin.","Take both of {p}'s legs over your shoulders and make love slowly.");
 D(4,"{p}'yi yatağın kenarına çek ve sevişmeye başla.","Pull {p} to the edge of the bed and start making love.");
 D(4,"{p}'ye aynanın karşısında sevişin ve birbirinizi izleyin.","Make love in front of a mirror with {p} and watch each other.");

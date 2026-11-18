@@ -51,7 +51,7 @@ ct(3,"Hangi dokunuş seni hemen ısıtır?","Which touch warms you up instantly?
 ct(3,"Beni nasıl çağırsam sana çok yakışır?","What nickname would suit you when I call you?");
 ct(3,"Bu gece beni nasıl yakalamak istersin?","How do you want to catch me tonight?");
 cd(4,"{p}'nin vücudunun her yerini ağzınla dolaş ve en çok sevdiği yeri bul.","Roam all over {p}'s body with your mouth and find their favourite spot.");
-cd(4,"{p}'nin sırtına yat, ona dokun ve ne kadar hazır olduğunu hisset.","Lie against {p}'s back, touch them and feel how ready they are.");
+cd(4,"{p}'nin sırtına yat, ona dokun ve ne kadar istediğini hisset.","Lie against {p}'s back, touch them and feel how ready they are.");
 cd(4,"Birbirinize ne yapmak istediğinizi sırayla açıkça söyleyin ve yapın.","Take turns saying plainly what you want to do to each other, and do it.");
 cd(4,"{p}'nin üzerine çık ve onu bakışlarınla tutsak et.","Get on top of {p} and hold them captive with your gaze.");
 cd(4,"{p}'nin bacaklarını açarak iç bacaklarını dudaklarınla ısıt, sonra yukarı çık.","Part {p}'s legs and warm their inner thighs with your lips, then move up.");
@@ -60,12 +60,12 @@ cd(4,"{p}'yi yatağın kenarına oturt, önünde diz çök ve ona oral seks yap.
 cd(4,"Birbirinizi soyun ve en çok sevdiğiniz hareketi gösterin.","Strip each other and show your favourite move.");
 cd(4,"{p}'nin her iki bacağını belinde tut ve yavaşça sevişmeye başla.","Hold both of {p}'s legs around your waist and slowly begin to make love.");
 cd(4,"{p}'nin elini bacak arana götür ve ne hissettirdiğini göster.","Guide {p}'s hand between your legs and show how it feels.");
-cd(4,"Yatakta yan yana uzanın ve birbirinizi eller ile tatmin edin.","Lie side by side and pleasure each other with your hands.");
+cd(4,"Yatakta yan yana uzanın ve birbirinizi eller ile tatmin edin.","Lie side by side and touch each other with your hands.");
 cd(4,"{p}'yi dizlerinin üstüne al ve onu arkadan sar, boynunu öperken devam et.","Take {p} onto their knees, hold them from behind and keep going while kissing their neck.");
 cd(4,"{p}'ye bir pozisyon adı söyle ve bunu birlikte uygulayın.","Name a position to {p} and try it together.");
 cd(4,"{p}'nin tam arzu ettiği yerde dur ve ona ne istediğini söyletsin.","Stop right where {p} wants it and make them tell you what they want.");
 cd(4,"{p}'nin tüm vücuduna yağ sür ve parmaklarınla bacak arasına dön.","Oil {p}'s whole body and return with your fingers between their legs.");
-cd(4,"Işıkları aç ve birbirinizi izleyerek tatmin edin.","Turn on the lights and pleasure each other while watching.");
+cd(4,"Işıkları aç ve birbirinizi izleyerek tatmin edin.","Turn on the lights and touch each other while watching.");
 cd(4,"Seks sırasında birbirinizin ismini bağırın.","Call out each other's names during sex.");
 cd(4,"Yatak başına yaslanıp {p}'yi üstüne al ve sevişin.","Lean against the headboard, pull {p} on top and make love.");
 cd(4,"{p}'nin üstüne yatıp ağır ağır hareket edin; kimse acele etmesin.","Lie over {p} and move slowly; nobody rushes.");

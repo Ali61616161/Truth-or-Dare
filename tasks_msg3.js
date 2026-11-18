@@ -46,7 +46,7 @@ D(3,"{p}'ye kendini ona nasıl sunacağını sesli mesajla anlat.","Tell {p} by 
 D(3,"{p}'ye ona fısıldadığın cümleyi yaz: 'Gel, ...'","Write {p} the sentence you whisper to them: \"Come here, ...\"");
 D(3,"{p}'ye göğsünden başlayıp karnına inen bir fotoğraf gönder (giyinik, yüzsüz).","Send {p} a clothed photo from chest to stomach (no face).");
 D(3,"{p}'ye iç çamaşırının rengini söyle ve nedenini yaz.","Tell {p} the colour of your underwear and write why.");
-D(3,"{p}'ye ayna karşısında yarı çıplak çekilmiş bir fotoğraf gönder (yüzsüz, tek seferlik).","Send {p} a half-naked mirror photo (no face, view-once).");
+D(3,"{p}'ye yarı çıplak çekilmiş bir fotoğraf gönder (yüzsüz, tek seferlik).","Send {p} a half-naked photo (no face, view-once).");
 D(3,"{p}'ye bir eşarp ya da kravatı vücuduna sardığın bir fotoğraf gönder.","Send {p} a photo with a scarf or tie draped on your body.");
 D(3,"{p}'ye ona dokunmak istediğin yeri çizerek göster ve fotoğrafla.","Draw where you want to touch {p} and send a photo.");
 D(3,"{p}'ye şu an ne hissettiğini yaz: sıcak mı, titriyor musun?","Write {p} what you feel right now: warm, trembling?");
@@ -86,7 +86,7 @@ T(4,"Yaz: bana nasıl sahip olmak istersin: yavaş, sert, ağır?","Write: how d
 T(4,"Yaz: birlikte en çok ne yaparken kendini kaybettin?","Write: what made you lose yourself most when we're together?");
 T(4,"Yaz: seni çıldırtan hangi kelimeler var?","Write: which words drive you wild?");
 D(4,"{p}'ye çıplak bir fotoğraf gönder (yüzsüz, tek seferlik).","Send {p} a nude photo (no face, view-once).");
-D(4,"{p}'ye yatakta çıplak uzandığın bir ayna fotoğrafı gönder (yüzsüz, tek seferlik).","Send {p} a nude mirror photo lying in bed (no face, view-once).");
+D(4,"{p}'ye yatakta çıplak uzandığın bir fotoğraf gönder (yüzsüz, tek seferlik).","Send {p} a photo of you lying naked on the bed (no face, view-once).");
 D(4,"{p}'ye kendine dokunduğun bir ses kaydı gönder (sadece ses).","Send {p} a voice-only recording of you touching yourself.");
 D(4,"{p}'ye inleyerek ismini söylediğin bir ses kaydı gönder.","Send {p} a voice note moaning their name.");
 D(4,"{p}'ye ona ne yapacağını komut listesi olarak yaz (10 madde).","Write {p} what you'll do to them as a 10-item command list.");
