@@ -38,7 +38,7 @@ D(3,"{p}'ye sırtını ve omuzlarını gösteren bir fotoğraf gönder.","Send {
 D(3,"{p}'ye bu gece onu nasıl soyacağını 5 cümleyle yaz.","Write {p} in 5 sentences how you'll undress them tonight.");
 D(3,"{p}'ye yatağında dizlerini göğsüne çektiğin bir fotoğraf gönder (giyinik).","Send {p} a clothed photo in bed with knees to chest.");
 D(3,"{p}'ye boynunda ve göğsünde bir buz küpü gezdirdiğin kısa bir ses kaydı gönder.","Send {p} a short voice note while trailing an ice cube over your neck and chest.");
-D(3,"{p}'ye ayna karşısında üstünü çıkarırken çektiğin bir fotoğraf gönder (yüzsüz).","Send {p} a mirror photo as you take your top off (no face).");
+D(3,"{p}'ye üstünü çıkarırken çektiğin bir fotoğraf gönder (yüzsüz).","Send {p} a photo taken as you take off your top (no face).");
 D(3,"{p}'ye iç çamaşırınla bacaklarını bükerek bir fotoğraf gönder (yüzsüz).","Send {p} a photo in your underwear with your legs bent (no face).");
 D(4,"{p}'ye çıplak bir fotoğraf gönder ve altına ne istediğini yaz (yüzsüz, tek seferlik).","Send {p} a nude photo and write what you want (no face, view-once).");
 D(4,"{p}'ye 25 saniyelik bir inleme ses kaydı gönder.","Send {p} a 25-second voice note with moaning.");

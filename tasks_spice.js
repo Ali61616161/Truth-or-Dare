@@ -20,16 +20,16 @@ D(4,"k^|{p}'ye sırtı dönük kucak dansı yaparken ellerini göğüslerine gö
 
 /* ----- Fotoğraf ve video ----- */
 D(3,"k^|Telefonunla iç çamaşırlı bir ayna fotoğrafı çek ve {p}'ye gönder.","k^|Take a mirror photo of yourself in your underwear and send it to {p}.");
-D(3,"e^|Telefonunla üstsüz bir ayna fotoğrafı çek ve {p}'ye gönder.","e^|Take a shirtless mirror photo and send it to {p}.");
+D(3,"e^|Telefonunla üstsüz bir selfie çek ve {p}'ye gönder.","e^|Take a shirtless selfie and send it to {p}.");
 D(3,"^|{p}'ye telefonunu ver; seni iç çamaşırınla istediği pozda fotoğraflasın.","^|Hand {p} your phone and let them photograph you in your underwear in whatever pose they like.");
 D(3,"e>k^|{p}'nin telefonuyla onun iç çamaşırlı bir fotoğrafını çek; pozu sen yönet.","e>k^|Use {p}'s phone to take a photo of her in her underwear; you direct the pose.");
 D(3,"^|{p}'nin telefonuyla onun iç çamaşırlı bir fotoğrafını çek ve birlikte bakın.","^|Use {p}'s phone to take a photo of them in their underwear and look at it together.");
-D(3,"^|{p} ile birlikte iç çamaşırlı bir ayna fotoğrafı çekin.","^|Take a mirror photo together with {p} in your underwear.");
+D(3,"^|{p} ile birlikte iç çamaşırlı bir selfie çekin.","^|Take a selfie together with {p} in your underwear.");
 D(4,"^|{p} kendi telefonuyla senin çıplak fotoğrafını çeksin; pozu o seçsin.","^|Let {p} take a nude photo of you with their phone; they choose the pose.");
 D(4,"k>e^|{p}'nin telefonunu al ve onun için çıplak bir selfie çek, telefonu ona geri ver.","k>e^|Take {p}'s phone, snap a nude selfie for him and hand the phone back.");
 D(4,"e>k^|{p}'nin çıplak fotoğrafını çek; birlikte bakın ve hangisinin kalacağına o karar versin.","e>k^|Take nude photos of {p}; look at them together and let her decide which ones stay.");
 D(4,"^|{p}'nin yüzü görünmeyecek şekilde çıplak bir fotoğrafını çek.","^|Take a nude photo of {p} without their face in the shot.");
-D(4,"^|{p} ile çıplak bir ayna fotoğrafı çekin; ikiniz de karede olun.","^|Take a naked mirror photo with {p}, both of you in the frame.");
+D(4,"^|{p} ile çıplak bir fotoğraf çekin; ikiniz de karede olun.","^|Take a naked photo together with {p}, both of you in the frame.");
 D(4,"e>k^|{p} senin üzerine çıktığında o anın fotoğrafını çek.","e>k^|When {p} climbs on top of you, take a photo of that moment.");
 D(4,"^|{p} telefonuyla kendine dokunduğun 10 saniyelik bir video çeksin, sonra birlikte izleyin.","^|Let {p} film a 10-second video of you touching yourself on their phone, then watch it together.");
 D(4,"^|Birbirinizin çıplak fotoğrafını çekin ve hangisinin daha ateşli olduğunu oylayın.","^|Take nude photos of each other and vote on which one is hotter.");

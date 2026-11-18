@@ -144,8 +144,8 @@ ct(4,"k>e|{p}'yi ağzınla mı yoksa elinle mi sevmeyi daha çok seversin?","k>e
 cd(4,"{p}'nin tüm kıyafetlerini çıkar ve vücudunun her yerini öp.","Take off all of {p}'s clothes and kiss all over their body.");
 cd(4,"Birbirinize çıplak sarılın ve öpüşürken ellerin her yerde olsun.","Hold each other naked and kiss with your hands everywhere.");
 cd(4,"{p}'nin bacak arasını parmaklarınla okşa ve tepkisini izle.","Stroke between {p}'s legs with your fingers and watch their reaction.");
-cd(4,"69 pozisyonuna geçin ve birbirinizi ağzınızla tatmin edin.","Get into a 69 and pleasure each other with your mouths.");
-cd(4,"{p}'nin iç çamaşırını indir ve onu ağzınla tatmin et.","Pull down {p}'s underwear and pleasure them with your mouth.");
+cd(4,"69 pozisyonuna geçin ve birbirinizi ağzınızla mutlu edin.","Get into a 69 and give each other oral.");
+cd(4,"{p}'nin iç çamaşırını indir ve onu ona oral seks yap.","Pull down {p}'s underwear and go down on them.");
 cd(4,"{p}'nin bacaklarının arasına otur ve yavaşça ağzınla keşfet.","Settle between {p}'s legs and slowly explore with your mouth.");
 cd(4,"{p}'ye elinle masaj yap, sonra daha aşağı in ve onu çıldırt.","Massage {p} with your hands, then move lower and drive them wild.");
 cd(4,"{p}'nin üstüne çık ve sürtünerek öpüş; iç çamaşırlarınız yerinde kalsın.","Get on top of {p} and grind while kissing; underwear stays on.");
@@ -161,11 +161,11 @@ cd(4,"{p}'yi üstüne al ve onun hızını belirlemesine izin ver.","Take {p} on
 cd(4,"{p}'nin elini al ve sevişmek istediğin yere götür.","Take {p}'s hand and lead them to where you want to have sex.");
 cd(4,"Birbirinizi ağzınızla tatmin edin; sırayla ya da aynı anda.","Satisfy each other with your mouths, taking turns or together.");
 cd(4,"{p}'yi duşa götür, sabunlayın ve orada seviş.","Take {p} into the shower, soap up and make love there.");
-cd(4,"{p}'nin ellerini bağla ve ona yavaş yavaş zevk ver; bitirmeyi sen belirle.","Tie {p}'s hands and pleasure them slowly; you decide when they finish.");
+cd(4,"{p}'nin ellerini bağla ve onu yavaş yavaş çıldırt; bitirmeyi sen belirle.","Tie {p}'s hands and slowly make them feel good; you decide when they finish.");
 cd(4,"Göz bağıyla sevişin: yalnızca dokunuşa odaklanın.","Make love blindfolded: focus only on touch.");
 cd(4,"Oyuncak ya da bir aksesuar kullanarak birbirinizi çıldırtın.","Use a toy or accessory to drive each other wild.");
 cd(4,"Seks sırasında birbirinize nasıl hissettiğinizi sesli söyleyin.","Say out loud how you feel to each other during sex.");
-cd(4,"{p}'nin bacaklarını omuzlarına al ve onu ağzınla tatmin et.","Take {p}'s legs over your shoulders and pleasure them with your mouth.");
+cd(4,"{p}'nin bacaklarını omuzlarına al ve onu onu ağzınla mutlu et.","Take {p}'s legs over your shoulders and go down on them.");
 cd(4,"k|{p}'nin üzerine otur ve yavaşça ritim tut.","k|Sit on {p} and set a slow rhythm.");
 cd(4,"{p}'ye arkadan sarıl ve sevişmeye başla; ellerin her yerinde olsun.","Hold {p} from behind and start making love, hands everywhere.");
 cd(4,"{p} istediği pozisyonu seçsin ve birlikte yapın.","{p} picks any position and you do it together.");
@@ -178,9 +178,9 @@ cd(4,"k>e|{p}'nin penisini kendi göğüslerine sürt ve ona ne istediğini söy
 cd(4,"k>e|{p}'nin üzerine otur, sırtını ona dön ve ritmi sen belirle.","k>e|Sit on {p} facing away and set the rhythm yourself.");
 cd(4,"k>e|{p}'nin üzerine ters uzan, 69'a geç ve penisini ağzına al.","k>e|Lie over {p} the other way round, get into a 69 and take his penis in your mouth.");
 cd(4,"k>e|{p}'nin penisini elinle okşa, sonra bitirmeden dur ve tekrar başla.","k>e|Stroke {p}'s penis with your hand, stop before the end, then start again.");
-cd(4,"k>e|Dizlerinin üstüne çök ve {p}'yi ağzınla tatmin et.","k>e|Kneel down and satisfy {p} with your mouth.");
+cd(4,"k>e|Dizlerinin üstüne çök ve {p}'yi ağzınla ona keyif ver.","k>e|Kneel down and satisfy {p} with your mouth.");
 cd(4,"e>k|{p}'nin bacak arasını dilinle yala, onun hızını takip et.","e>k|Lick between {p}'s legs, following her pace.");
-cd(4,"e>k|{p}'nin göğüslerini öp, emerek ve yalayarak ona zevk ver.","e>k|Kiss {p}'s breasts, pleasuring her by sucking and licking.");
+cd(4,"e>k|{p}'nin göğüslerini öp, emerek ve yalayarak onu çıldırt.","e>k|Kiss {p}'s breasts, pleasuring her by sucking and licking.");
 cd(4,"e>k|{p}'nin klitorisini parmaklarınla yavaşça uyar.","e>k|Slowly stimulate {p}'s clitoris with your fingers.");
 cd(4,"e>k|{p}'yi arkasını döndür, arkadan sar ve boynunu öperken ona dokun.","e>k|Turn {p} around, hold her from behind and touch her while kissing her neck.");
 cd(4,"e>k|{p}'nin bacaklarını aç ve ona oral seks yapmaya başla.","e>k|Spread {p}'s legs and start going down on her.");
@@ -195,7 +195,7 @@ cd(4,"e>e|Birbirinizi elle tatmin edin ve hızı birlikte belirleyin.","e>e|Sati
 cd(4,"e>e|69 pozisyonuna geçin ve birbirinize oral seks yapın.","e>e|Get into a 69 and go down on each other.");
 cd(4,"k>k|{p}'nin bacak arasını dilinle yala, onun tepkisine göre yavaşla ya da hızlan.","k>k|Lick between {p}'s legs, slowing down or speeding up with her reactions.");
 cd(4,"k>k|{p}'nin göğüslerini öp ve parmaklarınla bacak arasını okşa.","k>k|Kiss {p}'s breasts and stroke between her legs with your fingers.");
-cd(4,"k>k|Birbirinize 69 yapın ve aynı anda zevk verin.","k>k|Get into a 69 and pleasure each other at the same time.");
+cd(4,"k>k|Birbirinize 69 yapın ve aynı anda zevk verin.","k>k|Get into a 69 and go down on each other at the same time.");
 cd(4,"k>k|{p}'nin üzerine uzan ve sürtünerek öpüş.","k>k|Lie on {p} and grind while kissing.");
-cd(4,"k>k|{p}'yi yatağa yatır ve parmaklarınla ona yavaş yavaş zevk ver.","k>k|Lay {p} down and slowly pleasure her with your fingers.");
+cd(4,"k>k|{p}'yi yatağa yatır ve parmaklarınla ona yavaş yavaş keyif ver.","k>k|Lay {p} down and slowly pleasure her with your fingers.");
 })();

@@ -79,7 +79,7 @@ D(4,"{p}'ye kendini nasıl tatmin ettiğini, ona bakarak göster.","Show {p} how
 D(4,"{p}'ye bacaklarını kameraya aç ve elini yavaşça aşağı götür.","Open your legs to the camera and slowly move your hand down for {p}.");
 D(4,"{p}'ye inleyerek kameraya yaklaş.","Approach the camera moaning for {p}.");
 D(4,"{p}'ye bitirmeden önce ona haber ver.","Tell {p} before you finish.");
-D(4,"{p}'ye ayna karşısında çıplak vücudunu yavaşça okşa.","Slowly caress your naked body in the mirror for {p}.");
+D(4,"{p}'ye çıplak vücudunu yavaşça okşa.","Slowly caress your naked body for {p}.");
 D(4,"{p}'nin seni yönlendirmesiyle hızlan ve yavaşla.","Speed up and slow down as {p} guides you.");
 D(4,"{p}'ye kamerayı vücuduna doğru yaklaştır ve tüm vücudunu yavaşça göster.","Move the camera across your body and slowly show everything to {p}.");
 D(4,"{p}'ye 'bana bak' deyip gözlerini ayırma ve bitirene kadar devam et.","Tell {p} \"look at me\" and keep eye contact until you finish.");

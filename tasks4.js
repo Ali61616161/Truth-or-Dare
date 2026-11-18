@@ -267,7 +267,7 @@ C.dare[3].push(
 "{p}'nin kalçasından yukarı bir parmak gezdir ve kulağına fısılda.",
 "{p}'nin her bir parmağını, avucunu, bileğini 2 dakika boyunca öp.",
 "{p}'yi duvara yasla, her iki elini başının üstünde tut ve 2 dakika öpüş.",
-"{p}'nin boynunu ve omzunu dişlerinle hafifçe okşa (yavaşça).",
+"{p}'nin boynunu ve omzunu dişlerinle hafifçe öp.",
 "{p}'ye bir 'öpücük haritası' çiz: 5 yerinden öp.",
 "{p}'nin tüm sırtına ve omuzlarına 3 dakika yağlı masaj yap.",
 "Gözlerin bağlı: {p} 2 dakika boyunca seni istediği gibi öpsün.",

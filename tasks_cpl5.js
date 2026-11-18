@@ -113,12 +113,12 @@ T(4,"Birbirimize bu gece sadece 'evet' dersek ne olur?","What if we only said \"
 T(4,"Yatakta söyleyemediğin ama söylemek istediğin bir kelime var mı?","Is there a word you can't say in bed but want to?");
 D(4,"{p}'nin her yerini öp ve bacak arasına yaklaş.","Kiss all over {p} and approach between their legs.");
 D(4,"{p}'nin iç çamaşırını dişlerinle indir ve ona oral seks yap.","Pull {p}'s underwear down with your teeth and go down on them.");
-D(4,"{p}'nin tüm vücudunu yağla ve parmaklarınla ona zevk ver.","Oil {p}'s whole body and give them pleasure with your fingers.");
+D(4,"{p}'nin tüm vücudunu yağla ve parmaklarınla onu çıldırt.","Oil {p}'s whole body and make them feel amazing with your fingers.");
 D(4,"{p}'yi bacaklarını açmış şekilde yatır ve onu bakışlarınla bitir.","Lay {p} with legs open and nearly finish them with just your gaze.");
-D(4,"{p}'nin ellerini bağla ve ona istediğin şekilde zevk ver.","Tie {p}'s hands and give them pleasure however you want.");
-D(4,"{p}'nin üzerinde yavaşça kayarak ona zevk ver.","Glide slowly on {p} to give them pleasure.");
+D(4,"{p}'nin ellerini bağla ve ona istediğin şekilde zevk ver.","Tie {p}'s hands and make them feel good however you want.");
+D(4,"{p}'nin üzerinde yavaşça kayarak ona keyif ver.","Glide slowly on {p} to make them feel good.");
 D(4,"{p}'nin bacaklarını kendi bacaklarının arasına alıp sevişin.","Take {p}'s legs between yours and make love.");
-D(4,"{p}'yi yatağın kenarına oturt ve ağzınla tatmin et.","Sit {p} on the edge of the bed and pleasure them with your mouth.");
+D(4,"{p}'yi yatağın kenarına oturt ve ona oral seks yap.","Sit {p} on the edge of the bed and go down on them.");
 D(4,"{p}'yi kucağına alıp sallanarak sevişin.","Take {p} on your lap and make love rocking.");
 D(4,"{p}'ye 'ne istiyorsun?' diye sor ve istediğini tam olarak yap.","Ask {p} \"what do you want?\" and do exactly that.");
 D(4,"{p}'yi sırtüstü yatır ve bacaklarını belinde kavra.","Lay {p} on their back and wrap their legs around your waist.");
@@ -126,7 +126,7 @@ D(4,"{p}'nin kulağına ne kadar istediğini fısılda, sonra göster.","Whisper
 D(4,"{p}'yi hızlandır ve yavaşlat, nefesini hisset.","Speed {p} up and slow them down, feeling their breath.");
 D(4,"{p}'nin ellerini ellerinle sar ve gözlerine bakarak sevişin.","Hold {p}'s hands in yours and make love looking into their eyes.");
 D(4,"{p}'yi yatağa bastırıp tüm vücudunu hisset.","Press {p} into the bed and feel their whole body.");
-D(4,"{p}'ye karşılıklı oturup birbirinizi tatmin edin.","Sit facing {p} and pleasure each other.");
+D(4,"{p}'ye karşılıklı oturup birbirinizi tatmin edin.","Sit facing {p} and make each other feel good.");
 D(4,"{p}'nin boynunu öperken ona sevişmeye başla.","Start making love to {p} while kissing their neck.");
 D(4,"{p}'yi yatakta yan yatırıp arkasından hareket et.","Lay {p} on their side and move from behind.");
 D(4,"{p}'nin bacaklarını açık tutup yavaşça içine gir.","Hold {p}'s legs open and slowly enter them.");
