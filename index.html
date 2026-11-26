@@ -154,6 +154,7 @@ body.flash::after{content:"";position:fixed;inset:0;background:var(--acc);pointe
 <script src="tasks_dress.js"></script>
 <script src="tasks_spice.js"></script>
 <script src="tasks_story.js"></script>
+<script src="tasks_remote.js"></script>
 <script src="firebase-config.js"></script>
 <script src="online.js"></script>
 <script>
@@ -339,7 +340,7 @@ function addPlayer(){
 function rmPlayer(i){S.players.splice(i,1);setup()}
 function start(){
  if(S.players.length<2){alert(t('needTwo'));return}
- S.turn=0;S.lvMode='auto';S.task=null;S.outfit=false;S.lastDress=null;S.lastStrip=null;S.lastSpice=null;S.lastFeat=null;S.featUsed=[];S.stage=0;S.passes=S.players.map(()=>MAX_PASS);persist();game();
+ S.turn=0;S.lvMode='auto';S.task=null;S.tmr=null;S.outfit=false;S.lastDress=null;S.lastStrip=null;S.lastSpice=null;S.lastFeat=null;S.featUsed=[];S.stage=0;S.passes=S.players.map(()=>MAX_PASS);persist();game();
 }
 
 /* ---------- Çevrimiçi eşleşme ---------- */
@@ -388,7 +389,7 @@ async function joinRoomUi(){
 }
 function enterRoom(code,seat){
  if(NET.unsub){NET.unsub();NET.unsub=null}
- NET.code=code;NET.seat=seat;S.online=true;S._sig='';
+ NET.code=code;NET.seat=seat;S.online=true;S._sig='';S.tmr=null;S.tmrDone=null;scApply('');
  try{ST.setItem(ROOMKEY,JSON.stringify({code,seat}))}catch(e){}
  NET.unsub=RT.watch(code,onRoom);
 }
@@ -419,8 +420,11 @@ function sanitizeRoom(d){
  const k=d.task;
  if(k&&typeof k==='object'&&(k.kind==='truth'||k.kind==='dare')){
   const lv=int(k.lv,0,4,0),i=int(k.i,0,100000,-1),pi=int(k.pi,0,1,0);
-  if(i>=0)out.task={kind:k.kind,lv,i,pi};
+  if(i>=0)out.task={kind:k.kind,lv,i,pi,setup:k.setup===1?1:0};
  }
+ out.sc=typeof d.sc==='string'&&d.sc.length<4000?d.sc:'';
+ out.tmr=null;
+ if(typeof d.tm==='string'&&d.tm.length<200){try{const m=JSON.parse(d.tm);if(m&&Number.isInteger(m.d)&&m.d>0&&m.d<=900&&Number.isFinite(m.at)&&Number.isInteger(m.k))out.tmr={d:m.d,at:m.at,k:m.k}}catch(e){}}
  return out;
 }
 function onRoom(raw){
@@ -434,7 +438,8 @@ function onRoom(raw){
  S.lvMode=d.lv;
  S.task=d.task;
  S.passes=[d.pa,d.pb];
- const sig=JSON.stringify([S.players,S.turn,S.lvMode,S.task,S.passes,LANG]);
+ scApply(d.sc);S.tmr=d.tmr;
+ const sig=JSON.stringify([S.players,S.turn,S.lvMode,S.task,S.passes,LANG,S.tmr]);
  if(sig===S._sig&&(S.view==='game'||S.view==='wait'))return;
  S._sig=sig;
  if(!d.p1){waitScreen();return}
@@ -455,9 +460,18 @@ function shareCode(){
  if(navigator.share){navigator.share({text:txt+' · '+location.href.split('?')[0]}).catch(()=>{})}
  else if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>alert(t('copied')))}
 }
+function scState(){return JSON.stringify({o:S.outfit?1:0,st:S.stage||0,ld:S.lastDress,ls:S.lastStrip,lp:S.lastSpice,lf:S.lastFeat,fu:(S.featUsed||[]).slice(-60)})}
+function scApply(s){
+ let o={};try{o=JSON.parse(s||'{}')||{}}catch(e){o={}}
+ const n=v=>Number.isInteger(v)&&v>=0&&v<100000?v:null;
+ S.outfit=o.o===1;S.stage=[0,1,2,3].includes(o.st)?o.st:0;
+ S.lastDress=n(o.ld);S.lastStrip=n(o.ls);S.lastSpice=n(o.lp);S.lastFeat=n(o.lf);
+ S.featUsed=Array.isArray(o.fu)?o.fu.filter(x=>typeof x==='string'&&/^[1-4]:\d{1,5}$/.test(x)).slice(-60):[];
+}
 function commit(p){
  if(!S.online){Object.assign(S,p);game();return}
- const d={};
+ const d={sc:scState()};
+ if('tmr'in p)d.tm=p.tmr?JSON.stringify(p.tmr):null;
  if('turn'in p)d.turn=p.turn;
  if('task'in p)d.task=p.task;
  if('lvMode'in p)d.lv=String(p.lvMode);
@@ -508,10 +522,10 @@ function game(){
  let body;
  if(tk){
   const text=taskText(tk);
-  const secs=mine?timeOf(text):0;
+  const secs=timeOf(text),tmrOn=!!(S.tmr&&S.tmr.k===S.turn);
   const k=tk.kind==='truth';
   body=`<div class="card ${tk.kind}"><div class="wm">${k?IC.chat:IC.bolt}</div><div class="kind">${k?IC.chat:IC.bolt}${k?t('TRUTH'):t('DARE')}</div><div class="txt">${esc(text)}</div></div>
-  ${secs?`<div class="timer" id="tm"><button onclick="startTimer(${secs})">${t('timer')} · ${fmt(secs)}</button></div>`:''}
+  ${tmrOn?`<div class="timer" id="tm"></div>`:(secs&&mine?`<div class="timer" id="tm"><button onclick="startTimer(${secs})">${t('timer')} · ${fmt(secs)}</button></div>`:'')}
   ${mine?`<div class="stack"><button class="btn main" onclick="done()">${IC.check}${t('done')}</button>
   <button class="btn" ${left?'':'disabled'} onclick="pas()">${IC.skip}${t('pass',{n:left})}</button></div>`:`<p class="waitnote">${t('waitDo',{n:esc(o.n)})}</p>`}`;
  } else if(mine){
@@ -523,6 +537,7 @@ function game(){
  render(`<div class="top"><button onclick="menu()">${IC.menu}</button><span class="pill">${t('round')} ${roundNo()}${S.online?' · '+esc(NET.code):''}</span></div>
  <div class="who"><div class="av ${o.g}">${esc(o.n[0].toUpperCase())}</div><div class="nm">${esc(o.n)}</div><div class="hearts">${hearts}</div></div>
  ${lvrow}${body}<div class="spacer"></div>`);
+ if(S.tmr&&S.tmr.k===S.turn)runTimer();
 }
 function levelSheet(){
  const m=document.createElement('div');m.className='modal';
@@ -557,7 +572,7 @@ function poolFor(kind,o,lv,setupOnly){
   const g=m&&m[1],pg=m&&m[2],flag=(m&&m[3])||'';
   if(g&&g!==o.g)return;
   if(pg&&(!par||par.g!==pg))return;
-  const st=S.stage||0,story=S.mode==='couple'&&lv>=3;
+  const st=S.stage||0,story=duo()&&lv>=3;
   if(typeof setupOnly==='string'&&setupOnly.startsWith('st')){if(flag!==STAGEFLAG[setupOnly.slice(2)])return}
   else if(setupOnly){if(flag!=='!')return}
   else{
@@ -578,20 +593,21 @@ function pick(kind){
  if(!myTurn())return;
  const o=cur();let lv=effLevel();
  // Gece senaryosu: kıyafet giyildikten sonra öne çıkan görevler yazıldıkları sırayla ve sık gelir
- if(S.mode==='couple'&&kind==='dare'&&lv>=3&&(S.stage||0)>=1){
+ if(duo()&&kind==='dare'&&lv>=3&&(S.stage||0)>=1){
   S.featUsed=S.featUsed||[];
-  const left=(st,p)=>poolFor(kind,p,lv,'st'+st).filter(y=>!S.featUsed.includes(y.id));
+  const fk=y=>lv+':'+y.i;
+  const left=(st,p)=>poolFor(kind,p,lv,'st'+st).filter(y=>!S.featUsed.includes(fk(y)));
   while(S.stage<3&&S.players.every(p=>!left(S.stage,p).length))S.stage++;   // aşama iki oyuncu için de bittiyse ilerle
   if((S.lastFeat==null||S.turn-S.lastFeat>=3)&&Math.random()<0.75){
    const nx=left(S.stage,o)[0];
-   if(nx){S.featUsed.push(nx.id);S.lastFeat=S.turn;vib(15);commit({task:{kind,lv,i:nx.i,pi:S.players.findIndex(y=>y!==o)}});return}
+   if(nx){S.featUsed.push(fk(nx));S.lastFeat=S.turn;vib(15);commit({task:{kind,lv,i:nx.i,pi:S.players.findIndex(y=>y!==o)}});return}
   }
  }
  // Çılgın/Sınırsız'da kadına gelen ilk cesaret: partnerin seçtiği kıyafeti giyme görevi
- if(S.mode==='couple'&&kind==='dare'&&o.g==='k'&&!S.outfit&&lv>=3){
+ if(duo()&&kind==='dare'&&o.g==='k'&&!S.outfit&&lv>=3){
   const sp=poolFor(kind,o,lv,true);
   if(sp.length){
-   const hk='couple.outfit',used=S.hist[hk]=S.hist[hk]||[];
+   const hk=S.mode+'.outfit',used=S.hist[hk]=S.hist[hk]||[];
    let pool=sp.filter(y=>!used.includes(y.id));if(!pool.length){S.hist[hk]=[];pool=sp}
    const x=pool[Math.floor(Math.random()*pool.length)];S.hist[hk].push(x.id);persist();
    S.lastDress=S.turn;
@@ -632,7 +648,7 @@ function pick(kind){
  vib(15);
  commit({task:{kind,lv:duo()?useLv:0,i:x.i,pi,setup:x.flag==='!'?1:0}});
 }
-function advance(extra){commit(Object.assign({task:null,turn:S.turn+1},extra||{}))}
+function advance(extra){commit(Object.assign({task:null,tmr:null,turn:S.turn+1},extra||{}))}
 function done(){if(!myTurn())return;vib([10,30,10]);if(S.task&&S.task.setup){S.outfit=true;if(!S.stage)S.stage=1}advance()}
 function pas(){
  if(!myTurn())return;
@@ -643,10 +659,27 @@ function pas(){
 function timeOf(s){const m=/(\d+)[\s-]*(saniye|dakika|dk|seconds?|minutes?|sec|min)/i.exec(s);if(!m)return 0;const n=+m[1];return /^(sa|se)/i.test(m[2])?n:n*60}
 const fmt=s=>s>=60?`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`:`${s} ${LANG==='en'?'sec':'sn'}`;
 function clearTimer(){if(S.timer){clearInterval(S.timer);S.timer=null}}
+/* Sayaç: başlangıç zamanı odada tutulur, iki telefon da aynı geri sayımı görür ve sonunda ikisi de uyarı verir */
 function startTimer(sec){
- clearTimer();audioPrime();vib(20);S.tleft=sec;const box=document.getElementById('tm');
- const show=()=>{box.innerHTML=`<div class="big">${S.tleft>=60?fmt(S.tleft):S.tleft}</div>`};show();
- S.timer=setInterval(()=>{S.tleft--;if(S.tleft<=0){clearTimer();box.innerHTML=`<div class="big">${t('timeUp')}</div>`;alarm()}else show()},1000);
+ audioPrime();vib(20);
+ const tm={d:sec,at:Date.now(),k:S.turn};
+ S.tmr=tm;
+ if(S.online)commit({tmr:tm});
+ runTimer();
+}
+function runTimer(){
+ clearTimer();
+ const tm=S.tmr,box=document.getElementById('tm');
+ if(!tm||!box||tm.k!==S.turn)return;
+ const key=tm.k+':'+tm.at;
+ const tick=()=>{
+  const left=Math.ceil(tm.d-(Date.now()-tm.at)/1000);
+  if(left<=0){
+   clearTimer();box.innerHTML=`<div class="big">${t('timeUp')}</div>`;
+   if(S.tmrDone!==key){S.tmrDone=key;if(Date.now()-tm.at-tm.d*1000<15000)alarm()}
+  }else box.innerHTML=`<div class="big">${left>=60?fmt(left):left}</div>`;
+ };
+ tick();if(!S.tmrDone||S.tmrDone!==key)S.timer=setInterval(tick,250);
 }
 window.addEventListener('error',e=>{app.innerHTML=`<div class="warn">${t('err')}: ${esc(e.message)}<br><br><button class="btn" onclick="location.reload()">${t('restart')}</button></div>`});
 document.documentElement.lang=LANG;document.title=t('title');

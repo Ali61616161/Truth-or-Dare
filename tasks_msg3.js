@@ -66,7 +66,7 @@ D(3,"e|{p}'ye kasılmış karnının fotoğrafını gönder.","e|Send {p} a phot
 D(3,"k|{p}'ye sırtından belin altına uzanan bir fotoğraf gönder (giyinik).","k|Send {p} a clothed photo from your back down to your lower back.");
 
 /* ===== Seviye 4: sınırsız ===== */
-T(4,"Yaz: beni düşünerek kendini nasıl tatmin ediyorsun?","Write: how do you pleasure yourself thinking of me?");
+T(4,"Yaz: beni düşünerek kendine nasıl dokunuyorsun?","Write: how do you touch yourself when you think of me?");
 T(4,"Sesli mesajla bana şu an ne kadar istediğini inleyerek söyle.","Tell me by voice note how much you want me, moaning.");
 T(4,"Yaz: beni nasıl çıplak görmek istersin?","Write: how do you want to see me naked?");
 T(4,"Yaz: seni en çok hangi pozisyon çıldırtır?","Write: which position drives you wildest?");
@@ -76,7 +76,7 @@ T(4,"Yaz: bana ağzınla ne yapmak istersin, açık açık?","Write: what do you
 T(4,"Yaz: beni en çok nerede öpmek istersin: vücudumda tam yer.","Write: where exactly on my body do you most want to kiss me?");
 T(4,"Yaz: bu gece yatakta rol yapsak, hangi roller?","Write: if we role-played in bed tonight, which roles?");
 T(4,"Yaz: seni orgazma en çabuk ne götürür?","Write: what takes you to orgasm fastest?");
-T(4,"Yaz: beni nasıl elinle tatmin ederdin?","Write: how would you pleasure me by hand?");
+T(4,"Yaz: bana elinle nasıl dokunurdun, adım adım?","Write: how would you touch me with your hand, step by step?");
 T(4,"Yaz: yatakta en çok hangi sesleri duymak istersin?","Write: what sounds do you most want to hear in bed?");
 T(4,"Yaz: beni nasıl uyandırıp ne yaptırırdın?","Write: how would you wake me and what would you have me do?");
 T(4,"Yaz: seks sırasında beni ne zaman durdurmak istemezsin?","Write: when do you not want me to stop during sex?");
@@ -91,7 +91,7 @@ D(4,"{p}'ye kendine dokunduğun bir ses kaydı gönder (sadece ses).","Send {p} 
 D(4,"{p}'ye inleyerek ismini söylediğin bir ses kaydı gönder.","Send {p} a voice note moaning their name.");
 D(4,"{p}'ye ona ne yapacağını komut listesi olarak yaz (10 madde).","Write {p} what you'll do to them as a 10-item command list.");
 D(4,"{p}'ye şu an ne kadar ıslak/sert olduğunu yaz.","Write {p} how wet/hard you are right now.");
-D(4,"{p}'ye kendini tatmin ederken ne düşündüğünü sesli mesajla anlat.","Tell {p} by voice note what you think about when pleasuring yourself.");
+D(4,"{p}'ye kendine dokunurken neyi düşündüğünü sesli mesajla anlat.","Tell {p} in a voice note what you think about while you touch yourself.");
 D(4,"{p}'ye bu gece sevişirken nasıl bağıracağını yaz.","Write {p} how you'll cry out when making love tonight.");
 D(4,"{p}'ye çıplak sırtının ve kalçanın fotoğrafını gönder (yüzsüz, tek seferlik).","Send {p} a photo of your bare back and hips (no face, view-once).");
 D(4,"{p}'ye hayal ettiğin en açık sahneyi 10 cümleyle yaz.","Write {p} the most explicit scene you imagine in 10 sentences.");
@@ -118,7 +118,7 @@ D(4,"k>e|{p}'ye onu nasıl ağzına alacağını yaz.","k>e|Write {p} how you'll
 D(4,"k>e|{p}'ye üstüne çıkıp ne yapacağını yaz.","k>e|Write {p} what you'll do when you get on top of him.");
 D(4,"k>e|{p}'ye ona nasıl ağzınla bitireceğini sesli anlat.","k>e|Tell {p} by voice note how you'll finish him with your mouth.");
 D(4,"k>e|{p}'ye vücudundan en çok neresini onun için hazırladığını yaz.","k>e|Write {p} which part of your body you've prepared most for him.");
-D(4,"e>k|{p}'ye onu dilinle nasıl sevip bitireceğini sesli mesajla anlat.","e>k|Tell {p} by voice note how you'll pleasure her with your tongue.");
+D(4,"e>k|{p}'ye onu dilinle nasıl yalayıp bitireceğini sesli mesajla anlat.","e>k|Tell {p} in a voice note how you'd lick her until she comes.");
 D(4,"e>k|{p}'ye göğüslerini nasıl öpeceğini ve emeceğini yaz.","e>k|Write {p} how you'll kiss and suck her breasts.");
 D(4,"e>k|{p}'ye ona nasıl gireceğini yavaş yavaş yaz.","e>k|Write {p} slowly how you'll enter her.");
 D(4,"e>k|{p}'ye onu nasıl çıldırtacağını 8 cümleyle yaz.","e>k|Write {p} in 8 sentences how you'll drive her wild.");
