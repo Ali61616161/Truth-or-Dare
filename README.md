@@ -40,6 +40,10 @@ Arkadaş, Sevgili, Görüntülü ve Mesaj modları olan, Türkçe/İngilizce web
           "$o": {".validate": false}},
         "sc": {".validate": "newData.isString()&&newData.val().length<4000"},
         "tm": {".validate": "newData.isString()&&newData.val().length<200"},
+        "ro": {".validate": "newData.isString()&&newData.val().length<30000"},
+        "ra": {".validate": "newData.isString()&&newData.val().length<30000"},
+        "h0": {".validate": "newData.isString()&&newData.val().length<40"},
+        "h1": {".validate": "newData.isString()&&newData.val().length<40"},
         "$other": {".validate": false}
       }
     }
