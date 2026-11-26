@@ -7,3 +7,6 @@ window.FB_CONFIG={
   storageBucket:"truth-or-dare-bbabe.firebasestorage.app",
   messagingSenderId:"721714101267"
 };
+/* İsteğe bağlı: doğrudan bağlantı kurulamayan mobil ağlarda görüntülü aramanın çalışması için TURN sunucusu.
+   Örnek: window.TURN_SERVERS=[{urls:'turn:sunucu.ornek.com:3478',username:'kullanici',credential:'sifre'}]; */
+window.TURN_SERVERS=[];

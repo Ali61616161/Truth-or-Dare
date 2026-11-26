@@ -29,11 +29,11 @@ VD(4,"e>k@|{p}'ye elbisenin altından kendine dokunmasını söyle ve tepkisini 
 VD(4,"k>e@|O elbiseyle kamerayı bacaklarına çevir ve iç bacağını yavaşça okşa.","k>e@|In that dress, point the camera at your legs and slowly stroke your inner thigh.");
 VD(4,"e>k@|{p}'ye pantolonunu kamerada açıp kendine dokunduğunu göster.","e>k@|Show {p} on camera as you undo your pants and touch yourself.");
 /* 2. aşama: soyma */
-VD(3,"k>e%|Kamerada elbisenin fermuarını yavaşça aç ve omuzlarından kaydır.","k>e%|On camera, slowly undo your dress and slide it off your shoulders.");
+VD(3,"k>e%|Kamerada üstündekini yavaşça çıkar ve omuzlarından kaydır.","k>e%|On camera, slowly take off your top and slide it off your shoulders.");
 VD(3,"e>k%|Kamerada tişörtünü çıkar ve {p}'ye göğsünü göster.","e>k%|Take off your T-shirt on camera and show {p} your chest.");
 VD(3,"k>e%|Sutyenini kamerada arkadan aç ve askıları yavaşça indir.","k>e%|Unhook your bra on camera and slowly slide the straps down.");
 VD(3,"e>k%|Pantolonunu kamerada çıkar ve sadece iç çamaşırıyla kal.","e>k%|Take off your pants on camera and stay in just your underwear.");
-VD(4,"k>e%|Elbiseni kamerada yere düşür ve iç çamaşırınla bir tur dön.","k>e%|Let your dress drop on camera and do a spin in your underwear.");
+VD(4,"k>e%|Kamerada üstündekileri tek tek çıkar ve iç çamaşırınla bir tur dön.","k>e%|Take your clothes off one by one on camera and do a spin in your underwear.");
 VD(4,"e>k%|Kamerada iç çamaşırını yavaşça indir ve {p}'ye kendini göster.","e>k%|Slowly pull down your underwear on camera and show {p} yourself.");
 VD(4,"k>e%|Sutyenini çıkar ve kameraya yaklaş.","k>e%|Take off your bra and come close to the camera.");
 VD(4,"k>e%|Külotunu en son parça olarak yavaşça indir ve kameraya ver.","k>e%|Slowly pull your panties down as the last piece and hand them to the camera.");
@@ -76,7 +76,7 @@ MD(4,"k>e@|O elbiseyle askısını indirdiğin bir fotoğraf gönder (yüzsüz).
 MD(4,"e>k@|{p}'ye ona elbisenin altından nasıl dokunacağını adım adım yaz.","e>k@|Write {p} step by step how you'd touch her under that dress.");
 MD(4,"k>e@|O elbiseyle kendine dokunurken çekilmiş bir ses kaydı gönder.","k>e@|Send a voice note of you touching yourself in that dress.");
 /* 2. aşama: soyma */
-MD(3,"k>e%|Elbiseni çıkarırken çekilmiş bir fotoğraf gönder (yüzsüz).","k>e%|Send a photo taken as you take off your dress (no face).");
+MD(3,"k>e%|Üstünü çıkarırken çekilmiş bir fotoğraf gönder (yüzsüz).","k>e%|Send a photo taken as you take off your top (no face).");
 MD(3,"e>k%|Tişörtünü çıkar ve üstsüz bir fotoğraf gönder.","e>k%|Take off your T-shirt and send a shirtless photo.");
 MD(3,"k>e%|İç çamaşırınla bir fotoğraf gönder ve {p}'ye sıradaki parçayı sor.","k>e%|Send a photo in your underwear and ask {p} which piece comes off next.");
 MD(4,"k>e%|Sutyenini çıkar ve bir fotoğraf gönder (yüzsüz, tek seferlik).","k>e%|Take off your bra and send a photo (no face, view-once).");

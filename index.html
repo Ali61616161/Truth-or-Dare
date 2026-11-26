@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com; base-uri 'self'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com; base-uri 'self'; form-action 'none'; object-src 'none'">
 
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#120b0d">
@@ -104,7 +104,7 @@ input[type=text]:focus{border-color:var(--gold)}
 .timer .big{font-family:var(--serif);font-size:42px;font-weight:700;font-variant-numeric:tabular-nums}
 .warn{background:var(--surf);border:1px solid #e5484d;border-radius:20px;padding:20px;font-size:15px;margin:14px 0;line-height:1.55}
 .tip{font-size:13px;color:var(--mut);margin-top:12px;line-height:1.5;text-align:center}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:flex-end;justify-content:center;z-index:9;animation:in .2s}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:flex-end;justify-content:center;z-index:35;animation:in .2s}
 .modal>div{background:var(--surf);border-radius:26px 26px 0 0;padding:22px 20px calc(env(safe-area-inset-bottom) + 22px);width:100%;max-width:520px;border:1px solid var(--line)}
 .opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--surf2);border:1px solid var(--line);border-radius:18px;padding:14px 16px;color:var(--txt);font:inherit}
 .opt.on{border-color:var(--acc)}
@@ -155,8 +155,10 @@ body.flash::after{content:"";position:fixed;inset:0;background:var(--acc);pointe
 <script src="tasks_spice.js"></script>
 <script src="tasks_story.js"></script>
 <script src="tasks_remote.js"></script>
+<script src="tasks_remote2.js"></script>
 <script src="firebase-config.js"></script>
 <script src="online.js"></script>
+<script src="rtc.js"></script>
 <script>
 "use strict";
 const MAX_PASS=3;
@@ -179,7 +181,7 @@ const STR={
   menu:'Menü',menuBack:'‹ Menü',cont:'Devam et',chPlayers:'Oyuncuları değiştir',home:'Ana menü',
   auto:'Oto',random:'Rastgele',lv:['','Isınma','Ateşli','Çılgın','Sınırsız'],
   nAuto:'Her 3 turda bir seviye yükselir. Şu an: {l}',nRandom:'Her görev rastgele bir seviyeden gelir.',nFixed:'Sabit seviye: {l}',
-  timer:'Sayaç',timeUp:'Süre doldu',noTask:'Bu kategoride görev bulunamadı',err:'Bir hata oluştu',levels:'Seviye',autoD:'Yavaş yavaş kızışır: her 3 turda bir seviye yükselir.',randomD:'Her görev rastgele bir seviyeden gelir.',video:'Görüntülü',videoD:'FaceTime ile, kamera karşısında',callW:'Görüntülü aramada ekran kaydı ve ekran görüntüsü almayın. Telefonlardan biri uygulamayı açık tutsun, sıra isimle gösterilir; görevi yapan kişi kameraya, diğeri ekrana bakar.',msg:'Mesaj',msgD:'Mesaj, ses ve foto görevleri',msgW:'Fotoğraf ve ses görevlerinde yüzünü göstermemeyi, "tek seferlik görüntüle" kullanmayı seç ve ekran görüntüsü alma. Görevleri uygulama vermez, kendi sohbetinizde yaparsınız.',howH:'Nasıl oynayacaksınız?',howSub:'Aynı telefondan ya da iki ayrı telefondan.',single:'Tek telefon',singleD:'Sırayla aynı ekrana bakın',two:'İki telefon',twoD:'Kodla eşleşin, herkes kendi telefonunda',yourInfo:'Senin bilgilerin',createRoom:'Oda kur',joinRoom:'Odaya katıl',codePh:'Oda kodu',or:'ya da',roomCode:'Oda kodu',waitPartner:'Partnerin katılması bekleniyor…',shareCode:'Kodu paylaş',cancel:'İptal',noRoom:'Böyle bir oda bulunamadı.',roomFull:'Oda dolu.',roomClosed:'Oda kapatıldı.',noNet:'Çevrimiçi eşleşme henüz kurulmadı (Firebase ayarı eksik).',netErr:'Bağlantı kurulamadı, internetini kontrol et.',waitTurn:'{n} sırada',waitPick:'{n} seçiyor…',waitDo:'{n} görevi yapıyor',verDiff:'Uygulama sürümleriniz farklı. İkiniz de sayfayı yenileyin.',leave:'Odadan çık',backRoom:'Odaya dön',codeErr:'Kod 5 karakter olmalı.',copied:'Kod kopyalandı',together:'Yan yana',togetherD:'Aynı yerde, tek telefon',remote:'Uzaktan',remoteD:'Görüntülü arama ya da mesajla',remoteH:'Nasıl oynamak istersiniz?',whereH:'Neredesiniz?',whereSub:'Birlikte mi, uzakta mısınız?',restart:'Yeniden başlat',noLoad:'Görevler yüklenemedi. Sayfayı yenile.'
+  timer:'Sayaç',timeUp:'Süre doldu',noTask:'Bu kategoride görev bulunamadı',err:'Bir hata oluştu',levels:'Seviye',autoD:'Yavaş yavaş kızışır: her 3 turda bir seviye yükselir.',randomD:'Her görev rastgele bir seviyeden gelir.',video:'Görüntülü',videoD:'Uygulamanın içinde görüntülü',callW:'Görüntülü konuşma uygulamanın içinde, iki telefon arasında doğrudan yapılır ve hiçbir yerde kaydedilmez. Ekran kaydı ve ekran görüntüsü almayın.',msg:'Mesaj',msgD:'Uygulama içi sohbet ve foto görevleri',msgW:'Mesaj ve fotoğraflar uygulamanın içindeki sohbetten, iki telefon arasında doğrudan gider ve hiçbir sunucuda saklanmaz. Fotoğraflarda "tek seferlik" seçeneğini kullanın, ekran görüntüsü almayın.',howH:'Nasıl oynayacaksınız?',howSub:'Aynı telefondan ya da iki ayrı telefondan.',single:'Tek telefon',singleD:'Sırayla aynı ekrana bakın',two:'İki telefon',twoD:'Kodla eşleşin, herkes kendi telefonunda',yourInfo:'Senin bilgilerin',createRoom:'Oda kur',joinRoom:'Odaya katıl',codePh:'Oda kodu',or:'ya da',roomCode:'Oda kodu',waitPartner:'Partnerin katılması bekleniyor…',shareCode:'Kodu paylaş',cancel:'İptal',noRoom:'Böyle bir oda bulunamadı.',roomFull:'Oda dolu.',roomClosed:'Oda kapatıldı.',noNet:'Çevrimiçi eşleşme henüz kurulmadı (Firebase ayarı eksik).',netErr:'Bağlantı kurulamadı, internetini kontrol et.',waitTurn:'{n} sırada',waitPick:'{n} seçiyor…',waitDo:'{n} görevi yapıyor',verDiff:'Uygulama sürümleriniz farklı. İkiniz de sayfayı yenileyin.',leave:'Odadan çık',backRoom:'Odaya dön',codeErr:'Kod 5 karakter olmalı.',copied:'Kod kopyalandı',together:'Yan yana',togetherD:'Aynı yerde, tek telefon',remote:'Uzaktan',remoteD:'Görüntülü arama ya da mesajla',remoteH:'Nasıl oynamak istersiniz?',whereH:'Neredesiniz?',whereSub:'Birlikte mi, uzakta mısınız?',reconnect:'Bağlantı koptu, yeniden bağlanılıyor…',restart:'Yeniden başlat',noLoad:'Görevler yüklenemedi. Sayfayı yenile.'
  },
  en:{
   title:'Truth or Dare',h1a:'Truth',h1b:'or',h1c:'Dare',h1d:'?',eyebrow:'The game',
@@ -198,7 +200,7 @@ const STR={
   menu:'Menu',menuBack:'‹ Menu',cont:'Continue',chPlayers:'Change players',home:'Main menu',
   auto:'Auto',random:'Random',lv:['','Warm-up','Hot','Wild','Unlimited'],
   nAuto:'The level goes up every 3 rounds. Now: {l}',nRandom:'Every task comes from a random level.',nFixed:'Fixed level: {l}',
-  timer:'Timer',timeUp:'Time is up',noTask:'No task found in this category',err:'Something went wrong',levels:'Level',autoD:'Heats up gradually: the level goes up every 3 rounds.',randomD:'Every task comes from a random level.',video:'Video call',videoD:'On FaceTime, in front of the camera',callW:'Do not screen-record or take screenshots during the call. One phone keeps the app open and shows whose turn it is; the person doing the task faces the camera, the other watches the screen.',msg:'Message',msgD:'Text, voice and photo tasks',msgW:'For photo and voice tasks, consider not showing your face, use view-once, and do not screenshot. The app only gives the tasks; you do them in your own chat.',howH:'How will you play?',howSub:'On one phone or on two separate phones.',single:'One phone',singleD:'Take turns on the same screen',two:'Two phones',twoD:'Pair with a code, each on their own phone',yourInfo:'Your details',createRoom:'Create room',joinRoom:'Join room',codePh:'Room code',or:'or',roomCode:'Room code',waitPartner:'Waiting for your partner to join…',shareCode:'Share code',cancel:'Cancel',noRoom:'No such room found.',roomFull:'The room is full.',roomClosed:'The room was closed.',noNet:'Online pairing is not set up yet (missing Firebase config).',netErr:'Could not connect, check your internet.',waitTurn:'{n} is up',waitPick:'{n} is choosing…',waitDo:'{n} is doing the task',verDiff:'Your app versions differ. Both of you refresh the page.',leave:'Leave room',backRoom:'Back to room',codeErr:'The code must be 5 characters.',copied:'Code copied',together:'Together',togetherD:'Same place, one phone',remote:'Long distance',remoteD:'By video call or messages',remoteH:'How do you want to play?',whereH:'Where are you?',whereSub:'Together or apart?',restart:'Restart',noLoad:'Tasks could not be loaded. Refresh the page.'
+  timer:'Timer',timeUp:'Time is up',noTask:'No task found in this category',err:'Something went wrong',levels:'Level',autoD:'Heats up gradually: the level goes up every 3 rounds.',randomD:'Every task comes from a random level.',video:'Video call',videoD:'Video call inside the app',callW:'The video call runs inside the app, directly between the two phones, and is never recorded anywhere. Do not screen-record or take screenshots.',msg:'Message',msgD:'In-app chat and photo tasks',msgW:'Messages and photos go through the in-app chat, directly between the two phones, and are never stored on any server. Use view-once for photos and do not take screenshots.',howH:'How will you play?',howSub:'On one phone or on two separate phones.',single:'One phone',singleD:'Take turns on the same screen',two:'Two phones',twoD:'Pair with a code, each on their own phone',yourInfo:'Your details',createRoom:'Create room',joinRoom:'Join room',codePh:'Room code',or:'or',roomCode:'Room code',waitPartner:'Waiting for your partner to join…',shareCode:'Share code',cancel:'Cancel',noRoom:'No such room found.',roomFull:'The room is full.',roomClosed:'The room was closed.',noNet:'Online pairing is not set up yet (missing Firebase config).',netErr:'Could not connect, check your internet.',waitTurn:'{n} is up',waitPick:'{n} is choosing…',waitDo:'{n} is doing the task',verDiff:'Your app versions differ. Both of you refresh the page.',leave:'Leave room',backRoom:'Back to room',codeErr:'The code must be 5 characters.',copied:'Code copied',together:'Together',togetherD:'Same place, one phone',remote:'Long distance',remoteD:'By video call or messages',remoteH:'How do you want to play?',whereH:'Where are you?',whereSub:'Together or apart?',reconnect:'Connection lost, reconnecting…',restart:'Restart',noLoad:'Tasks could not be loaded. Refresh the page.'
  }
 };
 let LANG='tr';
@@ -255,6 +257,18 @@ S.online=false;S.view='';
 const modeName=m=>m==='call'?t('video'):m==='msg'?t('msg'):m==='couple'?t('couple'):t('friend');
 function setLang(l){LANG=l;try{localStorage.setItem(LKEY,l)}catch(e){}document.documentElement.lang=l;document.title=t('title');home()}
 function render(html){clearTimer();app.style.animation='none';void app.offsetWidth;app.style.animation='';app.innerHTML=html;window.scrollTo(0,0)}
+const GKEY='tod_game';
+function saveGame(){
+ if(S.online||S.players.length<2)return;
+ try{localStorage.setItem(GKEY,JSON.stringify({mode:S.mode,players:S.players,turn:S.turn,lvMode:S.lvMode,task:S.task,passes:S.passes,sc:scState(),tmr:S.tmr||null,ts:Date.now()}))}catch(e){}
+}
+function clearGame(){try{localStorage.removeItem(GKEY)}catch(e){}}
+function restoreGame(){
+ let g=null;try{g=JSON.parse(localStorage.getItem(GKEY)||'null')}catch(e){}
+ if(!g||!Array.isArray(g.players)||g.players.length<2||Date.now()-g.ts>24*3600e3)return false;
+ S.mode=g.mode;S.players=g.players;S.turn=g.turn|0;S.lvMode=g.lvMode||'auto';S.task=g.task||null;S.passes=g.passes;S.tmr=g.tmr||null;S.online=false;
+ scApply(g.sc);game();return true;
+}
 function savedRoom(){try{return JSON.parse(ST.getItem(ROOMKEY)||'null')}catch(e){return null}}
 
 function home(){
@@ -302,16 +316,7 @@ function remoteMenu(){
   <button class="tile m" style="flex-direction:row;text-align:left;justify-content:flex-start" onclick="playHow('msg')"><div class="ic">${IC.chat}</div><div><b>${t('msg')}</b><br><small>${t('msgD')}</small></div></button>
  </div>`);
 }
-function playHow(m){
- S.mode=m;
- render(`<div class="top"><button onclick="remoteMenu()">${IC.back}${t('back')}</button><span class="pill">${modeName(m)}</span></div>
- <h2>${t('howH')}</h2><p class="sub">${t('howSub')}</p>
- <div class="stack">
-  <button class="tile f" style="flex-direction:row;text-align:left;justify-content:flex-start" onclick="setMode('${m}')"><div class="ic">${IC.phone}</div><div><b>${t('single')}</b><br><small>${t('singleD')}</small></div></button>
-  <button class="tile v" style="flex-direction:row;text-align:left;justify-content:flex-start" onclick="onlineSetup('${m}')"><div class="ic">${IC.phones}</div><div><b>${t('two')}</b><br><small>${t('twoD')}</small></div></button>
- </div>
- <p class="hint" style="margin-top:18px">${m==='call'?t('callW'):t('msgW')}</p>`);
-}
+function playHow(m){onlineSetup(m)}   // uzaktan oyunda her zaman iki telefon
 function setMode(m){S.mode=m;S.players=[];S.tmpG=null;S.online=false;setup()}
 function setup(keep){
  const c=duo();
@@ -350,7 +355,7 @@ function genCode(){const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let s='';for(let i
 function onlineSetup(m,keep){
  S.mode=m;
  const k=keep||{};
- render(`<div class="top"><button onclick="playHow('${m}')">${IC.back}${t('back')}</button><span class="pill">${modeName(m)}</span></div>
+ render(`<div class="top"><button onclick="remoteMenu()">${IC.back}${t('back')}</button><span class="pill">${modeName(m)}</span></div>
  <h2>${t('yourInfo')}</h2>
  <input id="nm" type="text" maxlength="16" placeholder="${t('name')}" autocomplete="off" autocapitalize="words">
  <div class="seg"><button class="${S.tmpG==='e'?'on':''}" onclick="setOG('${m}','e')">${IC.male}${t('male')}</button><button class="${S.tmpG==='k'?'on':''}" onclick="setOG('${m}','k')">${IC.female}${t('female')}</button></div>
@@ -389,7 +394,7 @@ async function joinRoomUi(){
 }
 function enterRoom(code,seat){
  if(NET.unsub){NET.unsub();NET.unsub=null}
- NET.code=code;NET.seat=seat;S.online=true;S._sig='';S.tmr=null;S.tmrDone=null;scApply('');
+ clearGame();NET.code=code;NET.seat=seat;S.online=true;S._sig='';S.tmr=null;S.tmrDone=null;scApply('');
  try{ST.setItem(ROOMKEY,JSON.stringify({code,seat}))}catch(e){}
  NET.unsub=RT.watch(code,onRoom);
 }
@@ -397,7 +402,17 @@ function resumeRoom(){
  const r=savedRoom();if(!r||!netGuard())return;
  enterRoom(r.code,r.seat);
 }
+function reconnect(){
+ const c=NET.code,s=NET.seat;if(!c)return;
+ if(window.RTC)RTC.stop();
+ if(NET.unsub){NET.unsub();NET.unsub=null}
+ S.view='reconnect';
+ render(`<div class="spacer"></div><p class="hint">${t('reconnect')}</p><button class="btn ghost" onclick="leaveToHome()">${t('home')}</button><div class="spacer"></div>`);
+ setTimeout(()=>{if(NET.code===c&&!NET.unsub&&S.online)enterRoom(c,s)},3000);
+}
+function leaveToHome(){if(window.RTC)RTC.stop();if(NET.unsub){NET.unsub();NET.unsub=null}S.online=false;home()}
 function leaveLocal(){
+ if(window.RTC)RTC.stop();
  if(NET.unsub){NET.unsub();NET.unsub=null}
  S.online=false;NET.code=null;try{ST.removeItem(ROOMKEY)}catch(e){}
 }
@@ -428,10 +443,11 @@ function sanitizeRoom(d){
  return out;
 }
 function onRoom(raw){
- if(raw===undefined){alert(t('netErr'));leaveLocal();home();return}
+ if(raw===undefined){reconnect();return}
  if(!raw){leaveLocal();alert(t('noRoom'));home();return}
  const d=sanitizeRoom(raw);
  if(!d||d.closed){const closed=!!(d&&d.closed);leaveLocal();alert(closed?t('roomClosed'):t('noRoom'));home();return}
+ if(d.p1&&(d.mode==='call'||d.mode==='msg')&&window.RTC)RTC.sync(NET.code,NET.seat,raw,d.mode,[d.p0,d.p1]);   // uygulama içi görüntülü/sohbet
  S.mode=d.mode;
  S.players=d.p1?[d.p0,d.p1]:[d.p0];
  S.turn=d.turn;
@@ -497,6 +513,7 @@ function srcArr(src,kind,lv){
 }
 const TAGRE=/^(?:([ek])(?:>([ek]))?)?([!*~^@%&])?\|/;
 const STAGEFLAG={1:'@',2:'%',3:'&'};
+const VERBAL=/fısılda|söyle|\byaz\b|yaz[:,.]|anlat|sesli mesaj|ses kaydı|\bsor\b|konuş|oku\b|şarkı|tarif|itiraf/i;
 const stripTag=s=>String(s).replace(TAGRE,'');
 function rawText(kind,lv,i){
  const tr=srcArr(TASKS,kind,lv);if(!tr||tr[i]==null)return '';
@@ -538,6 +555,7 @@ function game(){
  <div class="who"><div class="av ${o.g}">${esc(o.n[0].toUpperCase())}</div><div class="nm">${esc(o.n)}</div><div class="hearts">${hearts}</div></div>
  ${lvrow}${body}<div class="spacer"></div>`);
  if(S.tmr&&S.tmr.k===S.turn)runTimer();
+ saveGame();
 }
 function levelSheet(){
  const m=document.createElement('div');m.className='modal';
@@ -557,9 +575,9 @@ function menu(){
  const close=()=>m.remove();
  m.addEventListener('click',e=>{if(e.target===m)close()});
  m.querySelector('#mm1').onclick=close;
- const b2=m.querySelector('#mm2');if(b2)b2.onclick=()=>{close();setup()};
+ const b2=m.querySelector('#mm2');if(b2)b2.onclick=()=>{close();clearGame();setup()};
  const b4=m.querySelector('#mm4');if(b4)b4.onclick=()=>{close();leaveRoom()};
- m.querySelector('#mm3').onclick=()=>{close();if(S.online){if(NET.unsub){NET.unsub();NET.unsub=null}S.online=false}home()};
+ m.querySelector('#mm3').onclick=()=>{close();clearGame();if(S.online){if(window.RTC)RTC.stop();if(NET.unsub){NET.unsub();NET.unsub=null}S.online=false}home()};
 }
 function setLv(v){commit({lvMode:(v==='auto'||v==='random')?v:Number(v)})}
 function poolFor(kind,o,lv,setupOnly){
@@ -585,7 +603,7 @@ function poolFor(kind,o,lv,setupOnly){
    if(flag==='^'&&story&&st===1)return;                                // kıyafet aşamasında serpiştirme yok
    if(flag==='^'&&!(S.lastSpice==null||S.turn-S.lastSpice>=5))return;  // foto / kucak dansı arasında en az 5 tur
   }
-  out.push({id:stripTag(s),i,timed:!!timeOf(rawText(kind,lv,i)),star:flag==='*',flag});
+  out.push({id:stripTag(s),i,timed:!!timeOf(rawText(kind,lv,i)),star:flag==='*',flag,verbal:VERBAL.test(s)});
  });
  return out;
 }
@@ -604,7 +622,8 @@ function pick(kind){
   }
  }
  // Çılgın/Sınırsız'da kadına gelen ilk cesaret: partnerin seçtiği kıyafeti giyme görevi
- if(duo()&&kind==='dare'&&o.g==='k'&&!S.outfit&&lv>=3){
+ if(duo()&&kind==='dare'&&o.g==='k'&&!S.outfit&&lv>=3&&(S.stage||0)===0&&S.mode!=='couple'&&Math.random()<0.5){S.stage=2}   // uzaktan oyunların yarısında elbise yok, doğrudan soyma
+ if(duo()&&kind==='dare'&&o.g==='k'&&!S.outfit&&lv>=3&&(S.stage||0)===0){
   const sp=poolFor(kind,o,lv,true);
   if(sp.length){
    const hk=S.mode+'.outfit',used=S.hist[hk]=S.hist[hk]||[];
@@ -634,7 +653,8 @@ function pick(kind){
  if(dress.length&&r<0.3){cand=dress}
  else if(strip.length&&r<0.42){cand=strip}
  else if(spice.length&&r<0.62){cand=spice}
- else if(stars.length&&Math.random()<0.25){cand=stars}
+ else if(stars.length&&Math.random()<(S.mode==='couple'?0.25:0.1)){cand=stars}
+ if((S.mode==='call'||S.mode==='msg')&&kind==='dare'){const vis=cand.filter(y=>!y.verbal);if(vis.length&&Math.random()<0.8)cand=vis}   // uzaktan: görsel görevler öncelikli
  const untimed=cand.filter(y=>!y.timed);
  if(untimed.length&&(Math.random()<0.8||untimed.length===cand.length))cand=untimed;
  const x=cand[Math.floor(Math.random()*cand.length)];
@@ -684,7 +704,14 @@ function runTimer(){
 window.addEventListener('error',e=>{app.innerHTML=`<div class="warn">${t('err')}: ${esc(e.message)}<br><br><button class="btn" onclick="location.reload()">${t('restart')}</button></div>`});
 document.documentElement.lang=LANG;document.title=t('title');
 if(typeof TASKS==='undefined'){app.innerHTML=`<div class="warn">${t('noLoad')}</div>`}
-else{restore();home();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{})}
+else{
+ restore();
+ const sr=savedRoom();
+ if(!restoreGame()){if(sr&&typeof RT!=='undefined'&&RT.available())enterRoom(sr.code,sr.seat);else home()}
+ if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+ // uygulama arka plandan dönünce bağlantı düşmüşse yeniden bağlan
+ document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&S.online&&NET.code&&!NET.unsub)enterRoom(NET.code,NET.seat)});
+}
 </script>
 </body>
 </html>
