@@ -120,7 +120,7 @@ D(3,"k|İç çamaşırınla {p}'ye bacaklarını yavaşça uzat.","k|Slowly exte
 
 /* ===== SEVİYE 4: sınırsız, açık ===== */
 T(4,"Uzaktayken kendine dokunurken beni düşünüyor musun?","Do you think of me when you touch yourself while we're apart?");
-T(4,"Birbirimizi izleyerek tatmin olmak ister miydin?","Would you like us to pleasure ourselves while watching each other?");
+T(4,"Birbirimizi izlerken ikimizin de kendine dokunmasını ister miydin?","Would you like us both to touch ourselves while watching each other?");
 T(4,"Kamerada en çok ne yapmamı isterdin, açıkça söyle.","What would you want me to do on camera? Say it plainly.");
 T(4,"Seni en çok neyim kendinden geçirir, ekrandan?","What of mine takes you out of yourself, through a screen?");
 T(4,"Telefon seksi hakkında ne düşünüyorsun?","What do you think about phone sex?");
@@ -137,14 +137,14 @@ D(4,"Kamerada yatağa uzan, {p} ne yapacağını söylesin ve yap.","Lie on the 
 D(4,"Kendi vücudunu {p}'ye tamamen göster ve onun tepkisini dinle.","Show {p} your whole body and listen to their reaction.");
 D(4,"{p}'ye ne kadar hazır olduğunu göster ve söyle.","Show and tell {p} how ready you are.");
 D(4,"Oyuncağın varsa kameraya göster ve {p}'ye nasıl kullanacağını anlat.","If you have a toy, show it and tell {p} how you'd use it.");
-D(4,"Birbirinize sırayla ne yapmak istediğinizi söyleyin, yapılsın diye kendinizi tatmin edin.","Take turns saying what you want to do to each other, and pleasure yourselves as you speak.");
+D(4,"Sırayla birbirinize ne yapmak istediğinizi söyleyin ve konuşurken kendinize dokunun.","Take turns saying what you'd do to each other, and touch yourselves while you talk.");
 D(4,"Kameranın önünde dizlerinin üstüne çök ve {p}'ye bak.","Kneel in front of the camera and look at {p}.");
 D(4,"Ellerinle kendini {p}'nin söylediği tempoyla okşa.","Touch yourself at the pace {p} tells you.");
 D(4,"Birbirinizi izleyerek bitirene kadar devam edin.","Keep going while watching each other until you finish.");
 D(4,"{p}'nin ismini inleyerek söyle.","Moan {p}'s name.");
 D(4,"Kamerayı yere koy ve tüm vücudunu {p}'ye göster.","Set the camera down and show {p} your whole body.");
 D(4,"Aynı anda aynı şeyi yapın: yavaş başla, birlikte hızlan.","Do the same thing at once: start slow, speed up together.");
-D(4,"{p}'ye kendini tatmin ederken en çok neyi hayal ettiğini anlat.","Tell {p} what you imagine most when you touch yourself.");
+D(4,"{p}'ye kendine dokunurken en çok neyi hayal ettiğini anlat.","Tell {p} what you imagine most when you touch yourself.");
 D(4,"Yatakta bacaklarını aç ve {p}'nin ne yaptırmak istediğini söyle.","Spread your legs on the bed and let {p} tell you what they want you to do.");
 D(4,"Kendini duşta kameraya göster ve sabunlan.","Show yourself in the shower on camera and soap up.");
 D(4,"{p}'nin tüm komutlarını 3 dakika boyunca sorgusuz yap.","Follow all of {p}'s commands for 3 minutes without question.");
@@ -157,7 +157,7 @@ D(4,"e>k|Kendine dokunurken {p}'ye ona ne yapacağını anlat.","e>k|Touch yours
 D(4,"e>k|{p}'nin göğüslerini göstermesini iste ve ona ne yapacağını anlat.","e>k|Ask {p} to show her breasts and tell her what you'd do to her.");
 D(4,"e>k|Penisini kameraya göster ve {p}'nin onu nasıl istediğini sor.","e>k|Show your penis to the camera and ask {p} how she wants it.");
 D(4,"e>k|{p} kendine dokunurken sen ne yapacağını anlat.","e>k|While {p} touches herself, tell her what you'd do.");
-D(4,"e>e|Birbirinize penislerinizi gösterin ve karşılıklı tatmin olun.","e>e|Show each other and pleasure yourselves in turn.");
+D(4,"e>e|Birbirinize çıplak vücudunuzu gösterin ve aynı anda kendinize dokunun.","e>e|Show each other your naked bodies and touch yourselves at the same time.");
 D(4,"e>e|{p}'ye ne yapacağını fısılda ve izle.","e>e|Whisper to {p} what you'd do to him and watch.");
 D(4,"k>k|Kameraya bacaklarını aç ve {p}'ye ne istediğini söyle.","k>k|Spread your legs for the camera and tell {p} what you want.");
 D(4,"k>k|{p}'ye göğüslerini göster ve birbirinize emir verin.","k>k|Show {p} your breasts and give each other orders.");

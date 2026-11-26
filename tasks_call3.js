@@ -71,11 +71,11 @@ D(4,"{p}'nin seni izleyerek kendine dokunmasına izin ver, sen de ona bak.","Let
 D(4,"{p}'ye kendine yavaşça dokun ve her dokunuşu anlat.","Slowly touch yourself and narrate each touch for {p}.");
 D(4,"{p}'ye göğüslerini ya da kasığını ellerinle yavaşça sıvazla.","Slowly stroke your chest or groin with your hands for {p}.");
 D(4,"{p}'nin her komutunu 3 dakika boyunca yap.","Follow every one of {p}'s commands for 3 minutes.");
-D(4,"{p}'ye kendini tatmin ederken ona bak ve ismini söyle.","Look at {p} and say their name while pleasuring yourself.");
+D(4,"Kendine dokunurken {p}'nin gözlerine bak ve adını söyle.","Look {p} in the eye and say their name while you touch yourself.");
 D(4,"{p}'ye bir oyuncak kullanarak kendine dokun.","Use a toy on yourself for {p}.");
 D(4,"{p}'ye yataktan dizlerinin üstünde kameraya doğru yaklaş, çıplak.","Approach the camera naked on your knees from the bed for {p}.");
 D(4,"{p} ile aynı anda kendinize dokunun ve hızı birbirinize göre ayarlayın.","Touch yourselves at the same time with {p}, matching each other's pace.");
-D(4,"{p}'ye kendini nasıl tatmin ettiğini, ona bakarak göster.","Show {p} how you pleasure yourself, looking at them.");
+D(4,"{p}'ye bakarak, en çok nasıl hoşuna gittiğini göstere göstere kendine dokun.","Looking at {p}, touch yourself and show exactly how you like it.");
 D(4,"{p}'ye bacaklarını kameraya aç ve elini yavaşça aşağı götür.","Open your legs to the camera and slowly move your hand down for {p}.");
 D(4,"{p}'ye inleyerek kameraya yaklaş.","Approach the camera moaning for {p}.");
 D(4,"{p}'ye bitirmeden önce ona haber ver.","Tell {p} before you finish.");

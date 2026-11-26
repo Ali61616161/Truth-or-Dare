@@ -46,7 +46,7 @@ vd(3,"Bir ipek parçayı vücudunda gezdir ve {p}'ye bak.","Drag a piece of silk
 vd(4,"{p}'ye en çok neyi istediğini göster ve izlemesini sağla.","Show {p} what you want most and make them watch.");
 vd(4,"Kendi sesinle ve elinle {p}'yi 3 dakika boyunca ele geçir.","Take {p} over for 3 minutes with your voice and your hands.");
 vd(4,"Birbirinize sırayla ne yapacağınızı anlatın ve yapılan hareketi tekrar edin.","Take turns describing what you'll do to each other and echo the move.");
-vd(4,"Kendini nasıl tatmin ettiğini {p}'ye göster.","Show {p} how you pleasure yourself.");
+vd(4,"{p}'ye nasıl mastürbasyon yaptığını göster.","Show {p} how you masturbate.");
 vd(4,"Gözlerini {p}'den ayırmadan kendini 2 dakika okşa.","Touch yourself for 2 minutes without taking your eyes off {p}.");
 vd(4,"{p}'nin yönlendirmesiyle kendini hızlandır ya da yavaşlat.","Speed up or slow down following {p}'s direction.");
 vd(4,"Birbirinize aynı anda bitirmek için geri sayım yapın.","Count down together to finish at the same time.");

@@ -14,7 +14,7 @@ T(3,"Yaz: bu gece yatağında benimle ne yapmak istersin?","Write: what do you w
 T(3,"Sesli mesajla bana bir fantezini yavaşça anlat.","Slowly tell me a fantasy by voice note.");
 T(3,"Yaz: bana ne yaptırırsan bu gece uyuyamazsın?","Write: what would I have to do to keep you awake tonight?");
 T(4,"Yaz: seni en çok hangi pozisyonda hayal ediyorsun?","Write: in which position do you imagine yourself most?");
-T(4,"Sesli mesajla bana kendini nasıl tatmin ettiğini fısılda.","Whisper to me by voice note how you pleasure yourself.");
+T(4,"Sesli mesajla bana nasıl mastürbasyon yaptığını fısılda.","Whisper to me in a voice note how you masturbate.");
 T(4,"Yaz: sana yaptığım en çılgın şey neydi?","Write: what's the wildest thing I've done to you?");
 D(1,"{p}'ye bugün gördüğün bir şeyi 3 kelimeyle anlat ve fotoğrafla.","Describe something you saw today to {p} in 3 words and photograph it.");
 D(1,"{p}'ye bir şarkıdan bir satırı gönder ve ne düşündürdüğünü yaz.","Send {p} a line from a song and write what it makes you think.");
@@ -42,7 +42,7 @@ D(3,"{p}'ye üstünü çıkarırken çektiğin bir fotoğraf gönder (yüzsüz).
 D(3,"{p}'ye iç çamaşırınla bacaklarını bükerek bir fotoğraf gönder (yüzsüz).","Send {p} a photo in your underwear with your legs bent (no face).");
 D(4,"{p}'ye çıplak bir fotoğraf gönder ve altına ne istediğini yaz (yüzsüz, tek seferlik).","Send {p} a nude photo and write what you want (no face, view-once).");
 D(4,"{p}'ye 25 saniyelik bir inleme ses kaydı gönder.","Send {p} a 25-second voice note with moaning.");
-D(4,"{p}'ye kendini nasıl tatmin ettiğini adım adım yaz.","Write {p} step by step how you pleasure yourself.");
+D(4,"{p}'ye kendine nasıl dokunduğunu adım adım yaz.","Write {p} step by step how you touch yourself.");
 D(4,"{p}'ye şu an ne kadar ıslak ya da sert olduğunu yaz.","Write {p} how wet or hard you are right now.");
 D(4,"{p}'ye bu gece onunla sevişirken ne yapacağını 10 cümleyle anlat.","Describe to {p} in 10 sentences what you'll do while making love tonight.");
 D(4,"{p}'ye yataktan çıplak bir video gönder (yüzsüz, tek seferlik).","Send {p} a nude video from bed (no face, view-once).");

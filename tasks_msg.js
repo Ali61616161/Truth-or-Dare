@@ -155,7 +155,7 @@ D(4,"{p}'ye çıplak bir video gönder (yüzsüz, tek seferlik).","Send {p} a nu
 D(4,"{p}'ye şu an kendine dokunduğunu söyleyen bir ses kaydı bırak.","Leave {p} a voice note saying you're touching yourself right now.");
 D(4,"{p}'ye ona nasıl bitireceğini anlatan 8 cümlelik bir mesaj yaz.","Write {p} an 8-sentence message about how you'll make them finish.");
 D(4,"{p}'ye bu gece birlikte yapmak istediğin en çılgın şeyi yaz.","Write {p} the wildest thing you want to do together tonight.");
-D(4,"{p}'ye kendini tatmin ederken çekilmiş gibi bir ses kaydı gönder (sadece ses).","Send {p} a voice-only recording as if you were pleasuring yourself.");
+D(4,"{p}'ye kendine dokunurken nefesini duyduğu 30 saniyelik bir ses kaydı gönder.","Send {p} a 30-second voice note where they can hear your breathing while you touch yourself.");
 D(4,"{p}'nin yazdığı komutlara 5 dakika boyunca anında uy ve yaptığını yaz.","Obey {p}'s commands instantly for 5 minutes and report what you did.");
 D(4,"{p}'ye çıplak vücudunun bir parçasının yakın çekimini gönder (yüzsüz, tek seferlik).","Send {p} a close-up of a part of your bare body (no face, view-once).");
 D(4,"{p}'ye bu gece seni nasıl istediğini sesli mesajla emir kipinde anlat.","Tell {p} by voice note how you want them tonight, in commands.");
