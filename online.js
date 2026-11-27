@@ -53,7 +53,8 @@ function fbRT(){
    return()=>{dead=true;off()};
   },
   async update(code,patch){const d=await init();await d.ref('rooms/'+code).update(patch)},
-  async exists(code){const d=await init();return (await d.ref('rooms/'+code).once('value')).exists()}
+  async exists(code){const d=await init();return (await d.ref('rooms/'+code).once('value')).exists()},
+  kick(){if(db){try{db.goOffline();db.goOnline()}catch(e){}}}   // geri dönünce bağlantıyı hemen yenile
  };
 }
 window.RT=mock?mockRT():fbRT();
