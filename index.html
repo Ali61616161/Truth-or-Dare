@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com; base-uri 'self'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://*.firebasedatabase.app https://*.firebaseio.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://*.metered.live https://*.firebasedatabase.app wss://*.firebasedatabase.app https://*.firebaseio.com wss://*.firebaseio.com; base-uri 'self'; form-action 'none'; object-src 'none'">
 
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#120b0d">
@@ -668,6 +668,7 @@ function pick(kind){
  vib(15);
  commit({task:{kind,lv:duo()?useLv:0,i:x.i,pi,setup:x.flag==='!'?1:0}});
 }
+const NOW=()=>(S.online&&typeof RT!=='undefined'&&RT.now)?RT.now():Date.now();
 function advance(extra){commit(Object.assign({task:null,tmr:null,turn:S.turn+1},extra||{}))}
 function done(){if(!myTurn())return;vib([10,30,10]);if(S.task&&S.task.setup){S.outfit=true;if(!S.stage)S.stage=1}advance()}
 function pas(){
@@ -682,7 +683,7 @@ function clearTimer(){if(S.timer){clearInterval(S.timer);S.timer=null}}
 /* Sayaç: başlangıç zamanı odada tutulur, iki telefon da aynı geri sayımı görür ve sonunda ikisi de uyarı verir */
 function startTimer(sec){
  audioPrime();vib(20);
- const tm={d:sec,at:Date.now(),k:S.turn};
+ const tm={d:sec,at:NOW(),k:S.turn};
  S.tmr=tm;
  if(S.online)commit({tmr:tm});
  runTimer();
@@ -693,10 +694,10 @@ function runTimer(){
  if(!tm||!box||tm.k!==S.turn)return;
  const key=tm.k+':'+tm.at;
  const tick=()=>{
-  const left=Math.ceil(tm.d-(Date.now()-tm.at)/1000);
+  const left=Math.ceil(tm.d-(NOW()-tm.at)/1000);
   if(left<=0){
    clearTimer();box.innerHTML=`<div class="big">${t('timeUp')}</div>`;
-   if(S.tmrDone!==key){S.tmrDone=key;if(Date.now()-tm.at-tm.d*1000<15000)alarm()}
+   if(S.tmrDone!==key){S.tmrDone=key;if(NOW()-tm.at-tm.d*1000<15000)alarm()}
   }else box.innerHTML=`<div class="big">${left>=60?fmt(left):left}</div>`;
  };
  tick();if(!S.tmrDone||S.tmrDone!==key)S.timer=setInterval(tick,250);
