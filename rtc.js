@@ -33,13 +33,38 @@ function buildUI(){
  #rtcbar button.on{background:var(--acc);border-color:var(--acc);color:#fff}
  #rtcbar .badge{position:absolute;top:-4px;right:-4px;background:var(--acc);color:#fff;border-radius:99px;font-size:11px;min-width:18px;height:18px;display:grid;place-items:center;padding:0 5px}
  #rtcst{font-size:12px;color:var(--mut);align-self:center}
- #vc{position:fixed;top:0;left:0;right:0;height:42vh;background:#000;z-index:15;display:none}
+ #vc{position:fixed;top:0;left:0;right:0;height:62vh;background:#000;z-index:15;display:none}
  body.vc-on #vc{display:block}
- body.vc-on #app{padding-top:calc(42vh + 12px)}
+ body.vc-on #app{padding-top:calc(62vh + 6px)}
+ body.vc-on #app .top{min-height:0}
+ body.vc-on #app .top .pill{padding:3px 9px;font-size:11px}
+ body.vc-on #app .top button{padding:2px 0}
+ body.vc-on #app .who{margin:2px 0}
+ body.vc-on #app .who .av{width:34px;height:34px;font-size:16px;border-width:2px}
+ body.vc-on #app .who .nm{font-size:22px}
+ body.vc-on #app .who .hearts svg{width:15px;height:15px}
+ body.vc-on #app .lvrow{margin:2px 0}
+ body.vc-on #app .lvrow .flames svg{width:16px;height:16px}
+ body.vc-on #app .modebtn{padding:5px 10px;font-size:12px}
+ body.vc-on #app .card{min-height:0;padding:14px 16px;margin:6px 0 8px;border-radius:18px}
+ body.vc-on #app .card .kind{margin-bottom:6px;font-size:11px}
+ body.vc-on #app .card .txt{font-size:18px;line-height:1.3}
+ body.vc-on #app .card .wm,body.vc-on #app .card .eico{display:none}
+ body.vc-on #app .card.empty .txt{font-size:16px}
+ body.vc-on #app .btn{padding:12px 14px;font-size:15px}
+ body.vc-on #app .stack{gap:8px}
+ body.vc-on #app .choose button{padding:12px 8px;font-size:16px;flex-direction:row;gap:8px}
+ body.vc-on #app .choose button svg{width:22px;height:22px}
+ body.vc-on #app .waitnote{margin:0 0 6px}
+ body.vc-on.rtc-on #app{padding-bottom:calc(env(safe-area-inset-bottom) + 12px)}
+ body.vc-on #rtcbar{top:calc(env(safe-area-inset-top) + 10px);bottom:auto;left:auto;right:10px;transform:none}
+ body.vc-on #rtcbar button{padding:8px 12px;font-size:13px;background:rgba(0,0,0,.55);border-color:transparent}
+ body.vc-on #rtcbar button.on{background:rgba(0,0,0,.55)}
+ body.vc-on #rtcst{color:#fff}
  #vc video.r{width:100%;height:100%;object-fit:cover;background:#111}
- #vc video.l{position:absolute;right:10px;bottom:56px;width:28%;max-width:130px;aspect-ratio:3/4;object-fit:cover;border-radius:14px;border:2px solid rgba(255,255,255,.6);background:#222;transform:scaleX(-1)}
+ #vc video.l{position:absolute;right:10px;bottom:58px;width:30%;max-width:150px;aspect-ratio:3/4;object-fit:cover;border-radius:14px;border:2px solid rgba(255,255,255,.6);background:#222;transform:scaleX(-1)}
  #vc video.l.back{transform:none}
- #vc .ctl{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:10px}
+ #vc .ctl{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:0 8px}
  #vc .ctl button{border:0;border-radius:99px;padding:9px 14px;background:rgba(0,0,0,.55);color:#fff;font:600 13px inherit;font-family:inherit}
  #vc .ctl button.off{background:var(--acc)}
  #vc .msg{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:15px;text-align:center;padding:20px;pointer-events:none}
