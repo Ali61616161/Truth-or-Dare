@@ -23,19 +23,22 @@ function mockRT(){
    const iv=setInterval(()=>wrap(clean(rd()[code]||null)),200);
    return()=>{clearInterval(iv);ws[code]=(ws[code]||[]).filter(x=>x!==wrap)}},
   async update(code,patch){const o=rd();if(!o[code])return;for(const k in patch){if(patch[k]===null)delete o[code][k];else o[code][k]=patch[k]}wr(o);bc.postMessage(code);fire(code)},
-  async exists(code){return !!rd()[code]}
+  async exists(code){return !!rd()[code]},
+  now(){return Date.now()}
  };
 }
 
 function fbRT(){
- let db=null;
+ let db=null,offset=0;
  async function init(){
   if(db)return db;
   if(!window.FB_CONFIG)throw new Error('noconfig');
   await loadScript('https://www.gstatic.com/firebasejs/'+FB_VER+'/firebase-app-compat.js');
   await loadScript('https://www.gstatic.com/firebasejs/'+FB_VER+'/firebase-database-compat.js');
   if(!firebase.apps.length)firebase.initializeApp(window.FB_CONFIG);
-  db=firebase.database();return db;
+  db=firebase.database();
+  db.ref('.info/serverTimeOffset').on('value',x=>{const v=x.val();if(typeof v==='number'&&isFinite(v))offset=v});
+  return db;
  }
  return{
   available:()=>!!window.FB_CONFIG,
@@ -54,6 +57,7 @@ function fbRT(){
   },
   async update(code,patch){const d=await init();await d.ref('rooms/'+code).update(patch)},
   async exists(code){const d=await init();return (await d.ref('rooms/'+code).once('value')).exists()},
+  now(){return Date.now()+offset},   // sunucu saati: iki telefonun saati farklı olsa da sayaç aynı
   kick(){if(db){try{db.goOffline();db.goOnline()}catch(e){}}}   // geri dönünce bağlantıyı hemen yenile
  };
 }

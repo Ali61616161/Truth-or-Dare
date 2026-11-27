@@ -10,3 +10,6 @@ window.FB_CONFIG={
 /* İsteğe bağlı: doğrudan bağlantı kurulamayan mobil ağlarda görüntülü aramanın çalışması için TURN sunucusu.
    Örnek: window.TURN_SERVERS=[{urls:'turn:sunucu.ornek.com:3478',username:'kullanici',credential:'sifre'}]; */
 window.TURN_SERVERS=[];
+/* Metered (metered.ca) ücretsiz TURN: panelde "TURN Credentials" sayfasındaki API adresi, örn:
+   'https://UYGULAMAADIN.metered.live/api/v1/turn/credentials?apiKey=ANAHTAR' */
+window.TURN_API='';

@@ -50,3 +50,14 @@ Arkadaş, Sevgili, Görüntülü ve Mesaj modları olan, Türkçe/İngilizce web
   }
 }
 ```
+
+## Görüntülü arama için TURN (mobil veride bağlantı)
+
+Bazı mobil operatörlerde iki telefon doğrudan bağlanamaz; o zaman bağlantı bir TURN aktarma sunucusundan geçer (veri yine uçtan uca şifreli kalır, saklanmaz).
+
+1. https://www.metered.ca/tools/openrelay/ adresinden ücretsiz hesap aç (ayda 20 GB ücretsiz).
+2. Panelde bir uygulama oluştur, **TURN Credentials** sayfasındaki API adresini kopyala:
+   `https://UYGULAMAADIN.metered.live/api/v1/turn/credentials?apiKey=ANAHTAR`
+3. `firebase-config.js` içinde `window.TURN_API='...'` satırına yapıştır.
+
+Bu anahtar herkese açık uygulama kodunda durur; yalnızca TURN kullanımı için geçerlidir. Panelde izin verilen alan adını `ali61616161.github.io` olarak sınırlayabilirsin.
